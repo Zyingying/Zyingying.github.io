@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>第一篇文章 | 2yingying</title>
+    <title>backbone笔记 | 2yingying</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="盈盈">
     
-    <meta name="description" content="nice to meet you2016">
+    <meta name="description" content="1.绑定on方法使用on方法可以给一个对象的自定义时间绑定出发该时间时执行的函数，当自定义的时间触发时，绑定的函数将会被执行。调用格式如下$$Obj.on(eventName,function,[context])$$其中，Obj表示对象本身；eventName表示自定义时间名；function事件">
     
     
     
@@ -67,15 +67,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/01/07/wafdard/" title="第一篇文章" itemprop="url">第一篇文章</a>
+      <a href="/2016/01/12/backbone/" title="backbone笔记" itemprop="url">backbone笔记</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="盈盈">盈盈</a>
     </p>
   <p class="article-time">
-    <time datetime="2016-01-07T03:07:37.000Z" itemprop="datePublished">2016-01-07</time>
-    更新日期:<time datetime="2016-01-08T14:04:10.519Z" itemprop="dateModified">2016-01-08</time>
+    <time datetime="2016-01-12T05:59:57.959Z" itemprop="datePublished">2016-01-12</time>
+    更新日期:<time datetime="2016-01-12T05:59:57.959Z" itemprop="dateModified">2016-01-12</time>
     
   </p>
 </header>
@@ -84,17 +84,20 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_u7ED1_u5B9Aon_u65B9_u6CD5"><span class="toc-number">1.</span> <span class="toc-text">1.绑定on方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1_u793A_u4F8B_3Aon_u76D1_u542C_u5C5E_u6027_u4E8B_u4EF6"><span class="toc-number">1.1.</span> <span class="toc-text">1.1示例:on监听属性事件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5206_u6790"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2_u76D1_u542C_u5C5E_u6027_u4E8B_u4EF6"><span class="toc-number">2.1.</span> <span class="toc-text">1.2监听属性事件</span></a></li></ol></li></ol>
 		</div>
 		
-		<p>nice to meet you<br>2016<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/956653.jpg" alt="good luck"></p>
-  
+		<h3 id="1-_u7ED1_u5B9Aon_u65B9_u6CD5"><a href="#1-_u7ED1_u5B9Aon_u65B9_u6CD5" class="headerlink" title="1.绑定on方法"></a>1.绑定on方法</h3><p>使用on方法可以给一个对象的自定义时间绑定出发该时间时执行的函数，当自定义的时间触发时，绑定的函数将会被执行。调用格式如下<br>$$Obj.on(eventName,function,[context])$$<br>其中，Obj表示对象本身；eventName表示自定义时间名；function事件触发是被执行的函数；可选参数context表示上下文对象，用于对象级时间的监听，即当一个对象需要监听另一个对象的时间时，可以使用该参数</p>
+<h4 id="1-1_u793A_u4F8B_3Aon_u76D1_u542C_u5C5E_u6027_u4E8B_u4EF6"><a href="#1-1_u793A_u4F8B_3Aon_u76D1_u542C_u5C5E_u6027_u4E8B_u4EF6" class="headerlink" title="1.1示例:on监听属性事件"></a>1.1示例:on监听属性事件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> person = Backbone.Model.extend(&#123;</span><br><span class="line">    defaults:&#123;</span><br><span class="line">        name:<span class="string">""</span>,</span><br><span class="line">        sex:<span class="string">""</span></span><br><span class="line">    &#125;</span><br><span class="line"> &#125;);</span><br><span class="line"> <span class="keyword">var</span> man = <span class="keyword">new</span> person();</span><br><span class="line"> man.on(<span class="string">"change"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"对象的默认值发送了变化"</span>);</span><br><span class="line"> &#125;);</span><br><span class="line">man.set(<span class="string">"name"</span>,<span class="string">"zhangyingying"</span>);</span><br></pre></td></tr></table></figure>
+<p>控制台输出效果为：对象的默认值发送了变化</p>
+<h3 id="u5206_u6790"><a href="#u5206_u6790" class="headerlink" title="分析"></a><strong>分析</strong></h3><p>在上述代码中，<br>    首先顶一个名称为<code>person</code>的数据模型类，在定义时，通过defaults方法设置两个名称为<code>name</code> <code>sex</code>的数据项，值设为空。<br>    然后实例化一个名为<code>man</code>的模型对象，使用on方法对该对象绑定出发<code>change</code>事件时执行的函数，在该函数中，将在浏览器的控制台输出“…”<br>    最后使用<code>set</code>方法充值一个<code>name</code>属性，触发绑定的<code>change</code>事件。</p>
+<h4 id="1-2_u76D1_u542C_u5C5E_u6027_u4E8B_u4EF6"><a href="#1-2_u76D1_u542C_u5C5E_u6027_u4E8B_u4EF6" class="headerlink" title="1.2监听属性事件"></a>1.2监听属性事件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = Backbone.Model.extend(&#123;</span><br><span class="line">    defaults:&#123;</span><br><span class="line">        name:<span class="string">""</span>,</span><br><span class="line">        sex:<span class="string">"女"</span></span><br><span class="line">    &#125;</span><br><span class="line"> &#125;);</span><br><span class="line"> <span class="keyword">var</span> man = <span class="keyword">new</span> person();</span><br><span class="line"> man.on(<span class="string">"change"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"对象的默认值发送了变化"</span>);</span><br><span class="line"> &#125;);</span><br><span class="line"> man.on(<span class="string">"change:sex"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">model,value</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"修改了属性，最新值是："</span>+value);</span><br><span class="line"> &#125;);</span><br><span class="line">man.set(<span class="string">"name"</span>,<span class="string">"zhangyingying"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/随笔/">随笔</a>
+  <span></span> <a href="/tags/backbone/">backbone</a>
   </div>
 
 
@@ -102,7 +105,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2016/01/07/wafdard/" data-title="第一篇文章 | 2yingying" data-tsina="http://weibo.com/u/2133445925" class="share clearfix">
+  <div data-url="http://yoursite.com/2016/01/12/backbone/" data-title="backbone笔记 | 2yingying" data-tsina="http://weibo.com/u/2133445925" class="share clearfix">
   </div>
 
 </div>
@@ -111,14 +114,14 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/01/12/backbone/" title="backbone笔记">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  backbone笔记</span>
+
+<div class="next">
+<a href="/2016/01/07/wafdard/"  title="第一篇文章">
+ <strong>NEXT:</strong><br/> 
+ <span>第一篇文章
+</span>
 </a>
 </div>
-
 
 </nav>
 
@@ -142,7 +145,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_u7ED1_u5B9Aon_u65B9_u6CD5"><span class="toc-number">1.</span> <span class="toc-text">1.绑定on方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1_u793A_u4F8B_3Aon_u76D1_u542C_u5C5E_u6027_u4E8B_u4EF6"><span class="toc-number">1.1.</span> <span class="toc-text">1.1示例:on监听属性事件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5206_u6790"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2_u76D1_u542C_u5C5E_u6027_u4E8B_u4EF6"><span class="toc-number">2.1.</span> <span class="toc-text">1.2监听属性事件</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
