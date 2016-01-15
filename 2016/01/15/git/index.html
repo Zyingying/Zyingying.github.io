@@ -1,0 +1,358 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>git命令归纳 | 2yingying</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="盈盈">
+    
+    <meta name="description" content="最近在学习git,入门的我TAT觉得命令还是比较多的，为了避免自己忘记，所以把这些命令归纳一下供以后使用。">
+    
+    
+    
+    
+    <link rel="alternate" href="http://zyingying.github.io/" title="2yingying" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="2yingying" title="2yingying"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="2yingying">2yingying</a></h1>
+				<h2 class="blog-motto">你可长点心吧！     点心？什么点心？</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/01/15/git/" title="git命令归纳" itemprop="url">git命令归纳</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="盈盈">盈盈</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2016-01-15T08:43:30.000Z" itemprop="datePublished">2016-01-15</time>
+    更新日期:<time datetime="2016-01-15T09:16:25.331Z" itemprop="dateModified">2016-01-15</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git_u547D_u4EE4_u5927_u5168"><span class="toc-number">1.</span> <span class="toc-text">Git命令大全</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1_29__u8FDC_u7A0B_u4ED3_u5E93_u76F8_u5173_u547D_u4EE4"><span class="toc-number">1.0.1.</span> <span class="toc-text">1) 远程仓库相关命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2_uFF09_u5206_u652F_28branch_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4"><span class="toc-number">1.0.2.</span> <span class="toc-text">2）分支(branch)操作相关命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3_uFF09_u7248_u672C_28tag_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4"><span class="toc-number">1.0.3.</span> <span class="toc-text">3）版本(tag)操作相关命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4_29__u5B50_u6A21_u5757_28submodule_29_u76F8_u5173_u64CD_u4F5C_u547D_u4EE4"><span class="toc-number">1.0.4.</span> <span class="toc-text">4) 子模块(submodule)相关操作命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git__u5E38_u7528_u547D_u4EE4"><span class="toc-number">2.</span> <span class="toc-text">Git 常用命令</span></a></li></ol>
+		</div>
+		
+		<p> 最近在学习git,入门的我TAT觉得命令还是比较多的，为了避免自己忘记，所以把这些命令归纳一下供以后使用。</p>
+<a id="more"></a>
+<h1 id="Git_u547D_u4EE4_u5927_u5168"><a href="#Git_u547D_u4EE4_u5927_u5168" class="headerlink" title="Git命令大全"></a>Git命令大全</h1><p>标签（空格分隔）： Git</p>
+<hr>
+<h3 id="1_29__u8FDC_u7A0B_u4ED3_u5E93_u76F8_u5173_u547D_u4EE4"><a href="#1_29__u8FDC_u7A0B_u4ED3_u5E93_u76F8_u5173_u547D_u4EE4" class="headerlink" title="1) 远程仓库相关命令"></a>1) 远程仓库相关命令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">检出仓库：</span><br><span class="line">$ git clone git:<span class="comment">//github.com/jquery/jquery.git</span></span><br><span class="line"></span><br><span class="line">查看远程仓库：</span><br><span class="line">$ git remote -v</span><br><span class="line"></span><br><span class="line">添加远程仓库：</span><br><span class="line">$ git remote add [name] [url]</span><br><span class="line"></span><br><span class="line">删除远程仓库：</span><br><span class="line">$ git remote rm [name]</span><br><span class="line"></span><br><span class="line">修改远程仓库：</span><br><span class="line">$ git remote <span class="built_in">set</span>-url --push [name] [newUrl]</span><br><span class="line"></span><br><span class="line">拉取远程仓库：</span><br><span class="line">$ git pull [remoteName] [localBranchName]</span><br><span class="line"></span><br><span class="line">推送远程仓库：</span><br><span class="line">$ git push [remoteName] [localBranchName]</span><br><span class="line"> </span><br><span class="line">*如果想把本地的某个分支test提交到远程仓库，并作为远程仓库的master分支，或者作为另外一个名叫test的分支，如下：</span><br><span class="line">$ git push origin test:master         <span class="comment">// 提交本地test分支作为远程的master分支</span></span><br><span class="line">$ git push origin test:test              <span class="comment">// 提交本地test分支作为远程的test分支</span></span><br></pre></td></tr></table></figure>
+<h3 id="2_uFF09_u5206_u652F_28branch_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4"><a href="#2_uFF09_u5206_u652F_28branch_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4" class="headerlink" title="2）分支(branch)操作相关命令"></a>2）分支(branch)操作相关命令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">查看本地分支：</span><br><span class="line">$ git branch</span><br><span class="line"></span><br><span class="line">查看远程分支：</span><br><span class="line">$ git branch -r</span><br><span class="line"></span><br><span class="line">创建本地分支：</span><br><span class="line">$ git branch [name] ----注意新分支创建后不会自动切换为当前分支</span><br><span class="line"></span><br><span class="line">切换分支：</span><br><span class="line">$ git checkout [name]</span><br><span class="line"></span><br><span class="line">创建新分支并立即切换到新分支：</span><br><span class="line">$ git checkout -b [name]</span><br><span class="line"></span><br><span class="line">删除分支：</span><br><span class="line">$ git branch -d [name] -----d选项只能删除已经参与了合并的分支，对于未有合并的分支是无法删除的。如果想强制删除一个分支，可以使用-D选项</span><br><span class="line"></span><br><span class="line">合并分支：</span><br><span class="line">$ git merge [name] ----将名称为[name]的分支与当前分支合并</span><br><span class="line"></span><br><span class="line">创建远程分支(本地分支push到远程)：</span><br><span class="line">$ git push origin [name]</span><br><span class="line"></span><br><span class="line">删除远程分支：</span><br><span class="line">$ git push origin :heads/[name] 或 $ gitpush origin :[name] </span><br><span class="line"> </span><br><span class="line">*创建空的分支：(执行命令之前记得先提交你当前分支的修改，否则会被强制删干净没得后悔)</span><br><span class="line"></span><br><span class="line">$git symbolic-ref HEAD refs/heads/[name]</span><br><span class="line">$rm .git/index</span><br><span class="line">$git clean -fdx</span><br></pre></td></tr></table></figure>
+<h3 id="3_uFF09_u7248_u672C_28tag_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4"><a href="#3_uFF09_u7248_u672C_28tag_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4" class="headerlink" title="3）版本(tag)操作相关命令"></a>3）版本(tag)操作相关命令</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">查看版本：</span><br><span class="line">$ git tag</span><br><span class="line"></span><br><span class="line">创建版本：</span><br><span class="line">$ git tag [name]</span><br><span class="line"></span><br><span class="line">删除版本：</span><br><span class="line">$ git tag -d [name]</span><br><span class="line"></span><br><span class="line">查看远程版本：</span><br><span class="line">$ git tag -r</span><br><span class="line"></span><br><span class="line">创建远程版本(本地版本push到远程)：</span><br><span class="line">$ git push origin [name]</span><br><span class="line"></span><br><span class="line">删除远程版本：</span><br><span class="line">$ git push origin :refs/tags/[name]</span><br><span class="line"></span><br><span class="line">合并远程仓库的tag到本地：</span><br><span class="line">$ git pull origin --tags</span><br><span class="line"></span><br><span class="line">上传本地tag到远程仓库：</span><br><span class="line">$ git push origin --tags</span><br><span class="line"></span><br><span class="line">创建带注释的tag：</span><br><span class="line">$ git tag -a [name] -m 'yourMessage'</span><br></pre></td></tr></table></figure>
+<h3 id="4_29__u5B50_u6A21_u5757_28submodule_29_u76F8_u5173_u64CD_u4F5C_u547D_u4EE4"><a href="#4_29__u5B50_u6A21_u5757_28submodule_29_u76F8_u5173_u64CD_u4F5C_u547D_u4EE4" class="headerlink" title="4) 子模块(submodule)相关操作命令"></a>4) 子模块(submodule)相关操作命令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">添加子模块：</span><br><span class="line">$ git submodule add [url] [path]</span><br><span class="line">如：</span><br><span class="line">$git submodule add git:<span class="comment">//github.com/soberh/ui-libs.git src/main/webapp/ui-libs</span></span><br><span class="line"></span><br><span class="line">初始化子模块：</span><br><span class="line">$ git submodule init  ----只在首次检出仓库时运行一次就行</span><br><span class="line"></span><br><span class="line">更新子模块：</span><br><span class="line">$ git submodule update ----每次更新或切换分支后都需要运行一下</span><br><span class="line"></span><br><span class="line">删除子模块：（分<span class="number">4</span>步走哦）</span><br><span class="line"> <span class="number">1</span>) $ git rm --cached [path]</span><br><span class="line"> <span class="number">2</span>) 编辑“.gitmodules”文件，将子模块的相关配置节点删除掉</span><br><span class="line"> <span class="number">3</span>) 编辑“ .git/config”文件，将子模块的相关配置节点删除掉</span><br><span class="line"> <span class="number">4</span>) 手动删除子模块残留的目录</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>）忽略一些文件、文件夹不提交</span><br><span class="line">在仓库根目录下创建名称为“.gitignore”的文件，写入不需要的文件夹名或文件，每个元素占一行即可，如</span><br><span class="line">target</span><br><span class="line">bin</span><br><span class="line">*.db</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Git__u5E38_u7528_u547D_u4EE4"><a href="#Git__u5E38_u7528_u547D_u4EE4" class="headerlink" title="Git 常用命令"></a>Git 常用命令</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">git branch 查看本地所有分支</span><br><span class="line">git status 查看当前状态 </span><br><span class="line">git commit 提交 </span><br><span class="line">git branch -a 查看所有的分支</span><br><span class="line">git branch -r 查看本地所有分支</span><br><span class="line">git commit -am "init" 提交并且加注释 </span><br><span class="line">git remote add origin git@192.168.1.119:ndshow</span><br><span class="line">git push origin master 将文件给推到服务器上 </span><br><span class="line">git remote show origin 显示远程库origin里的资源 </span><br><span class="line">git push origin master:develop</span><br><span class="line">git push origin master:hb-dev 将本地库与服务器上的库进行关联 </span><br><span class="line">git checkout --track origin/dev 切换到远程dev分支</span><br><span class="line">git branch -D master develop 删除本地库develop</span><br><span class="line">git checkout -b dev 建立一个新的本地分支dev</span><br><span class="line">git merge origin/dev 将分支dev与当前分支进行合并</span><br><span class="line">git checkout dev 切换到本地dev分支</span><br><span class="line">git remote show 查看远程库</span><br><span class="line">git add .</span><br><span class="line">git rm 文件名(包括路径) 从git中删除指定文件</span><br><span class="line">git clone git://github.com/schacon/grit.git 从服务器上将代码给拉下来</span><br><span class="line">git config --list 看所有用户</span><br><span class="line">git ls-files 看已经被提交的</span><br><span class="line">git rm [file name] 删除一个文件</span><br><span class="line">git commit -a 提交当前repos的所有的改变</span><br><span class="line">git add [file name] 添加一个文件到git index</span><br><span class="line">git commit -v 当你用－v参数的时候可以看commit的差异</span><br><span class="line">git commit -m "This is the message describing the commit" 添加commit信息</span><br><span class="line">git commit -a -a是代表add，把所有的change加到git index里然后再commit</span><br><span class="line">git commit -a -v 一般提交命令</span><br><span class="line">git log 看你commit的日志</span><br><span class="line">git diff 查看尚未暂存的更新</span><br><span class="line">git rm a.a 移除文件(从暂存区和工作区中删除)</span><br><span class="line">git rm --cached a.a 移除文件(只从暂存区中删除)</span><br><span class="line">git commit -m "remove" 移除文件(从Git中删除)</span><br><span class="line">git rm -f a.a 强行移除修改后文件(从暂存区和工作区中删除)</span><br><span class="line">git diff --cached 或 $ git diff --staged 查看尚未提交的更新</span><br><span class="line">git stash push 将文件给push到一个临时空间中</span><br><span class="line">git stash pop 将文件从临时空间pop下来</span><br><span class="line">---------------------------------------------------------</span><br><span class="line">git remote add origin git@github.com:username/Hello-World.git</span><br><span class="line">git push origin master 将本地项目给提交到服务器中</span><br><span class="line">-----------------------------------------------------------</span><br><span class="line">git pull 本地与服务器端同步</span><br><span class="line">-----------------------------------------------------------------</span><br><span class="line">git push (远程仓库名) (分支名) 将本地分支推送到服务器上去。</span><br><span class="line">git push origin serverfix:awesomebranch</span><br><span class="line">------------------------------------------------------------------</span><br><span class="line">git fetch 相当于是从远程获取最新版本到本地，不会自动merge</span><br><span class="line">git commit -a -m "log_message" (-a是提交所有改动，-m是加入log信息) 本地修改同步至服务器端 ：</span><br><span class="line">git branch branch_0.1 master 从主分支master创建branch_0.1分支</span><br><span class="line">git branch -m branch_0.1 branch_1.0 将branch_0.1重命名为branch_1.0</span><br><span class="line">git checkout branch_1.0/master 切换到branch_1.0/master分支</span><br><span class="line">du -hs</span><br><span class="line"></span><br><span class="line">-----------------------------------------------------------</span><br><span class="line">mkdir WebApp</span><br><span class="line">cd WebApp</span><br><span class="line">git init</span><br><span class="line">touch README</span><br><span class="line">git add README</span><br><span class="line">git commit -m 'first commit'</span><br><span class="line">git remote add origin git@github.com:daixu/WebApp.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xpwlt.com1.z0.glb.clouddn.com/Git%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8.png" alt="啊噢图片不见了" title="Git命令大全"><br><a href="http://www.cnblogs.com/1-2-3/archive/2010/07/18/git-commands.html" target="_blank" rel="external">图片出处</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/git/">git</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2016/01/15/git/" data-title="git命令归纳 | 2yingying" data-tsina="http://weibo.com/u/2133445925" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/01/07/wafdard/"  title="第一篇文章">
+ <strong>NEXT:</strong><br/> 
+ <span>第一篇文章
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?1345ed83f404184fc8a87384fc5af4d1";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git_u547D_u4EE4_u5927_u5168"><span class="toc-number">1.</span> <span class="toc-text">Git命令大全</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1_29__u8FDC_u7A0B_u4ED3_u5E93_u76F8_u5173_u547D_u4EE4"><span class="toc-number">1.0.1.</span> <span class="toc-text">1) 远程仓库相关命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2_uFF09_u5206_u652F_28branch_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4"><span class="toc-number">1.0.2.</span> <span class="toc-text">2）分支(branch)操作相关命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3_uFF09_u7248_u672C_28tag_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4"><span class="toc-number">1.0.3.</span> <span class="toc-text">3）版本(tag)操作相关命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4_29__u5B50_u6A21_u5757_28submodule_29_u76F8_u5173_u64CD_u4F5C_u547D_u4EE4"><span class="toc-number">1.0.4.</span> <span class="toc-text">4) 子模块(submodule)相关操作命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git__u5E38_u7528_u547D_u4EE4"><span class="toc-number">2.</span> <span class="toc-text">Git 常用命令</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+		
+			<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="http://zyingying.github.io/" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, I&#39;m zyy.  This is my blog on GitHub. <br/>
+			 I wish you like it</p>
+	</section>
+	 
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/http://weibo.com/2133445925/profile?rightmod=1wvr=6mod=personinfois_all=1" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/https://github.com/Zyingying" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://yoursite.com" target="_blank" title="盈盈">盈盈</a>
+		
+
+		&nbsp&nbsp&nbsp&nbsp本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次, 本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次
+		</p>
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zyingying"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+}); 
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>
