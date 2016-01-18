@@ -75,7 +75,7 @@
     </p>
   <p class="article-time">
     <time datetime="2016-01-15T08:43:30.000Z" itemprop="datePublished">2016-01-15</time>
-    更新日期:<time datetime="2016-01-15T09:16:25.331Z" itemprop="dateModified">2016-01-15</time>
+    更新日期:<time datetime="2016-01-18T01:55:21.299Z" itemprop="dateModified">2016-01-18</time>
     
   </p>
 </header>
@@ -89,8 +89,7 @@
 		
 		<p> 最近在学习git,入门的我TAT觉得命令还是比较多的，为了避免自己忘记，所以把这些命令归纳一下供以后使用。</p>
 <a id="more"></a>
-<h1 id="Git_u547D_u4EE4_u5927_u5168"><a href="#Git_u547D_u4EE4_u5927_u5168" class="headerlink" title="Git命令大全"></a>Git命令大全</h1><p>标签（空格分隔）： Git</p>
-<hr>
+<h1 id="Git_u547D_u4EE4_u5927_u5168"><a href="#Git_u547D_u4EE4_u5927_u5168" class="headerlink" title="Git命令大全"></a>Git命令大全</h1><hr>
 <h3 id="1_29__u8FDC_u7A0B_u4ED3_u5E93_u76F8_u5173_u547D_u4EE4"><a href="#1_29__u8FDC_u7A0B_u4ED3_u5E93_u76F8_u5173_u547D_u4EE4" class="headerlink" title="1) 远程仓库相关命令"></a>1) 远程仓库相关命令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">检出仓库：</span><br><span class="line">$ git clone git:<span class="comment">//github.com/jquery/jquery.git</span></span><br><span class="line"></span><br><span class="line">查看远程仓库：</span><br><span class="line">$ git remote -v</span><br><span class="line"></span><br><span class="line">添加远程仓库：</span><br><span class="line">$ git remote add [name] [url]</span><br><span class="line"></span><br><span class="line">删除远程仓库：</span><br><span class="line">$ git remote rm [name]</span><br><span class="line"></span><br><span class="line">修改远程仓库：</span><br><span class="line">$ git remote <span class="built_in">set</span>-url --push [name] [newUrl]</span><br><span class="line"></span><br><span class="line">拉取远程仓库：</span><br><span class="line">$ git pull [remoteName] [localBranchName]</span><br><span class="line"></span><br><span class="line">推送远程仓库：</span><br><span class="line">$ git push [remoteName] [localBranchName]</span><br><span class="line"> </span><br><span class="line">*如果想把本地的某个分支test提交到远程仓库，并作为远程仓库的master分支，或者作为另外一个名叫test的分支，如下：</span><br><span class="line">$ git push origin test:master         <span class="comment">// 提交本地test分支作为远程的master分支</span></span><br><span class="line">$ git push origin test:test              <span class="comment">// 提交本地test分支作为远程的test分支</span></span><br></pre></td></tr></table></figure>
 <h3 id="2_uFF09_u5206_u652F_28branch_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4"><a href="#2_uFF09_u5206_u652F_28branch_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4" class="headerlink" title="2）分支(branch)操作相关命令"></a>2）分支(branch)操作相关命令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">查看本地分支：</span><br><span class="line">$ git branch</span><br><span class="line"></span><br><span class="line">查看远程分支：</span><br><span class="line">$ git branch -r</span><br><span class="line"></span><br><span class="line">创建本地分支：</span><br><span class="line">$ git branch [name] ----注意新分支创建后不会自动切换为当前分支</span><br><span class="line"></span><br><span class="line">切换分支：</span><br><span class="line">$ git checkout [name]</span><br><span class="line"></span><br><span class="line">创建新分支并立即切换到新分支：</span><br><span class="line">$ git checkout -b [name]</span><br><span class="line"></span><br><span class="line">删除分支：</span><br><span class="line">$ git branch -d [name] -----d选项只能删除已经参与了合并的分支，对于未有合并的分支是无法删除的。如果想强制删除一个分支，可以使用-D选项</span><br><span class="line"></span><br><span class="line">合并分支：</span><br><span class="line">$ git merge [name] ----将名称为[name]的分支与当前分支合并</span><br><span class="line"></span><br><span class="line">创建远程分支(本地分支push到远程)：</span><br><span class="line">$ git push origin [name]</span><br><span class="line"></span><br><span class="line">删除远程分支：</span><br><span class="line">$ git push origin :heads/[name] 或 $ gitpush origin :[name] </span><br><span class="line"> </span><br><span class="line">*创建空的分支：(执行命令之前记得先提交你当前分支的修改，否则会被强制删干净没得后悔)</span><br><span class="line"></span><br><span class="line">$git symbolic-ref HEAD refs/heads/[name]</span><br><span class="line">$rm .git/index</span><br><span class="line">$git clean -fdx</span><br></pre></td></tr></table></figure>
 <h3 id="3_uFF09_u7248_u672C_28tag_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4"><a href="#3_uFF09_u7248_u672C_28tag_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4" class="headerlink" title="3）版本(tag)操作相关命令"></a>3）版本(tag)操作相关命令</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">查看版本：</span><br><span class="line">$ git tag</span><br><span class="line"></span><br><span class="line">创建版本：</span><br><span class="line">$ git tag [name]</span><br><span class="line"></span><br><span class="line">删除版本：</span><br><span class="line">$ git tag -d [name]</span><br><span class="line"></span><br><span class="line">查看远程版本：</span><br><span class="line">$ git tag -r</span><br><span class="line"></span><br><span class="line">创建远程版本(本地版本push到远程)：</span><br><span class="line">$ git push origin [name]</span><br><span class="line"></span><br><span class="line">删除远程版本：</span><br><span class="line">$ git push origin :refs/tags/[name]</span><br><span class="line"></span><br><span class="line">合并远程仓库的tag到本地：</span><br><span class="line">$ git pull origin --tags</span><br><span class="line"></span><br><span class="line">上传本地tag到远程仓库：</span><br><span class="line">$ git push origin --tags</span><br><span class="line"></span><br><span class="line">创建带注释的tag：</span><br><span class="line">$ git tag -a [name] -m 'yourMessage'</span><br></pre></td></tr></table></figure>
@@ -121,9 +120,17 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2016/01/18/模块化/" title="模块化（一）">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  模块化（一）</span>
+</a>
+</div>
+
 
 <div class="next">
-<a href="/2016/01/07/wafdard/"  title="第一篇文章">
+<a href="/2016/01/07/hello2016/"  title="第一篇文章">
  <strong>NEXT:</strong><br/> 
  <span>第一篇文章
 </span>
@@ -167,6 +174,10 @@
 		<ul class="clearfix">
 		
 			<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+		
+			<li><a href="/tags/js/" title="js">js<sup>1</sup></a></li>
+		
+			<li><a href="/tags/模块化/" title="模块化">模块化<sup>0</sup></a></li>
 		
 			<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
 		
