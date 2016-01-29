@@ -1,0 +1,459 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>浏览器的渲染原理的研究 | 2yingying</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="盈盈">
+    
+    <meta name="description" content="也是一篇曾经的博文~
+最近看了好几篇大神的文章，发现自己虽然前端已经学了快一年半，可是再css却仿佛停留在了第一个瓶颈上，会使用，但是却很少去研究它是怎么来的，浏览器是如何去解析的。挺多东西还是一知半解，很羞愧，故写下我对  浏览器对整个页面的渲染原理 的理解。">
+    
+    
+    
+    
+    <link rel="alternate" href="http://zyingying.github.io/" title="2yingying" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/smile.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="2yingying" title="2yingying"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="2yingying">2yingying</a></h1>
+				<h2 class="blog-motto">你可长点心吧！     点心？什么点心？</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/01/29/浏览器渲染原理的研究/" title="浏览器的渲染原理的研究" itemprop="url">浏览器的渲染原理的研究</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="盈盈">盈盈</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2016-01-29T15:52:33.000Z" itemprop="datePublished">2016-01-29</time>
+    更新日期:<time datetime="2016-01-29T16:18:35.170Z" itemprop="dateModified">2016-01-30</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6D4F_u89C8_u5668_u5BF9CSS_u7684_u5339_u914D_u539F_u7406"><span class="toc-number">1.</span> <span class="toc-text">浏览器对CSS的匹配原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6D4F_u89C8_u5668_u662F_u5982_u679C_u89E3_u6790html_u4E0Ecss_u7684_u5462"><span class="toc-number">2.</span> <span class="toc-text">浏览器是如果解析html与css的呢</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM_u89E3_u6790"><span class="toc-number">2.1.</span> <span class="toc-text">DOM解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS_u89E3_u6790"><span class="toc-number">2.2.</span> <span class="toc-text">CSS解析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6E32_u67D3"><span class="toc-number">3.</span> <span class="toc-text">渲染</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6E32_u67D3_u7684_u6D41_u7A0B_u57FA_u672C_u4E0A_u5982_u4E0B_uFF08_u9EC4_u8272_u7684_u56DB_u4E2A_u6B65_u9AA4_uFF09_uFF1A"><span class="toc-number">3.1.</span> <span class="toc-text">渲染的流程基本上如下（黄色的四个步骤）：</span></a></li></ol></li></ol>
+		</div>
+		
+		<p>也是一篇曾经的博文~</p>
+<p>最近看了好几篇大神的文章，发现自己虽然前端已经学了快一年半，可是再css却仿佛停留在了第一个瓶颈上，会使用，但是却很少去研究它是怎么来的，浏览器是如何去解析的。挺多东西还是一知半解，很羞愧，故写下我对  浏览器对整个页面的渲染原理 的理解。<br> <a id="more"></a><br>说到这点，我们一定很想知道，一个项目 html css js是如何与浏览器发生‘化学反应’，最终生成美丽的页面的。</p>
+<p>假设为第一次访问：　</p>
+<ol>
+<li>用户输入网址，浏览器向服务器发出请求，服务器返回html文件；</li>
+<li>浏览器开始载入html代码，发现<code>&lt;head&gt;</code>标签内有一个<code>&lt;link&gt;</code>标签引用外部CSS文件；</li>
+<li>这是 浏览器 就应该 又发出CSS文件的请求，服务器返回这个CSS文件；</li>
+<li>浏览器继续载入html中<code>&lt;body&gt;</code>部分的代码，并且CSS文件已经拿到手了，可以开始渲染页面了；</li>
+<li>浏览器在代码中发现一个<code>&lt;img&gt;</code>标签引用了一张图片，向服务器发出请求。此时浏览器不会等到图片下载完，而是继续渲染后面的代码；</li>
+<li>服务器返回图片文件，由于图片占用了一定面积，影响了后面段落的排布，因此浏览器需要回过头来重新渲染这部分代码；</li>
+<li>浏览器发现了一个包含一行Javascript代码的<code>&lt;script&gt;</code>标签，赶快运行它；</li>
+<li>Javascript脚本执行了这条语句，它命令浏览器隐藏掉代码中的某个<div> （style.display=”none”）。突然就少了这么一个元素，浏览器不得不重新渲染这部分代码;</div></li>
+<li>终于等到了<code>&lt;/html&gt;</code>的到来，浏览器泪流满面……</li>
+<li>等等，还没完，用户点了一下界面中的“换肤”按钮，Javascript让浏览器换了一下<code>&lt;link&gt;</code>标签的CSS路径；</li>
+<li>浏览器召集了所有的标签，浏览器向服务器请，又得重新来过……<br>　　求了新的CSS文件，重新渲染页面。 </li>
+</ol>
+<h2 id="u6D4F_u89C8_u5668_u5BF9CSS_u7684_u5339_u914D_u539F_u7406"><a href="#u6D4F_u89C8_u5668_u5BF9CSS_u7684_u5339_u914D_u539F_u7406" class="headerlink" title="浏览器对CSS的匹配原理"></a>浏览器对CSS的匹配原理</h2><p>浏览器CSS匹配是从右到左进行查找。</p>
+<p>比如  DIV#divBox p span.red{color:red;}，浏览器的查找顺序如下：先查找html中所有class=’red’的span元素，找到后，再查找其父辈元素中是否有p元素，再判断p的父元素中是否有id为 divBox的div元素，如果都存在则CSS匹配上。</p>
+<p>浏览器从右到左进行查找的好处是为了尽早过滤掉一些无关的样式规则和元素。firefox称这种查 找方式为keyselector(关键字查询)，所谓的关键字就是样式规则中最后(最右边)的规则，上面的key就是span.red。</p>
+<p>　　</p>
+<h2 id="u6D4F_u89C8_u5668_u662F_u5982_u679C_u89E3_u6790html_u4E0Ecss_u7684_u5462"><a href="#u6D4F_u89C8_u5668_u662F_u5982_u679C_u89E3_u6790html_u4E0Ecss_u7684_u5462" class="headerlink" title="浏览器是如果解析html与css的呢"></a>浏览器是如果解析html与css的呢</h2><p>　　　　我们先看一张图<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/1.jpg" alt=""><br>从上面这个图中，我们可以看到那么几个事：</p>
+<p>1）浏览器会解析三个东西：<br>一个是HTML/SVG/XHTML，事实上，Webkit有三个C++的类对应这三类文档。解析这三种文件会产生一个DOM Tree。<br>CSS，解析CSS会产生CSS规则树。<br>Javascript，脚本，主要是通过DOM API和CSSOM API来操作DOM Tree和CSS Rule Tree.</p>
+<p>2）解析完成后，浏览器引擎会通过DOM Tree 和 CSS Rule Tree 来构造 Rendering（渲染） Tree。注意：<br>Rendering Tree渲染树  并不等同于DOM树，因为一些像Header或display:none的东西就没必要放在渲染树中了。<br>CSS 的 Rule Tree主要是为了完成匹配并把CSS Rule附加上Rendering Tree上的每个DOM结点。也就是所谓的Frame(框架)。<br>然后，计算每个Frame（也就是每个节点）的位置，这又叫layout(布局)和reflow(回流)过程。</p>
+<p>3）最后通过调用操作系统Native GUI的API绘制。</p>
+<h3 id="DOM_u89E3_u6790"><a href="#DOM_u89E3_u6790" class="headerlink" title="DOM解析"></a>DOM解析</h3><p>HTML的DOM Tree解析如下：<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/2.png" alt=""><br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720160129235017.png" alt=""></p>
+<h3 id="CSS_u89E3_u6790"><a href="#CSS_u89E3_u6790" class="headerlink" title="CSS解析"></a>CSS解析</h3><p>CSS的解析大概是下面这个样子，假设我们有下面的HTML和CSS文档：　<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720160130000454.png" alt=""><br>　　　　　　　　于是DOM Tree是这个样子：　<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720160129235041.png" alt=""><br>　　　　　　于是我们的CSS Rule Tree会是这个样子：<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720160129235047.png" alt=""></p>
+<p>注意，图中的第5条规则出现了两次，一次是独立的，一次是在规则4的子结点。所以，我们可以知道，建立CSS Rule Tree是需要比照着DOM Tree来的。CSS匹配DOM Tree主要是从右到左解析CSS的Selector，好多人以为这个事会比较快，其实并不一定。关键还看我们的CSS的Selector怎么写了。</p>
+<p><strong>注意：CSS匹配HTML元素是一个相当复杂和有性能问题的事情。所以，你就会在N多地方看到很多人都告诉你，DOM树要小，CSS尽量用id和class，千万不要过渡层叠下去，……</strong></p>
+<p>通过这两个树，我们可以得到一个叫Style Context Tree，也就是下面这样（把CSS Rule结点Attach到DOM Tree上）：<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720160129235052.png" alt=""></p>
+<h2 id="u6E32_u67D3"><a href="#u6E32_u67D3" class="headerlink" title="渲染"></a>渲染</h2><h3 id="u6E32_u67D3_u7684_u6D41_u7A0B_u57FA_u672C_u4E0A_u5982_u4E0B_uFF08_u9EC4_u8272_u7684_u56DB_u4E2A_u6B65_u9AA4_uFF09_uFF1A"><a href="#u6E32_u67D3_u7684_u6D41_u7A0B_u57FA_u672C_u4E0A_u5982_u4E0B_uFF08_u9EC4_u8272_u7684_u56DB_u4E2A_u6B65_u9AA4_uFF09_uFF1A" class="headerlink" title="渲染的流程基本上如下（黄色的四个步骤）："></a>渲染的流程基本上如下（黄色的四个步骤）：</h3><ul>
+<li>计算CSS样式</li>
+<li>构建Render Tree</li>
+<li>Layout – 定位坐标和大小，是否换行，各种position, overflow, z-index属性 ……</li>
+<li>正式开画<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720160129235130.png" alt=""></li>
+</ul>
+<p>　　这个图流程中有很多连接线，这表示了Javascript动态修改了DOM属性或是CSS属会导致重新Layout，有些改变不会：就是那些指到天上的箭头，比如，修改后的CSS rule没有被匹配到，等。</p>
+<p>这里重要要说两个概念，一个是Reflow，另一个是Repaint。这两个不是一回事。</p>
+<p>Repaint——屏幕的一部分要重画，比如某个CSS的背景色变了。但是元素的几何尺寸没有变。<br>Reflow——意味着元件的几何尺寸变了，我们需要重新验证并计算渲染树。是Render Tree的一部分或全部发生了变化。这就是Reflow，或是Layout。（<strong>HTML使用的是flow based layout，也就是流式布局，所以，如果某元件的几何尺寸发生了变化，下面的就需要重新布局，也就叫reflow）reflow 会从<code>&lt;html&gt;</code>这个root frame开始递归往下，依次计算所有的结点几何尺寸和位置。</strong></p>
+<p>所以，下面这些动作有很大可能会是动作比较大的。</p>
+<ul>
+<li>当你增加、删除、修改DOM结点时，会导致Reflow或Repaint</li>
+<li>当你移动DOM的位置，或是搞个动画的时候。</li>
+<li>当你修改CSS样式的时候。</li>
+<li>当你调整窗口的时候（响应），或是滚动的时候。</li>
+<li>当你修改网页的默认字体时。</li>
+</ul>
+<p><strong>注：display:none会触发reflow，而visibility:hidden只会触发repaint，因为没有发现位置变化。</strong></p>
+<p>　　关于滚屏，通常来说，如果在滚屏的时候，我们的页面上的所有的像素都会跟着滚动，那么性能上没什么问题，因为我们的显卡对于这种把全屏像素往上往下移的算法是很快。但是如果你有一个fixed的背景图，或是有些Element不跟着滚动，有些Elment是动画，那么这个滚动的动作对于浏览器来说会是相当相当痛苦的一个过程。你可以看到很多这样的网页在滚动的时候性能有多差。因为滚屏也有可能会造成reflow。</p>
+<p>基本上来说，reflow有如下的几个原因：</p>
+<ul>
+<li>Initial（初始化）。网页初始化的时候。</li>
+<li>Incremental（增减计算）。一些Javascript在操作DOM Tree时。</li>
+<li>Resize（调整大小）。其些元件的尺寸变了。</li>
+<li>StyleChange。如果CSS的属性发生变化了。</li>
+<li>Dirty。几个Incremental的reflow发生在同一个frame的子树上。</li>
+</ul>
+<p>好了，我们来看一个示例吧：<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720160129235137.png" alt=""></p>
+<p>　　我们的浏览器是聪明的，它不会像上面那样，你每改一次样式，它就reflow或repaint一次。一般来说，浏览器会把这样的操作积攒一批，然后做一次reflow，这又叫异步reflow或增量异步reflow。但是有些情况浏览器是不会这么做的，比如：resize窗口，改变了页面默认的字体，等。对于这些操作，浏览器会马上进行reflow。</p>
+<p>但是有些时候，我们的脚本会阻止浏览器这么干，比如：如果我们请求下面的一些DOM值：</p>
+<ol>
+<li>offsetTop, offsetLeft, offsetWidth, offsetHeight</li>
+<li>scrollTop/Left/Width/Height</li>
+<li>clientTop/Left/Width/Height</li>
+<li>IE中的 getComputedStyle(), 或 currentStyle<br>因为，如果我们的程序需要这些值，那么浏览器需要返回最新的值，而这样一样会flush出去一些样式的改变，从而造成频繁的reflow/repaint。</li>
+</ol>
+<p><strong>减少reflow/repaint</strong><br>下面是一些Best Practices：<br>1）不要一条一条地修改DOM的样式。与其这样，还不如预先定义好css的class，然后修改DOM的className。<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720160129235140.png" alt=""><br>2）把DOM离线后修改。<br>如：<br>     使用documentFragment 对象在内存里操作DOM<br>     先把DOM给display:none(有一次reflow)，然后你想怎么改就怎么改。比如修改100次，然后再把他显示出来。<br>     clone一个DOM结点到内存里，然后想怎么改就怎么改，改完后，和在线的那个的交换一下。</p>
+<p>3）不要把DOM结点的属性值放在一个循环里当成循环里的变量。不然这会导致大量地读写这个结点的属性。</p>
+<p>4）尽可能的修改层级比较低的DOM。当然，改变层级比较底的DOM有可能会造成大面积的reflow，但是也可能影响范围很小。</p>
+<p>5）为动画的HTML元件使用fixed或absoult的position，修改他们的CSS是不会reflow的，因为脱离了文档流。</p>
+<p>6）少使用table布局。因为可能很小的一个小改动会造成整个table的重新布局。</p>
+<p>关于 页面优化 的几点：</p>
+<ol>
+<li><p>DOM结构不要复杂，不必要的标签坚决不要，例如：<code>&lt;div class=&quot;clearfix&quot;&gt;&lt;/div&gt;</code>这样一个清除浮动的标签,通过增加伪元素after，兼容IE67也是可以利用IE67的一些特有的属性来清除浮动，比如zoom：1</p>
+</li>
+<li><p>少引用css，js文件，少增加图片的请求次数</p>
+</li>
+<li><p>css 命名 、书写规范；（好的代码看上去就很整齐 很有条理性这样方便日后的维护和管理）</p>
+</li>
+<li><p>少用滤镜，少用hack，多用继承属性。</p>
+</li>
+<li><p>使用简写样式，如background，margin，padding等。</p>
+</li>
+<li><p>不要在ID选择器和class选择器前 使用标签名<br>例如：<br>div.box { color: #f00; }; 直接 可以 用类名， .box { color:#f00;}  这样浏览器找到这个class后 就不用再匹配是否存在div标签.从而提高了渲染效率。</p>
+</li>
+<li><p>css的层级关系不要太深 用class直接代替多余的层级元素。css渲染是从上到下，从右到左的。<br>例如：<br>.box .box-con .box-list li { line-height: 24px; }       所以直接这样写就可以了.box-list li { line-height: 24px; };</p>
+</li>
+<li><p>平铺背景图片不要过小，影响渲染速率。</p>
+</li>
+<li><p>float使用要谨慎。</p>
+</li>
+<li><p>合理化布局（模块化布局）；可以把样式划分为 基类 和扩展类 ;模块化布局 ：模块基本相同的样式写在 基类里，不同的在重新用class来定义称为扩展类 。</p>
+</li>
+<li><p>在css渲染效率中id和class的效率是基本相当的<br>class最在第一次载入中被缓存，在层叠中会有更加好的效果，在根部元素采用id会具有更加好（id有微妙的速度优势）。</p>
+</li>
+</ol>
+<p>参考文档：</p>
+<ol>
+<li><a href="http://www.cnblogs.com/zyyz/" target="_blank" rel="external">本人曾经博客地址</a></li>
+<li><a href="http://kb.cnblogs.com/page/129756/" target="_blank" rel="external">前端必读：浏览器内部工作原理</a></li>
+<li><a href="http://www.cnblogs.com/yuezk/archive/2013/01/11/2855698.html" target="_blank" rel="external">了解html页面的渲染过程</a></li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/css/">css</a><a href="/tags/js/">js</a><a href="/tags/渲染/">渲染</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2016/01/29/浏览器渲染原理的研究/" data-title="浏览器的渲染原理的研究 | 2yingying" data-tsina="http://weibo.com/u/2133445925" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/01/29/Grunt入门/"  title="Grunt入门">
+ <strong>NEXT:</strong><br/> 
+ <span>Grunt入门
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?1345ed83f404184fc8a87384fc5af4d1";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6D4F_u89C8_u5668_u5BF9CSS_u7684_u5339_u914D_u539F_u7406"><span class="toc-number">1.</span> <span class="toc-text">浏览器对CSS的匹配原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6D4F_u89C8_u5668_u662F_u5982_u679C_u89E3_u6790html_u4E0Ecss_u7684_u5462"><span class="toc-number">2.</span> <span class="toc-text">浏览器是如果解析html与css的呢</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM_u89E3_u6790"><span class="toc-number">2.1.</span> <span class="toc-text">DOM解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS_u89E3_u6790"><span class="toc-number">2.2.</span> <span class="toc-text">CSS解析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6E32_u67D3"><span class="toc-number">3.</span> <span class="toc-text">渲染</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6E32_u67D3_u7684_u6D41_u7A0B_u57FA_u672C_u4E0A_u5982_u4E0B_uFF08_u9EC4_u8272_u7684_u56DB_u4E2A_u6B65_u9AA4_uFF09_uFF1A"><span class="toc-number">3.1.</span> <span class="toc-text">渲染的流程基本上如下（黄色的四个步骤）：</span></a></li></ol></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Grunt/" title="Grunt">Grunt<sup>1</sup></a></li>
+		
+			<li><a href="/tags/css/" title="css">css<sup>1</sup></a></li>
+		
+			<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+		
+			<li><a href="/tags/js/" title="js">js<sup>5</sup></a></li>
+		
+			<li><a href="/tags/模块化/" title="模块化">模块化<sup>4</sup></a></li>
+		
+			<li><a href="/tags/渲染/" title="渲染">渲染<sup>1</sup></a></li>
+		
+			<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="http://zyingying.github.io/" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, I&#39;m zyy.  This is my blog on GitHub. <br/>
+			 I wish you like it</p>
+	</section>
+	 
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/http://weibo.com/2133445925/profile?rightmod=1wvr=6mod=personinfois_all=1" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/https://github.com/Zyingying" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://yoursite.com" target="_blank" title="盈盈">盈盈</a>
+		
+
+		&nbsp&nbsp&nbsp&nbsp本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次, 本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次
+		</p>
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zyingying"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+}); 
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>
