@@ -39,7 +39,7 @@
 				<h1 class="site-name"><a href="/" title="2yingying">2yingying</a></h1>
 				<h2 class="blog-motto">你可长点心吧！     点心？什么点心？</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -52,7 +52,7 @@
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -76,7 +76,7 @@
     </p>
   <p class="article-time">
     <time datetime="2016-01-29T15:52:33.000Z" itemprop="datePublished">2016-01-29</time>
-    更新日期:<time datetime="2016-01-29T16:18:35.170Z" itemprop="dateModified">2016-01-30</time>
+    Updated:<time datetime="2016-01-29T16:21:44.752Z" itemprop="dateModified">2016-01-30</time>
     
   </p>
 </header>
@@ -84,8 +84,8 @@
 		
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6D4F_u89C8_u5668_u5BF9CSS_u7684_u5339_u914D_u539F_u7406"><span class="toc-number">1.</span> <span class="toc-text">浏览器对CSS的匹配原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6D4F_u89C8_u5668_u662F_u5982_u679C_u89E3_u6790html_u4E0Ecss_u7684_u5462"><span class="toc-number">2.</span> <span class="toc-text">浏览器是如果解析html与css的呢</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM_u89E3_u6790"><span class="toc-number">2.1.</span> <span class="toc-text">DOM解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS_u89E3_u6790"><span class="toc-number">2.2.</span> <span class="toc-text">CSS解析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6E32_u67D3"><span class="toc-number">3.</span> <span class="toc-text">渲染</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6E32_u67D3_u7684_u6D41_u7A0B_u57FA_u672C_u4E0A_u5982_u4E0B_uFF08_u9EC4_u8272_u7684_u56DB_u4E2A_u6B65_u9AA4_uFF09_uFF1A"><span class="toc-number">3.1.</span> <span class="toc-text">渲染的流程基本上如下（黄色的四个步骤）：</span></a></li></ol></li></ol>
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6D4F_u89C8_u5668_u5BF9CSS_u7684_u5339_u914D_u539F_u7406"><span class="toc-number">1.</span> <span class="toc-text">浏览器对CSS的匹配原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6D4F_u89C8_u5668_u662F_u5982_u679C_u89E3_u6790html_u4E0Ecss_u7684_u5462"><span class="toc-number">2.</span> <span class="toc-text">浏览器是如果解析html与css的呢</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM_u89E3_u6790"><span class="toc-number">2.1.</span> <span class="toc-text">DOM解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS_u89E3_u6790"><span class="toc-number">2.2.</span> <span class="toc-text">CSS解析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6E32_u67D3"><span class="toc-number">3.</span> <span class="toc-text">渲染</span></a></li></ol>
 		</div>
 		
 		<p>也是一篇曾经的博文~</p>
@@ -117,7 +117,8 @@
 <p>注意，图中的第5条规则出现了两次，一次是独立的，一次是在规则4的子结点。所以，我们可以知道，建立CSS Rule Tree是需要比照着DOM Tree来的。CSS匹配DOM Tree主要是从右到左解析CSS的Selector，好多人以为这个事会比较快，其实并不一定。关键还看我们的CSS的Selector怎么写了。</p>
 <p><strong>注意：CSS匹配HTML元素是一个相当复杂和有性能问题的事情。所以，你就会在N多地方看到很多人都告诉你，DOM树要小，CSS尽量用id和class，千万不要过渡层叠下去，……</strong></p>
 <p>通过这两个树，我们可以得到一个叫Style Context Tree，也就是下面这样（把CSS Rule结点Attach到DOM Tree上）：<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720160129235052.png" alt=""></p>
-<h2 id="u6E32_u67D3"><a href="#u6E32_u67D3" class="headerlink" title="渲染"></a>渲染</h2><h3 id="u6E32_u67D3_u7684_u6D41_u7A0B_u57FA_u672C_u4E0A_u5982_u4E0B_uFF08_u9EC4_u8272_u7684_u56DB_u4E2A_u6B65_u9AA4_uFF09_uFF1A"><a href="#u6E32_u67D3_u7684_u6D41_u7A0B_u57FA_u672C_u4E0A_u5982_u4E0B_uFF08_u9EC4_u8272_u7684_u56DB_u4E2A_u6B65_u9AA4_uFF09_uFF1A" class="headerlink" title="渲染的流程基本上如下（黄色的四个步骤）："></a>渲染的流程基本上如下（黄色的四个步骤）：</h3><ul>
+<h2 id="u6E32_u67D3"><a href="#u6E32_u67D3" class="headerlink" title="渲染"></a>渲染</h2><p> 渲染的流程基本上如下（黄色的四个步骤）：</p>
+<ul>
 <li>计算CSS样式</li>
 <li>构建Render Tree</li>
 <li>Layout – 定位坐标和大小，是否换行，各种position, overflow, z-index属性 ……</li>
@@ -212,6 +213,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2016/02/07/call、apply、bind究竟是干什么的？/" title="call、apply、bind究竟是干什么的？">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  call、apply、bind究竟是干什么的？</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2016/01/29/Grunt入门/"  title="Grunt入门">
@@ -239,22 +248,22 @@
 </section>
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6D4F_u89C8_u5668_u5BF9CSS_u7684_u5339_u914D_u539F_u7406"><span class="toc-number">1.</span> <span class="toc-text">浏览器对CSS的匹配原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6D4F_u89C8_u5668_u662F_u5982_u679C_u89E3_u6790html_u4E0Ecss_u7684_u5462"><span class="toc-number">2.</span> <span class="toc-text">浏览器是如果解析html与css的呢</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM_u89E3_u6790"><span class="toc-number">2.1.</span> <span class="toc-text">DOM解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS_u89E3_u6790"><span class="toc-number">2.2.</span> <span class="toc-text">CSS解析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6E32_u67D3"><span class="toc-number">3.</span> <span class="toc-text">渲染</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6E32_u67D3_u7684_u6D41_u7A0B_u57FA_u672C_u4E0A_u5982_u4E0B_uFF08_u9EC4_u8272_u7684_u56DB_u4E2A_u6B65_u9AA4_uFF09_uFF1A"><span class="toc-number">3.1.</span> <span class="toc-text">渲染的流程基本上如下（黄色的四个步骤）：</span></a></li></ol></li></ol>
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6D4F_u89C8_u5668_u5BF9CSS_u7684_u5339_u914D_u539F_u7406"><span class="toc-number">1.</span> <span class="toc-text">浏览器对CSS的匹配原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6D4F_u89C8_u5668_u662F_u5982_u679C_u89E3_u6790html_u4E0Ecss_u7684_u5462"><span class="toc-number">2.</span> <span class="toc-text">浏览器是如果解析html与css的呢</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM_u89E3_u6790"><span class="toc-number">2.1.</span> <span class="toc-text">DOM解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS_u89E3_u6790"><span class="toc-number">2.2.</span> <span class="toc-text">CSS解析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6E32_u67D3"><span class="toc-number">3.</span> <span class="toc-text">渲染</span></a></li></ol>
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			<li><a href="/tags/Grunt/" title="Grunt">Grunt<sup>1</sup></a></li>
@@ -263,7 +272,7 @@
 		
 			<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
 		
-			<li><a href="/tags/js/" title="js">js<sup>5</sup></a></li>
+			<li><a href="/tags/js/" title="js">js<sup>7</sup></a></li>
 		
 			<li><a href="/tags/模块化/" title="模块化">模块化<sup>4</sup></a></li>
 		
@@ -276,7 +285,7 @@
 
 
   <div class="rsspart">
-	<a href="http://zyingying.github.io/" target="_blank" title="rss">RSS 訂閱</a>
+	<a href="http://zyingying.github.io/" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>
