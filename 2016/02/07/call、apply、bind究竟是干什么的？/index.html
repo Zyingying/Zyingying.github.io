@@ -38,7 +38,7 @@
 				<h1 class="site-name"><a href="/" title="2yingying">2yingying</a></h1>
 				<h2 class="blog-motto">你可长点心吧！     点心？什么点心？</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -51,7 +51,7 @@
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -75,7 +75,7 @@
     </p>
   <p class="article-time">
     <time datetime="2016-02-07T15:30:00.000Z" itemprop="datePublished">2016-02-07</time>
-    Updated:<time datetime="2016-02-09T15:28:25.043Z" itemprop="dateModified">2016-02-09</time>
+    更新日期:<time datetime="2016-03-17T14:52:28.281Z" itemprop="dateModified">2016-03-17</time>
     
   </p>
 </header>
@@ -83,11 +83,11 @@
 		
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目錄</strong>
 		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#call_28_29_u3001apply_28_29_u3001bind_28_29_u662F_u5E72_u4EC0_u4E48_u7684"><span class="toc-number">1.</span> <span class="toc-text">call()、apply()、bind()是干什么的</span></a></li></ol>
 		</div>
 		
-		<p>hello，各位，今天是年三十，本来呢是想好好过个新年的，去看看什么春晚呀，可是发现春晚是在是不合胃口。今年支付宝，微信，QQ齐出大招，各种红包雨。支付宝的拼命咻，微信的摇断手，QQ的刷啊刷。本宝宝弄了一两轮就累得不行TAT，各大互联网真心有料，今年做得还是挺不错的。<br>所以就进来房间来倒腾一下。虽然时间也不早了，我看看能写多少就写多少吧~~<br>在这里先给大家拜个早年~~猴年行大运，恭喜发财呀~<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/newyear.jpg" alt="" width="100" height="100"></p>
+		<p>hello，各位，今天是年三十，本来呢是想好好过个新年的，去看看什么春晚呀，可是发现春晚是在是不合胃口。今年支付宝，微信，QQ齐出大招，各种红包雨。支付宝的拼命咻，微信的摇断手，QQ的刷啊刷。本宝宝弄了一两轮就累得不行TAT，各大互联网真心有料，今年做得还是挺不错的。<br>所以就进来房间来倒腾一下。虽然时间也不早了，我看看能写多少就写多少吧~~<br>在这里先给大家拜个早年~~猴年行大运，恭喜发财呀~<br><!-- <img src="http://7xpwlt.com1.z0.glb.clouddn.com/newyear.jpg" alt="" width="100" height="100" /> --></p>
 <p>好了惹，照片也爆了，也BB了好多有的没的。现在正式进入正题噜</p>
 <h2 id="call_28_29_u3001apply_28_29_u3001bind_28_29_u662F_u5E72_u4EC0_u4E48_u7684"><a href="#call_28_29_u3001apply_28_29_u3001bind_28_29_u662F_u5E72_u4EC0_u4E48_u7684" class="headerlink" title="call()、apply()、bind()是干什么的"></a>call()、apply()、bind()是干什么的</h2><p>其实之前学这些的时候，总是学完就好快忘了，深究原因，还是没有理解透彻，首先他们用在哪个地方呢？这个好像我并没有很深去思考。<br>那么问题来了，现在就让我来给大家说说，这几个函数是用来做啥的。<br>在回答这个问题前，咱们先花点时间看下这一段代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Demo1</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.sayHi = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Demo2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> </span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> demo = <span class="keyword">new</span> Demo2();</span><br><span class="line">demo.sayHi();<span class="comment">//Uncaught TypeError: demo.sayHi is not a function(…)</span></span><br></pre></td></tr></table></figure></p>
 <p>可能这个问题有点小儿科，这段代码的执行结果是一个错误，提示没有在Demo2上找到sayHi方法。</p>
@@ -151,22 +151,22 @@
 </section>
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目錄</strong>
   <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#call_28_29_u3001apply_28_29_u3001bind_28_29_u662F_u5E72_u4EC0_u4E48_u7684"><span class="toc-number">1.</span> <span class="toc-text">call()、apply()、bind()是干什么的</span></a></li></ol>
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
 <aside class="clearfix">
 
   
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
 		
 			<li><a href="/tags/Grunt/" title="Grunt">Grunt<sup>1</sup></a></li>
@@ -183,12 +183,14 @@
 		
 			<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
 		
+			<li><a href="/tags/面试/" title="面试">面试<sup>1</sup></a></li>
+		
 		</ul>
 </div>
 
 
   <div class="rsspart">
-	<a href="http://zyingying.github.io/" target="_blank" title="rss">RSS</a>
+	<a href="http://zyingying.github.io/" target="_blank" title="rss">RSS 訂閱</a>
 </div>
 
 </aside>
