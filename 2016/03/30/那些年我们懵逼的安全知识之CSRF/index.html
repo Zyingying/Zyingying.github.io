@@ -4,24 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>第一篇文章 | 2yingying</title>
+    <title>那些年我们懵逼的安全知识——CSRF | 2yingying</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="盈盈">
     
 
     
-    <meta name="description" content="nice to meet you2016">
+    <meta name="description" content="上次我们提到了XSS攻击，并说了两种XSS攻击类型，分别是反射型和存储型，并提出了一系列的解决方法。但是同为程序员的攻击者当然也不会那么轻易被打败，他们很快又找到了一种方式————CSRF">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第一篇文章">
-<meta property="og:url" content="https://github.com/Zyingying/2016/01/07/hello2016/index.html">
+<meta property="og:title" content="那些年我们懵逼的安全知识——CSRF">
+<meta property="og:url" content="https://github.com/Zyingying/2016/03/30/那些年我们懵逼的安全知识之CSRF/index.html">
 <meta property="og:site_name" content="2yingying">
-<meta property="og:description" content="nice to meet you2016">
-<meta property="og:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/956653.jpg">
-<meta property="og:updated_time" content="2016-01-08T16:19:17.296Z">
+<meta property="og:description" content="上次我们提到了XSS攻击，并说了两种XSS攻击类型，分别是反射型和存储型，并提出了一系列的解决方法。但是同为程序员的攻击者当然也不会那么轻易被打败，他们很快又找到了一种方式————CSRF">
+<meta property="og:updated_time" content="2016-04-01T15:16:55.841Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第一篇文章">
-<meta name="twitter:description" content="nice to meet you2016">
+<meta name="twitter:title" content="那些年我们懵逼的安全知识——CSRF">
+<meta name="twitter:description" content="上次我们提到了XSS攻击，并说了两种XSS攻击类型，分别是反射型和存储型，并提出了一系列的解决方法。但是同为程序员的攻击者当然也不会那么轻易被打败，他们很快又找到了一种方式————CSRF">
 
     
     <link rel="alternative" href="/atom.xml" title="2yingying" type="application/atom+xml">
@@ -81,14 +80,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/01/07/hello2016/" title="第一篇文章" itemprop="url">第一篇文章</a>
+      <a href="/2016/03/30/那些年我们懵逼的安全知识之CSRF/" title="那些年我们懵逼的安全知识——CSRF" itemprop="url">那些年我们懵逼的安全知识——CSRF</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
 		
   <p class="article-time">
-    <time datetime="2016-01-07T03:07:37.000Z" itemprop="datePublished"> 发表于 2016-01-07</time>
+    <time datetime="2016-03-30T05:53:30.000Z" itemprop="datePublished"> 发表于 2016-03-30</time>
     
   </p>
 </header>
@@ -97,11 +96,21 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662FCSRF"><span class="toc-number">1.</span> <span class="toc-text">什么是CSRF</span></a></li></ol>
 		
 		</div>
 		
-		<p>nice to meet you<br>2016<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/956653.jpg" alt="good luck"></p>
+		<p>上次我们提到了XSS攻击，并说了两种XSS攻击类型，分别是反射型和存储型，并提出了一系列的解决方法。<br>但是同为程序员的攻击者当然也不会那么轻易被打败，他们很快又找到了一种方式————CSRF<br><a id="more"></a><br>惯例，首先先将定义搬出来</p>
+<h2 id="u4EC0_u4E48_u662FCSRF"><a href="#u4EC0_u4E48_u662FCSRF" class="headerlink" title="什么是CSRF"></a>什么是CSRF</h2><blockquote>
+<p><strong>CSRF（Cross-site request forgery），中文名称：跨站请求伪造,缩写为：CSRF/XSRF</strong></p>
+<p>是一种挟制用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。跟跨网站脚本（XSS）相比，XSS 利用的是用户对指定网站的信任，CSRF 利用的是网站对用户网页浏览器的信任。[from 维基百科]</p>
+</blockquote>
+<p>看到官方定义我们应该会有些疑问</p>
+<ul>
+<li>能做什么</li>
+<li>怎么伪造</li>
+<li>伪造什么</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -110,7 +119,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/随笔/">随笔</a>
+  <span></span> <a href="/tags/js/">js</a><a href="/tags/安全/">安全</a><a href="/tags/攻击/">攻击</a>
   </div>
 
 </div>
@@ -119,7 +128,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://github.com/Zyingying/2016/01/07/hello2016/" data-title="第一篇文章 | 2yingying" data-tsina="2133445925" class="share clearfix">
+	  <div data-url="https://github.com/Zyingying/2016/03/30/那些年我们懵逼的安全知识之CSRF/" data-title="那些年我们懵逼的安全知识——CSRF | 2yingying" data-tsina="2133445925" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -132,20 +141,20 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/01/15/git/" title="git命令归纳">
-  <strong>上一篇：</strong><br/>
-  <span>
-  git命令归纳</span>
+
+<div class="next">
+<a href="/2016/03/29/那些年我们懵逼的安全知识之XSS/"  title="那些年我们懵逼的安全知识——XSS">
+ <strong>下一篇：</strong><br/> 
+ <span>那些年我们懵逼的安全知识——XSS
+</span>
 </a>
 </div>
-
 
 </nav>
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/01/07/hello2016/" data-title="第一篇文章" data-url="https://github.com/Zyingying/2016/01/07/hello2016/"></div>
+	<div class="ds-thread" data-thread-key="2016/03/30/那些年我们懵逼的安全知识之CSRF/" data-title="那些年我们懵逼的安全知识——CSRF" data-url="https://github.com/Zyingying/2016/03/30/那些年我们懵逼的安全知识之CSRF/"></div>
 </section>
 
 
@@ -155,7 +164,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662FCSRF"><span class="toc-number">1.</span> <span class="toc-text">什么是CSRF</span></a></li></ol>
  
   </div>
 
