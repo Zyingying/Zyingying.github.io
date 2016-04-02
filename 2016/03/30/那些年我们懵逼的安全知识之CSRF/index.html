@@ -17,7 +17,9 @@
 <meta property="og:url" content="https://github.com/Zyingying/2016/03/30/那些年我们懵逼的安全知识之CSRF/index.html">
 <meta property="og:site_name" content="2yingying">
 <meta property="og:description" content="上次我们提到了XSS攻击，并说了两种XSS攻击类型，分别是反射型和存储型，并提出了一系列的解决方法。但是同为程序员的攻击者当然也不会那么轻易被打败，他们很快又找到了一种方式————CSRF">
-<meta property="og:updated_time" content="2016-04-01T15:16:55.841Z">
+<meta property="og:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/csrf.jpg">
+<meta property="og:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/csrf%E6%94%BB%E5%87%BB.jpg">
+<meta property="og:updated_time" content="2016-04-02T07:05:18.468Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="那些年我们懵逼的安全知识——CSRF">
 <meta name="twitter:description" content="上次我们提到了XSS攻击，并说了两种XSS攻击类型，分别是反射型和存储型，并提出了一系列的解决方法。但是同为程序员的攻击者当然也不会那么轻易被打败，他们很快又找到了一种方式————CSRF">
@@ -96,7 +98,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662FCSRF"><span class="toc-number">1.</span> <span class="toc-text">什么是CSRF</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662FCSRF"><span class="toc-number">1.</span> <span class="toc-text">什么是CSRF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u80FD_u505A_u4EC0_u4E48"><span class="toc-number">1.1.</span> <span class="toc-text">能做什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F2A_u9020_u4EC0_u4E48"><span class="toc-number">1.2.</span> <span class="toc-text">伪造什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5982_u4F55_u4F2A_u9020"><span class="toc-number">1.3.</span> <span class="toc-text">如何伪造</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5982_u4F55_u9884_u9632"><span class="toc-number">2.</span> <span class="toc-text">如何预防</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E3A_u7528_u6237_u751F_u6210_u4E00_u4E2A_u552F_u4E00_u7684cookie_token"><span class="toc-number">2.1.</span> <span class="toc-text">为用户生成一个唯一的cookie token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u9A8C_u8BC1_u7801"><span class="toc-number">2.2.</span> <span class="toc-text">验证码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E0D_u540C_u7684_u8868_u5355_u5305_u542B_u4E00_u4E2A_u4E0D_u540C_u7684_u4F2A_u968F_u673A_u503C"><span class="toc-number">2.3.</span> <span class="toc-text">不同的表单包含一个不同的伪随机值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#https_u80FD_u5426_u62B5_u5FA1CSRF"><span class="toc-number">3.</span> <span class="toc-text">https能否抵御CSRF</span></a></li></ol>
 		
 		</div>
 		
@@ -108,9 +110,30 @@
 <p>看到官方定义我们应该会有些疑问</p>
 <ul>
 <li>能做什么</li>
-<li>怎么伪造</li>
 <li>伪造什么</li>
+<li>怎么伪造</li>
 </ul>
+<p>当你了解完这些就明白它与XSS的基本不同点了</p>
+<h3 id="u80FD_u505A_u4EC0_u4E48"><a href="#u80FD_u505A_u4EC0_u4E48" class="headerlink" title="能做什么"></a>能做什么</h3><p>简单的说，攻击者可以盗用你的登陆信息，以你的身份模拟发送请求。通过一些手段，攻击者就能使用户去执行攻击者的操作。</p>
+<p>例如，当用户登录网络银行去查看其存款余额，在他没有退出时，就点击了一个QQ好友发来的链接，那么该用户银行帐户中的资金就有可能被转移到攻击者指定的帐户中。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 比如银行的get请求长这样 --&gt;</span></span><br><span class="line">http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000</span><br><span class="line"><span class="comment">&lt;!-- 然后坏人想办法发给你一个链接 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">'http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000'</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>你最终点击了这个链接，结果就是，你在刚登陆了银行账户的情况下，不明真相的被窃取了1000元到骗纸的账户去了</p>
+<h3 id="u4F2A_u9020_u4EC0_u4E48"><a href="#u4F2A_u9020_u4EC0_u4E48" class="headerlink" title="伪造什么"></a>伪造什么</h3><p>我们可以通过刚刚那个简单的例子发现，<strong>其实它并不像<code>XSS</code>那样，要运行脚本才能进行攻击</strong>，它也不需要注入什么东西，甚至不需要获取你的<code>cookie</code>到他那边。</p>
+<p><code>CSRF</code>攻击主要是因为<code>Web</code>的隐式身份验证机制，<code>Web</code>的身份验证机制虽然可以保证一个请求是来自于某个用户的浏览器，但却无法保证该请求是用户批准发送的。</p>
+<p>简言之，攻击者的最后的目的就是，模仿你本人，给服务端发送请求信息。由于是你自己客户端这边发起的请求，所以服务端以为是你本人的正经请求，所以就帮你处理了，最后造成悲剧。</p>
+<h3 id="u5982_u4F55_u4F2A_u9020"><a href="#u5982_u4F55_u4F2A_u9020" class="headerlink" title="如何伪造"></a>如何伪造</h3><p>我们首先要知道，一个`CSRF攻击是如何进行的。</p>
+<p>只要两步就可以简单的完成<code>CSRF</code>攻击：<br>　　1. 登入受信任网站A，并在本地生成<code>cookie</code>。<br>　　2. 在不登出A的情况下，访问危险网站B。</p>
+<p>所谓的不登出A，也不是完全是登出了A就安全的，因为你不清楚你的本地<code>cookie</code><strong>是不是关闭了就会马上过期</strong>。<br>接着，危险的网站B，也<strong>不一定是攻击者的网站</strong>，也可能是可信任的网站，但是有漏洞，然后被人攻击。</p>
+<p><img src="http://7xpwlt.com1.z0.glb.clouddn.com/csrf.jpg" alt="csrf攻击过程" title="模拟csrf攻击过程"></p>
+<p>在写博客的过程中，看见这样一条新闻<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/csrf%E6%94%BB%E5%87%BB.jpg" alt="网络攻击" title="网络攻击"></p>
+<p>所以说，在遇到<code>CSRF</code>攻击时，将对终端用户的数据和操作指令构成严重的威胁；<br>当受攻击的终端用户具有管理员帐户的时候，CSRF攻击将危及整个网站的安全。</p>
+<h2 id="u5982_u4F55_u9884_u9632"><a href="#u5982_u4F55_u9884_u9632" class="headerlink" title="如何预防"></a>如何预防</h2><p>一般的防御方法有以下几种</p>
+<h3 id="u4E3A_u7528_u6237_u751F_u6210_u4E00_u4E2A_u552F_u4E00_u7684cookie_token"><a href="#u4E3A_u7528_u6237_u751F_u6210_u4E00_u4E2A_u552F_u4E00_u7684cookie_token" class="headerlink" title="为用户生成一个唯一的cookie token"></a>为用户生成一个唯一的cookie token</h3><p>所有表单都包含同一个伪随机值——也就是所以当你请求的时候，表单会包含一个随机参数。<br>因为我们之前强调，<code>CSRF</code>的攻击者并不知道被攻击者的<code>cookie</code>,所以他并没有办法伪造表单的数据，所以这是比较简单的方法</p>
+<p>但是这个有个缺点，如果用户的<code>cookie</code>之前被XSS攻击盗取呢，好像也不是100%安全啊。</p>
+<h3 id="u9A8C_u8BC1_u7801"><a href="#u9A8C_u8BC1_u7801" class="headerlink" title="验证码"></a>验证码</h3><p>相信大家都有在表单上面输入验证码的经历，通过表单的验证码可以很容易判断是不是伪造了请求，而且防御效果还是很好的。<br>但是有些东西相信大家深有体会的，没错，就是验证码的用户体验是在是不咋滴。</p>
+<h3 id="u4E0D_u540C_u7684_u8868_u5355_u5305_u542B_u4E00_u4E2A_u4E0D_u540C_u7684_u4F2A_u968F_u673A_u503C"><a href="#u4E0D_u540C_u7684_u8868_u5355_u5305_u542B_u4E00_u4E2A_u4E0D_u540C_u7684_u4F2A_u968F_u673A_u503C" class="headerlink" title="不同的表单包含一个不同的伪随机值"></a>不同的表单包含一个不同的伪随机值</h3><p>这个随机值<code>token</code>是在前端生成的，通过一系列算法，为每个表单附上不同的随机值。原来是用作防止表单多次重复提交。现在可以稍微修改用作随机添加的<code>token</code>值。而且不需要太担心算法被破解。因为暴力破解该串大概需要2的11次方时间。</p>
+<p>主要的实现方法可以<a href="https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/09.1.md">参考这篇文章</a></p>
+<h2 id="https_u80FD_u5426_u62B5_u5FA1CSRF"><a href="#https_u80FD_u5426_u62B5_u5FA1CSRF" class="headerlink" title="https能否抵御CSRF"></a>https能否抵御CSRF</h2><p>答案是 :  <strong>不能</strong><br>一开始我也以为是可以的，但是其实https是一个加密协议，并不能阻止他攻击的必要两个步骤（1. 登入受信任网站A，并在本地生成<code>cookie</code>。2. 在不登出A的情况下，访问危险网站B）</p>
+<p>所以使用https并不能有效的阻止<code>CSRF</code></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -164,7 +187,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662FCSRF"><span class="toc-number">1.</span> <span class="toc-text">什么是CSRF</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662FCSRF"><span class="toc-number">1.</span> <span class="toc-text">什么是CSRF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u80FD_u505A_u4EC0_u4E48"><span class="toc-number">1.1.</span> <span class="toc-text">能做什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F2A_u9020_u4EC0_u4E48"><span class="toc-number">1.2.</span> <span class="toc-text">伪造什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5982_u4F55_u4F2A_u9020"><span class="toc-number">1.3.</span> <span class="toc-text">如何伪造</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5982_u4F55_u9884_u9632"><span class="toc-number">2.</span> <span class="toc-text">如何预防</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E3A_u7528_u6237_u751F_u6210_u4E00_u4E2A_u552F_u4E00_u7684cookie_token"><span class="toc-number">2.1.</span> <span class="toc-text">为用户生成一个唯一的cookie token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u9A8C_u8BC1_u7801"><span class="toc-number">2.2.</span> <span class="toc-text">验证码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E0D_u540C_u7684_u8868_u5355_u5305_u542B_u4E00_u4E2A_u4E0D_u540C_u7684_u4F2A_u968F_u673A_u503C"><span class="toc-number">2.3.</span> <span class="toc-text">不同的表单包含一个不同的伪随机值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#https_u80FD_u5426_u62B5_u5FA1CSRF"><span class="toc-number">3.</span> <span class="toc-text">https能否抵御CSRF</span></a></li></ol>
  
   </div>
 
