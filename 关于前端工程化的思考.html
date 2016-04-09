@@ -1,26 +1,36 @@
 
- <!DOCTYPE HTML>
+  
+    <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   
-    <title>web性能一些事（一）网络技术 | 2yingying</title>
+    <title>关于前端工程化的思考 | 2yingying</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="盈盈">
     
 
     
-    <meta name="description">
-<meta property="og:type" content="article">
-<meta property="og:title" content="web性能一些事（一）网络技术">
-<meta property="og:url" content="https://github.com/Zyingying/2016/04/04/web性能一些事（一）网络技术/index.html">
+    <meta name="description" content="优化，安全，原型继承闭包，这三个可谓是前端面试的三座坚不可摧的大山。之前了解了前端的两种攻击方式（XSS, CSRF），这几天我又重新去对前端优化再次进行了一下归纳优化其实总的大方向就分为两种：
+
+传输层面 ： 减少请求
+执行层面 ： 降低重绘重排和DOM操作">
+<meta property="og:type" content="website">
+<meta property="og:title" content="关于前端工程化的思考">
+<meta property="og:url" content="https://github.com/Zyingying/关于前端工程化的思考.html">
 <meta property="og:site_name" content="2yingying">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-04-04T09:58:19.553Z">
+<meta property="og:description" content="优化，安全，原型继承闭包，这三个可谓是前端面试的三座坚不可摧的大山。之前了解了前端的两种攻击方式（XSS, CSRF），这几天我又重新去对前端优化再次进行了一下归纳优化其实总的大方向就分为两种：
+
+传输层面 ： 减少请求
+执行层面 ： 降低重绘重排和DOM操作">
+<meta property="og:updated_time" content="2016-04-06T14:35:12.422Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="web性能一些事（一）网络技术">
-<meta name="twitter:description">
+<meta name="twitter:title" content="关于前端工程化的思考">
+<meta name="twitter:description" content="优化，安全，原型继承闭包，这三个可谓是前端面试的三座坚不可摧的大山。之前了解了前端的两种攻击方式（XSS, CSRF），这几天我又重新去对前端优化再次进行了一下归纳优化其实总的大方向就分为两种：
+
+传输层面 ： 减少请求
+执行层面 ： 降低重绘重排和DOM操作">
 
     
     <link rel="alternative" href="/atom.xml" title="2yingying" type="application/atom+xml">
@@ -35,9 +45,9 @@
     <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
 
-  <body>
-    <header>
-      
+      <body>
+        <header>
+          
 <div>
 		
 			<div id="imglogo">
@@ -72,39 +82,43 @@
 				</ul>
 			</nav>			
 </div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+        </header>
+        <div id="container">
+          <div id="main" class="page" itemscope itemprop="blogPost">
   
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/04/04/web性能一些事（一）网络技术/" title="web性能一些事（一）网络技术" itemprop="url">web性能一些事（一）网络技术</a>
+      <a href="/关于前端工程化的思考.html" title="关于前端工程化的思考" itemprop="url">关于前端工程化的思考</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
 		
   <p class="article-time">
-    <time datetime="2016-04-04T09:56:19.000Z" itemprop="datePublished"> 发表于 2016-04-04</time>
+    <time datetime="2016-04-06T07:23:59.000Z" itemprop="datePublished"> 发表于 2016-04-06</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		
-			
-		
-		</div>
-		
-		  
+		<p>优化，安全，原型继承闭包，这三个可谓是前端面试的三座坚不可摧的大山。之前了解了前端的两种攻击方式（<a href="/">XSS</a>, <a href="/">CSRF</a>），这几天我又重新去对前端优化再次进行了一下归纳<br>优化其实总的大方向就分为两种：</p>
+<ul>
+<li>传输层面 ： 减少请求</li>
+<li>执行层面 ： 降低重绘重排和DOM操作<a id="more"></a>
+我们知道，对比与浏览器自身的各种计算重绘重排而言，一个请求的耗时，可能是会多很多的。</li>
+</ul>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/undefined">undefined</a>
+  </div>
 
 </div>
 
@@ -112,7 +126,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://github.com/Zyingying/2016/04/04/web性能一些事（一）网络技术/" data-title="web性能一些事（一）网络技术 | 2yingying" data-tsina="2133445925" class="share clearfix">
+	  <div data-url="https://github.com/Zyingying/关于前端工程化的思考.html" data-title="关于前端工程化的思考 | 2yingying" data-tsina="2133445925" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -123,136 +137,15 @@
    	       
 	</article>
 	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2016/04/06/关于前端工程化的思考/" title="关于前端工程化的思考">
-  <strong>上一篇：</strong><br/>
-  <span>
-  关于前端工程化的思考</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2016/03/30/那些年我们懵逼的安全知识之CSRF/"  title="那些年我们懵逼的安全知识——CSRF">
- <strong>下一篇：</strong><br/> 
- <span>那些年我们懵逼的安全知识——CSRF
-</span>
-</a>
-</div>
-
-</nav>
-
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/04/04/web性能一些事（一）网络技术/" data-title="web性能一些事（一）网络技术" data-url="https://github.com/Zyingying/2016/04/04/web性能一些事（一）网络技术/"></div>
+	<div class="ds-thread" data-thread-key="关于前端工程化的思考.html" data-title="关于前端工程化的思考" data-url="https://github.com/Zyingying/关于前端工程化的思考.html"></div>
 </section>
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
- 
- 
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  
-<div class="github-card">
-<p class="asidetitle">Github 名片</p>
-<div class="github-card" data-github="Zyingying" data-width="220" data-height="119" data-theme="medium">
-<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
-</div>
-  </div>
-
-
-
-  
-
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/js/" title="js">js<sup>9</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/模块化/" title="模块化">模块化<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/攻击/" title="攻击">攻击<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/安全/" title="安全">安全<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/渲染/" title="渲染">渲染<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Grunt/" title="Grunt">Grunt<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/css/" title="css">css<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/闭包/" title="闭包">闭包<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/优化/" title="优化">优化<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
-			
-		
-		</ul>
-</div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
-    <ul>
-        
-    </ul>
-</div>
-
-  
-
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-  <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
-    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2133445925&verifier=b3593ceb&dpc=1"></iframe>
-</div>
-
-
-</aside>
-</div>
-    </div>
-    <footer><div id="footer" >
+        </div>
+        <footer><div id="footer" >
 	
 	<div class="line">
 		<span></span>
@@ -297,7 +190,7 @@
 		</p>
 </div>
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
+        <script src="/js/jquery-2.0.3.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
@@ -341,36 +234,8 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
         
     }
-  });
-});
-</script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
   });
 });
 </script>
@@ -505,5 +370,6 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search End -->
 
-  </body>
-</html>
+      </body>
+     </html>
+     
