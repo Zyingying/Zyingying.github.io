@@ -1,0 +1,561 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>移动端优化的小事情（一） | 2yingying</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="盈盈">
+    
+
+    
+    <meta name="description" content="写这篇文章并没有什么特别的原因，只是有一天突然发现自己对移动端涉猎并不算多，看着越来越多的网页流量来源自移动端，我开始方了，觉得有些事情，也该总结总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端优化的小事情（一）">
+<meta property="og:url" content="https://github.com/Zyingying/2016/04/08/移动端优化的的一些小事/index.html">
+<meta property="og:site_name" content="2yingying">
+<meta property="og:description" content="写这篇文章并没有什么特别的原因，只是有一天突然发现自己对移动端涉猎并不算多，看着越来越多的网页流量来源自移动端，我开始方了，觉得有些事情，也该总结总结">
+<meta property="og:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/%E6%89%8B%E6%9C%BA%E7%AB%AF%E7%9A%84%E9%82%AE%E4%BB%B6%E8%BE%93%E5%85%A5%E8%A1%A8%E5%8D%95.png">
+<meta property="og:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/url.png">
+<meta property="og:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/%E6%97%B6%E9%97%B4.png">
+<meta property="og:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/21172513_AVMK.png">
+<meta property="og:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/21172512_4ufP.png">
+<meta property="og:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/21172511_p4On.png">
+<meta property="og:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/21172513_ujU6.png">
+<meta property="og:updated_time" content="2016-04-21T13:23:29.205Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端优化的小事情（一）">
+<meta name="twitter:description" content="写这篇文章并没有什么特别的原因，只是有一天突然发现自己对移动端涉猎并不算多，看着越来越多的网页流量来源自移动端，我开始方了，觉得有些事情，也该总结总结">
+
+    
+    <link rel="alternative" href="/atom.xml" title="2yingying" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/smile.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="2yingying" title="2yingying"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="2yingying">2yingying</a></h1>
+				<h2 class="blog-motto">你可长点心吧！     点心？什么点心？</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:github.com/Zyingying">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/04/08/移动端优化的的一些小事/" title="移动端优化的小事情（一）" itemprop="url">移动端优化的小事情（一）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
+		
+  <p class="article-time">
+    <time datetime="2016-04-08T09:56:19.000Z" itemprop="datePublished"> 发表于 2016-04-08</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u70B9_u51FB_u7684_u4F18_u5316"><span class="toc-number">1.</span> <span class="toc-text">点击的优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u70B9_u51FB_u4E8B_u4EF6_u4E0A"><span class="toc-number">1.1.</span> <span class="toc-text">点击事件上</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528touch_u4E8B_u4EF6"><span class="toc-number">1.1.1.</span> <span class="toc-text">使用touch事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5F15_u7528_u79FB_u52A8_u6846_u67B6"><span class="toc-number">1.1.2.</span> <span class="toc-text">引用移动框架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u70B9_u51FB_u53CD_u9988"><span class="toc-number">1.2.</span> <span class="toc-text">点击反馈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u89E3_u51B3_u529E_u6CD5"><span class="toc-number">1.2.1.</span> <span class="toc-text">解决办法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u8868_u5355_u8F93_u5165_u4F18_u5316"><span class="toc-number">2.</span> <span class="toc-text">表单输入优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u7535_u5B50_u90AE_u4EF6input_u7C7B_u578B"><span class="toc-number">2.1.</span> <span class="toc-text">电子邮件input类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URL_input__u7C7B_u578B"><span class="toc-number">2.2.</span> <span class="toc-text">URL input 类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6570_u5B57input_u7C7B_u578B"><span class="toc-number">2.3.</span> <span class="toc-text">数字input类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u65F6_u95F4_u7C7B_u578B"><span class="toc-number">2.4.</span> <span class="toc-text">时间类型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5173_u4E8E_u517C_u5BB9"><span class="toc-number">3.</span> <span class="toc-text">关于兼容</span></a></li></ol>
+		
+		</div>
+		
+		<p>写这篇文章并没有什么特别的原因，只是有一天突然发现自己对移动端涉猎并不算多，看着越来越多的网页流量来源自移动端，我开始方了，觉得有些事情，也该总结总结<br><a id="more"></a></p>
+<p>在移动端，主要的来说，优化重点可以放在两个方面</p>
+<ul>
+<li><strong>交互优化</strong></li>
+<li><strong>性能优化</strong><br>那我今天先归纳一下交互方面的优化 </li>
+</ul>
+<h1 id="u70B9_u51FB_u7684_u4F18_u5316"><a href="#u70B9_u51FB_u7684_u4F18_u5316" class="headerlink" title="点击的优化"></a>点击的优化</h1><p>  我们知道在同是一个点击事件,在移动端的和在pc端给用户的体验是不一样的</p>
+<h2 id="u70B9_u51FB_u4E8B_u4EF6_u4E0A"><a href="#u70B9_u51FB_u4E8B_u4EF6_u4E0A" class="headerlink" title="点击事件上"></a>点击事件上</h2><p>  移动端的的click里面有300ms的延迟,因为我们需要区分但双击，来判断是否你只是想放大页面（这是移动端的特性）</p>
+<p>  那么我们该如何优化？</p>
+<h3 id="u4F7F_u7528touch_u4E8B_u4EF6"><a href="#u4F7F_u7528touch_u4E8B_u4EF6" class="headerlink" title="使用touch事件"></a>使用touch事件</h3><p>  touch事件可以使手机端更好的去响应一个触摸事件，这个是大家都可能知道的一个优化方法</p>
+<h3 id="u5F15_u7528_u79FB_u52A8_u6846_u67B6"><a href="#u5F15_u7528_u79FB_u52A8_u6846_u67B6" class="headerlink" title="引用移动框架"></a>引用移动框架</h3><pre><code>引入zepto，用tap事件来代替cilck
+</code></pre><p>  但是我们首先要知道，tap不是原生事件，tap包括了三个：touchstart/touchmove/touchend</p>
+<p>那我们的判断基本条件是什么：</p>
+<p>1.<strong>触摸到离开事件间隔短</strong></p>
+<p>2.<strong>从起点到终点事件间隔小</strong></p>
+<h2 id="u70B9_u51FB_u53CD_u9988"><a href="#u70B9_u51FB_u53CD_u9988" class="headerlink" title="点击反馈"></a>点击反馈</h2><p>还有一个比较特别的一点，既然点击事件有点慢，能不能有什么小技巧让他外部看上去不那么慢呢？<br>其实还有一个小方法，就是设置一个点击态，比如在你点击的时候，按钮颜色变深了一点，一般人在点击按钮之后半秒钟还没收到交互反馈，一般就会再次点击，那么如果有个点击态，在用户方面，让他了解自己已经操作了。这样就不至于让人有种卡机，然后狂点按钮</p>
+<h3 id="u89E3_u51B3_u529E_u6CD5"><a href="#u89E3_u51B3_u529E_u6CD5" class="headerlink" title="解决办法"></a>解决办法</h3><ul>
+<li>方案1：使用：active伪类  ———&gt;缺点：滚动的时候会触发样式</li>
+<li>方案2：使用js，添加样式，在150毫秒左右就去掉</li>
+</ul>
+<h1 id="u8868_u5355_u8F93_u5165_u4F18_u5316"><a href="#u8868_u5355_u8F93_u5165_u4F18_u5316" class="headerlink" title="表单输入优化"></a>表单输入优化</h1><p>在移动端输入表单的场景你一定不少见，但是为什么有些表单会让自己的手机跳出不同的输入框</p>
+<h2 id="u7535_u5B50_u90AE_u4EF6input_u7C7B_u578B"><a href="#u7535_u5B50_u90AE_u4EF6input_u7C7B_u578B" class="headerlink" title="电子邮件input类型"></a>电子邮件input类型</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"email"</span> <span class="attribute">name</span>=<span class="value">"email"</span> &gt;</span></span><br></pre></td></tr></table></figure>
+<p>iOS和Android浏览器都显示了轻度定制过的键盘。注意缩短的空格键的存在和iOS键盘的最底一行加入了@ 和句号（.）键。 而在Android上，标准逗号键将出现在空格键的左边，已经被一个@键替换。<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/%E6%89%8B%E6%9C%BA%E7%AB%AF%E7%9A%84%E9%82%AE%E4%BB%B6%E8%BE%93%E5%85%A5%E8%A1%A8%E5%8D%95.png" alt="IOS（左）和Android（右）的电子邮件input的键盘" width="600"></p>
+<h2 id="URL_input__u7C7B_u578B"><a href="#URL_input__u7C7B_u578B" class="headerlink" title="URL input 类型"></a>URL input 类型</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"url"</span> <span class="attribute">name</span>=<span class="value">"url"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>iOS的URL input键盘<br>url  input 类型可以用来帮助用户输入网址。在iOS上，所有的空格键已被替换成句号（.）键和正斜杠（/）键，以及一个特殊的.com键。<br>我的测试显示，Android键盘没有变化。<br> <img src="http://7xpwlt.com1.z0.glb.clouddn.com/url.png" alt="iOS的URL input键盘" width="300"></p>
+<h2 id="u6570_u5B57input_u7C7B_u578B"><a href="#u6570_u5B57input_u7C7B_u578B" class="headerlink" title="数字input类型"></a>数字input类型</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"number"</span> <span class="attribute">name</span>=<span class="value">"number"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://7xpwlt.com1.z0.glb.clouddn.com/%E6%97%B6%E9%97%B4.png" alt="IOS（左）和Android（右）的数字input的键盘 " width="600"></p>
+<h2 id="u65F6_u95F4_u7C7B_u578B"><a href="#u65F6_u95F4_u7C7B_u578B" class="headerlink" title="时间类型"></a>时间类型</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//1</span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"date"</span> <span class="attribute">name</span>=<span class="value">"date"</span>&gt;</span></span><br><span class="line">//2</span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"time"</span> <span class="attribute">name</span>=<span class="value">"time"</span>&gt;</span></span><br><span class="line">//3</span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"datetime"</span> <span class="attribute">name</span>=<span class="value">"datetime"</span>&gt;</span></span><br><span class="line">//4</span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"month"</span> <span class="attribute">name</span>=<span class="value">"month"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div style="overflow:hidden"><br>    <img src="http://7xpwlt.com1.z0.glb.clouddn.com/21172513_AVMK.png" alt="" width="210" style="display:inline;float:left;"><img src="http://7xpwlt.com1.z0.glb.clouddn.com/21172512_4ufP.png" alt="" width="210" style="display:inline;float:left;"><img src="http://7xpwlt.com1.z0.glb.clouddn.com/21172511_p4On.png" alt="" width="210" style="display:inline;float:left;"><img src="http://7xpwlt.com1.z0.glb.clouddn.com/21172513_ujU6.png" alt="" width="210" style="display:inline;float:left;"><br></div>
+
+
+<h1 id="u5173_u4E8E_u517C_u5BB9"><a href="#u5173_u4E8E_u517C_u5BB9" class="headerlink" title="关于兼容"></a>关于兼容</h1><p>据我所知，桌面端对于日期时间类input的兼容并不算特别的好，火狐就有些是不支持的，包括ios和安卓的兼容能力也是中等。但是input的其他属性都还是兼容移动端不错的。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/移动端/">移动端</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://github.com/Zyingying/2016/04/08/移动端优化的的一些小事/" data-title="移动端优化的小事情（一） | 2yingying" data-tsina="2133445925" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/04/16/关于前端工程化的思考/" title="CSS3开启硬件加速及利弊">
+  <strong>上一篇：</strong><br/>
+  <span>
+  CSS3开启硬件加速及利弊</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/03/30/那些年我们懵逼的安全知识之CSRF/"  title="那些年我们懵逼的安全知识——CSRF">
+ <strong>下一篇：</strong><br/> 
+ <span>那些年我们懵逼的安全知识——CSRF
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/04/08/移动端优化的的一些小事/" data-title="移动端优化的小事情（一）" data-url="https://github.com/Zyingying/2016/04/08/移动端优化的的一些小事/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u70B9_u51FB_u7684_u4F18_u5316"><span class="toc-number">1.</span> <span class="toc-text">点击的优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u70B9_u51FB_u4E8B_u4EF6_u4E0A"><span class="toc-number">1.1.</span> <span class="toc-text">点击事件上</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528touch_u4E8B_u4EF6"><span class="toc-number">1.1.1.</span> <span class="toc-text">使用touch事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5F15_u7528_u79FB_u52A8_u6846_u67B6"><span class="toc-number">1.1.2.</span> <span class="toc-text">引用移动框架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u70B9_u51FB_u53CD_u9988"><span class="toc-number">1.2.</span> <span class="toc-text">点击反馈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u89E3_u51B3_u529E_u6CD5"><span class="toc-number">1.2.1.</span> <span class="toc-text">解决办法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u8868_u5355_u8F93_u5165_u4F18_u5316"><span class="toc-number">2.</span> <span class="toc-text">表单输入优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u7535_u5B50_u90AE_u4EF6input_u7C7B_u578B"><span class="toc-number">2.1.</span> <span class="toc-text">电子邮件input类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URL_input__u7C7B_u578B"><span class="toc-number">2.2.</span> <span class="toc-text">URL input 类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6570_u5B57input_u7C7B_u578B"><span class="toc-number">2.3.</span> <span class="toc-text">数字input类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u65F6_u95F4_u7C7B_u578B"><span class="toc-number">2.4.</span> <span class="toc-text">时间类型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5173_u4E8E_u517C_u5BB9"><span class="toc-number">3.</span> <span class="toc-text">关于兼容</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="Zyingying" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/js/" title="js">js<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/模块化/" title="模块化">模块化<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/攻击/" title="攻击">攻击<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/安全/" title="安全">安全<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/渲染/" title="渲染">渲染<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/css/" title="css">css<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Grunt/" title="Grunt">Grunt<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/移动端/" title="移动端">移动端<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/闭包/" title="闭包">闭包<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/css3/" title="css3">css3<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/硬件加速/" title="硬件加速">硬件加速<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2133445925&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, I&#39;m zyy.  This is my blog on GitHub. <br/>
+			I wish you like it</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2133445925" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/Zyingying" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/2hang-ying-ying-" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:zyingying.zyy@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="盈盈">盈盈</a>
+		
+		&nbsp&nbsp&nbsp&nbsp本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次, 本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次
+		</p>
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zyingying"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
