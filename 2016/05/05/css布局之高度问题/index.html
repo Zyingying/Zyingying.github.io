@@ -4,24 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>第一篇文章 | 2yingying</title>
+    <title>css布局之高度问题 | 2yingying</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="盈盈">
     
 
     
-    <meta name="description" content="nice to meet you2016">
+    <meta name="description" content="在开发过程中会遇到许多等高布局，或者是一些瀑布流布局">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第一篇文章">
-<meta property="og:url" content="https://github.com/Zyingying/2016/01/07/hello2016/index.html">
+<meta property="og:title" content="css布局之高度问题">
+<meta property="og:url" content="https://github.com/Zyingying/2016/05/05/css布局之高度问题/index.html">
 <meta property="og:site_name" content="2yingying">
-<meta property="og:description" content="nice to meet you2016">
-<meta property="og:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/956653.jpg">
-<meta property="og:updated_time" content="2016-01-08T16:19:17.296Z">
+<meta property="og:description" content="在开发过程中会遇到许多等高布局，或者是一些瀑布流布局">
+<meta property="og:updated_time" content="2016-05-17T15:32:59.130Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第一篇文章">
-<meta name="twitter:description" content="nice to meet you2016">
+<meta name="twitter:title" content="css布局之高度问题">
+<meta name="twitter:description" content="在开发过程中会遇到许多等高布局，或者是一些瀑布流布局">
 
     
     <link rel="alternative" href="/atom.xml" title="2yingying" type="application/atom+xml">
@@ -81,14 +80,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/01/07/hello2016/" title="第一篇文章" itemprop="url">第一篇文章</a>
+      <a href="/2016/05/05/css布局之高度问题/" title="css布局之高度问题" itemprop="url">css布局之高度问题</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
 		
   <p class="article-time">
-    <time datetime="2016-01-07T03:07:37.000Z" itemprop="datePublished"> 发表于 2016-01-07</time>
+    <time datetime="2016-05-05T12:29:29.000Z" itemprop="datePublished"> 发表于 2016-05-05</time>
     
   </p>
 </header>
@@ -97,12 +96,23 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u7B49_u9AD8_u5E03_u5C40"><span class="toc-number">1.</span> <span class="toc-text">等高布局</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E24_u5217_u7B49_u9AD8"><span class="toc-number">1.1.</span> <span class="toc-text">两列等高</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u601D_u8DEF_u4E00_uFF1Aflexbox"><span class="toc-number">1.1.1.</span> <span class="toc-text">思路一：flexbox</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u601D_u8DEF_u4E8C_uFF1Afloat+margin+position"><span class="toc-number">1.1.2.</span> <span class="toc-text">思路二：float+margin+position</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E09_u5217_u7B49_u9AD8"><span class="toc-number">1.2.</span> <span class="toc-text">三列等高</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u601D_u8DEF_u4E00_uFF1Aflex"><span class="toc-number">1.2.1.</span> <span class="toc-text">思路一：flex</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u601D_u8DEF_u4E8C_uFF1Afloat+position"><span class="toc-number">1.2.2.</span> <span class="toc-text">思路二：float+position</span></a></li></ol></li></ol></li></ol>
 		
 		</div>
 		
-		<p>nice to meet you<br>2016<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/956653.jpg" alt="good luck"></p>
-  
+		<p>在开发过程中会遇到许多等高布局，或者是一些瀑布流布局<br><a id="more"></a></p>
+<p>下面我们一起看看</p>
+<h2 id="u7B49_u9AD8_u5E03_u5C40"><a href="#u7B49_u9AD8_u5E03_u5C40" class="headerlink" title="等高布局"></a>等高布局</h2><h3 id="u4E24_u5217_u7B49_u9AD8"><a href="#u4E24_u5217_u7B49_u9AD8" class="headerlink" title="两列等高"></a>两列等高</h3><p>我必须得承认一件事，每次写思路的时候，我总是把神器flex放在最后面，因为我觉得他的兼容性还是有点问题的（<a href="http://caniuse.com/#search=Flexible%20Box" target="_blank" rel="external">兼容情况戳这里</a>）<br>但是，实际上它也是最容易理解的，而且代码量最少的，所以思来想去，我决定第一个推荐这个方法</p>
+<h4 id="u601D_u8DEF_u4E00_uFF1Aflexbox"><a href="#u601D_u8DEF_u4E00_uFF1Aflexbox" class="headerlink" title="思路一：flexbox"></a>思路一：flexbox</h4><p>将父div设定 <code>align-items:stretch;</code>,使得伸缩项目在交叉轴方向拉伸填充整个容器<br>通俗一点来说，就是子div的高度会和你父div一样高<br>注意，如果需要右边一侧布满剩下的，直接用<code>flex：1</code>即可<br>上代码</p>
+<iframe width="100%" height="300" src="//jsfiddle.net/2jg1dunp/2/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<h4 id="u601D_u8DEF_u4E8C_uFF1Afloat+margin+position"><a href="#u601D_u8DEF_u4E8C_uFF1Afloat+margin+position" class="headerlink" title="思路二：float+margin+position"></a>思路二：float+margin+position</h4><iframe width="100%" height="300" src="//jsfiddle.net/s0svejn4/2/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+
+<h3 id="u4E09_u5217_u7B49_u9AD8"><a href="#u4E09_u5217_u7B49_u9AD8" class="headerlink" title="三列等高"></a>三列等高</h3><h4 id="u601D_u8DEF_u4E00_uFF1Aflex"><a href="#u601D_u8DEF_u4E00_uFF1Aflex" class="headerlink" title="思路一：flex"></a>思路一：flex</h4><p>相信到这里大家不用我多说了</p>
+<iframe width="100%" height="300" src="//jsfiddle.net/drc2rnzh/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<h4 id="u601D_u8DEF_u4E8C_uFF1Afloat+position"><a href="#u601D_u8DEF_u4E8C_uFF1Afloat+position" class="headerlink" title="思路二：float+position"></a>思路二：float+position</h4><iframe width="100%" height="300" src="//jsfiddle.net/b0q5crb3/1/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -110,7 +120,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/随笔/">随笔</a>
+  <span></span> <a href="/tags/css/">css</a>
   </div>
 
 </div>
@@ -119,7 +129,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://github.com/Zyingying/2016/01/07/hello2016/" data-title="第一篇文章 | 2yingying" data-tsina="2133445925" class="share clearfix">
+	  <div data-url="https://github.com/Zyingying/2016/05/05/css布局之高度问题/" data-title="css布局之高度问题 | 2yingying" data-tsina="2133445925" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -133,19 +143,27 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/01/15/git/" title="git命令归纳">
+ <a href="/2016/05/13/圆角矩形的实现（非css3）/" title="圆角矩形的实现（非css3）">
   <strong>上一篇：</strong><br/>
   <span>
-  git命令归纳</span>
+  圆角矩形的实现（非css3）</span>
 </a>
 </div>
 
+
+<div class="next">
+<a href="/2016/04/25/css布局之宽度问题/"  title="css布局之宽度问题">
+ <strong>下一篇：</strong><br/> 
+ <span>css布局之宽度问题
+</span>
+</a>
+</div>
 
 </nav>
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/01/07/hello2016/" data-title="第一篇文章" data-url="https://github.com/Zyingying/2016/01/07/hello2016/"></div>
+	<div class="ds-thread" data-thread-key="2016/05/05/css布局之高度问题/" data-title="css布局之高度问题" data-url="https://github.com/Zyingying/2016/05/05/css布局之高度问题/"></div>
 </section>
 
 
@@ -155,7 +173,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u7B49_u9AD8_u5E03_u5C40"><span class="toc-number">1.</span> <span class="toc-text">等高布局</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E24_u5217_u7B49_u9AD8"><span class="toc-number">1.1.</span> <span class="toc-text">两列等高</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u601D_u8DEF_u4E00_uFF1Aflexbox"><span class="toc-number">1.1.1.</span> <span class="toc-text">思路一：flexbox</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u601D_u8DEF_u4E8C_uFF1Afloat+margin+position"><span class="toc-number">1.1.2.</span> <span class="toc-text">思路二：float+margin+position</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E09_u5217_u7B49_u9AD8"><span class="toc-number">1.2.</span> <span class="toc-text">三列等高</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u601D_u8DEF_u4E00_uFF1Aflex"><span class="toc-number">1.2.1.</span> <span class="toc-text">思路一：flex</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u601D_u8DEF_u4E8C_uFF1Afloat+position"><span class="toc-number">1.2.2.</span> <span class="toc-text">思路二：float+position</span></a></li></ol></li></ol></li></ol>
  
   </div>
 
