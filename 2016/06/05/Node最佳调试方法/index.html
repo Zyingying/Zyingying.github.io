@@ -4,22 +4,41 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>2yingying</title>
+    <title>Node最佳调试方法 | 2yingying</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="盈盈">
     
 
     
-    <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="2yingying">
-<meta property="og:url" content="https://github.com/Zyingying/index.html">
+    <meta name="description" content="最近有在学习node，总是有个东西困扰我，比如，我们在客户端看不到相应的js代码，所以这个时候我们要怎么调试呢？
+所以今天想简单介绍一下一个node的调试方法：node-inspector
+下面是我安装这个的步骤：
+
+首先，不用说肯定是要先装上node,node现在已经内置了npm,有了这两个才能在命令行输入
+在命令行输入npm  install -g node-inspector 记住加上-g，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node最佳调试方法">
+<meta property="og:url" content="https://github.com/Zyingying/2016/06/05/Node最佳调试方法/index.html">
 <meta property="og:site_name" content="2yingying">
-<meta property="og:description">
+<meta property="og:description" content="最近有在学习node，总是有个东西困扰我，比如，我们在客户端看不到相应的js代码，所以这个时候我们要怎么调试呢？
+所以今天想简单介绍一下一个node的调试方法：node-inspector
+下面是我安装这个的步骤：
+
+首先，不用说肯定是要先装上node,node现在已经内置了npm,有了这两个才能在命令行输入
+在命令行输入npm  install -g node-inspector 记住加上-g，">
+<meta property="og:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/install_success.jpg">
+<meta property="og:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/add_it.png">
+<meta property="og:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/success.png">
+<meta property="og:updated_time" content="2016-07-07T15:26:26.541Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2yingying">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Node最佳调试方法">
+<meta name="twitter:description" content="最近有在学习node，总是有个东西困扰我，比如，我们在客户端看不到相应的js代码，所以这个时候我们要怎么调试呢？
+所以今天想简单介绍一下一个node的调试方法：node-inspector
+下面是我安装这个的步骤：
+
+首先，不用说肯定是要先装上node,node现在已经内置了npm,有了这两个才能在命令行输入
+在命令行输入npm  install -g node-inspector 记住加上-g，">
 
     
     <link rel="alternative" href="/atom.xml" title="2yingying" type="application/atom+xml">
@@ -73,12 +92,10 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
   <h1 itemprop="name">
     
       <a href="/2016/06/05/Node最佳调试方法/" title="Node最佳调试方法" itemprop="url">Node最佳调试方法</a>
@@ -92,9 +109,16 @@
     
   </p>
 </header>
-    <div class="article-content">
-        
-        <p>最近有在学习node，总是有个东西困扰我，比如，我们在客户端看不到相应的js代码，所以这个时候我们要怎么调试呢？</p>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<p>最近有在学习node，总是有个东西困扰我，比如，我们在客户端看不到相应的js代码，所以这个时候我们要怎么调试呢？</p>
 <p>所以今天想简单介绍一下一个node的调试方法：<strong>node-inspector</strong></p>
 <p>下面是我安装这个的步骤：</p>
 <ol>
@@ -117,14 +141,9 @@
 <li>最后输入地址栏地址 <code>http://127.0.0.1:8080/?port=5858</code><br>显示：<img src="http://7xpwlt.com1.z0.glb.clouddn.com/success.png" alt="image"></li>
 </ol>
 <p>一个和谷歌一模一样的调试界面就出来了，接下来的事情前端er估计也就懂如何做了吧~</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
+  
+	</div>
+		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 
@@ -137,384 +156,47 @@
 
 
 
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://github.com/Zyingying/2016/06/05/Node最佳调试方法/" data-title="Node最佳调试方法 | 2yingying" data-tsina="2133445925" class="share clearfix">
+	  </div>
+	
+	</div>
 
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/06/05/Node最佳调试方法/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/06/05/Node最佳调试方法/" data-count-type="comments">&nbsp;</a>
-	
-</div>
 
 </footer>
 
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/20/getElementByClassName的实现/" title="getElementByClassName的实现" itemprop="url">getElementByClassName的实现</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-20T09:41:13.000Z" itemprop="datePublished"> 发表于 2016-05-20</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>## </p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/js/">js</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
+   	       
+	</article>
 	
-	  	<span></span>
-		<a href="/2016/05/20/getElementByClassName的实现/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/20/getElementByClassName的实现/" data-count-type="comments">&nbsp;</a>
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/05/20/getElementByClassName的实现/"  title="getElementByClassName的实现">
+ <strong>下一篇：</strong><br/> 
+ <span>getElementByClassName的实现
+</span>
+</a>
+</div>
+
+</nav>
+
 	
-</div>
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/06/05/Node最佳调试方法/" data-title="Node最佳调试方法" data-url="https://github.com/Zyingying/2016/06/05/Node最佳调试方法/"></div>
+</section>
 
-</footer>
 
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/18/ie的那些兼容问题/" title="ie的那些兼容问题" itemprop="url">ie的那些兼容问题</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-18T09:39:40.000Z" itemprop="datePublished"> 发表于 2016-05-18</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>在我们写出css的过程中，会发现在命明明在高级浏览器中完美展现，可是在ie中却发现各种血崩<br>莫慌，其实慢慢把这些经常出现的兼容问题摸透，就会溜很多的哟~</p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/05/18/ie的那些兼容问题/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/css/">css</a><a href="/tags/兼容/">兼容</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/05/18/ie的那些兼容问题/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/18/ie的那些兼容问题/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/13/圆角矩形的实现（非css3）/" title="圆角矩形的实现（非css3）" itemprop="url">圆角矩形的实现（非css3）</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-13T15:41:39.000Z" itemprop="datePublished"> 发表于 2016-05-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>额…..我知道现在谈这个东西好像的确是挺旧的，而且现在css3也出了<code>border-radius</code>，圆角简直不能再6。<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/05/13/圆角矩形的实现（非css3）/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/css/">css</a><a href="/tags/兼容/">兼容</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/05/13/圆角矩形的实现（非css3）/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/13/圆角矩形的实现（非css3）/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/05/css布局之高度问题/" title="css布局之高度问题" itemprop="url">css布局之高度问题</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-05T12:29:29.000Z" itemprop="datePublished"> 发表于 2016-05-05</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>在开发过程中会遇到许多等高布局，或者是一些瀑布流布局<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/05/05/css布局之高度问题/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/css/">css</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/05/05/css布局之高度问题/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/05/css布局之高度问题/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/25/css布局之宽度问题/" title="css布局之宽度问题" itemprop="url">css布局之宽度问题</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-04-25T14:32:34.000Z" itemprop="datePublished"> 发表于 2016-04-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>一个好的css布局对于一个页面的重要程度，相信大家心里都明白。<br>完成一个两栏，三栏，等高等布局，在页面总是非常常见。所以我这边总结了一些方法。<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/04/25/css布局之宽度问题/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/css/">css</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/04/25/css布局之宽度问题/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/04/25/css布局之宽度问题/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/16/关于前端工程化的思考/" title="CSS3开启硬件加速及利弊" itemprop="url">CSS3开启硬件加速及利弊</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-04-16T07:23:59.000Z" itemprop="datePublished"> 发表于 2016-04-16</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>最近了解了一下用css3开启硬件加速的这个功能，不得不感叹浏览器这些东西太神奇了，要不是师兄提起，我根本就不知道居然有这种东西。所以还是要提高一下自己的信息来源渠道的。<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/04/16/关于前端工程化的思考/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/css3/">css3</a><a href="/tags/硬件加速/">硬件加速</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/04/16/关于前端工程化的思考/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/04/16/关于前端工程化的思考/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
-  </nav>
-
-</div>
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -713,14 +395,103 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
 
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zyingying"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
@@ -789,4 +560,4 @@ var _hmt = _hmt || [];
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
