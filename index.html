@@ -96,31 +96,11 @@
         
         <p>最近有在学习node，总是有个东西困扰我，比如，我们在客户端看不到相应的js代码，所以这个时候我们要怎么调试呢？</p>
 <p>所以今天想简单介绍一下一个node的调试方法：<strong>node-inspector</strong></p>
-<p>下面是我安装这个的步骤：</p>
-<ol>
-<li>首先，不用说肯定是要先装上node,node现在已经内置了npm,有了这两个才能在命令行输入</li>
-<li><p>在命令行输入<br><code>npm  install -g node-inspector</code> <strong>记住加上<code>-g</code>，采用全局方式</strong></p>
-</li>
-<li><p>成功的标志是<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/install_success.jpg" alt="image"></p>
-</li>
-<li><p>进入到你要调试的程序文件里，比如我的spider.js,则执行node –debug spider.js</p>
-</li>
-<li><p>接着你再打开一个cmd，输入<code>node-inspector</code><br>它就会有一句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Visit http://127.0.0.1:8080/?port=5858 to start debugging.</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol>
-<li><p>输入 <code>node-inspector &amp;</code><br>变成这样<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/add_it.png" alt="image"></p>
-</li>
-<li><p>再在刚刚的另一个cmd里面输入 <code>node --debug xxx.js</code>xxx是你要调试的那个文件名</p>
-</li>
-<li>最后输入地址栏地址 <code>http://127.0.0.1:8080/?port=5858</code><br>显示：<img src="http://7xpwlt.com1.z0.glb.clouddn.com/success.png" alt="image"></li>
-</ol>
-<p>一个和谷歌一模一样的调试界面就出来了，接下来的事情前端er估计也就懂如何做了吧~</p>
-
         
         
         <p class="article-more-link">
+          
+            <a href="/2016/06/05/Node最佳调试方法/#more">Read More</a>
           
        </p>
     </div>
