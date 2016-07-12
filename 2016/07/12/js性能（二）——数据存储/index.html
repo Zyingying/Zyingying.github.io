@@ -4,22 +4,41 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>2yingying</title>
+    <title>js性能（二）——数据存储 | 2yingying</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="盈盈">
     
 
     
-    <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="2yingying">
-<meta property="og:url" content="https://github.com/Zyingying/index.html">
+    <meta name="description" content="这篇文章是基于对js的作用域链、原型有所了解的朋友们一起交流学习的。
+那么我们先看看：
+js的四种基本数据存取
+字面量：  只代表自身，不存储在特定位置。js中字面量有：字符串、数字、布尔值、对象、数组、函数、正则表达式，以及特殊的null和undefined值。
+本地变量：开发人员使用关键字var定义的数据存储单元。
+数组元素存储在js数组对象内部，咦数据作为索引。
+对象成员存储在js对象内部，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js性能（二）——数据存储">
+<meta property="og:url" content="https://github.com/Zyingying/2016/07/12/js性能（二）——数据存储/index.html">
 <meta property="og:site_name" content="2yingying">
-<meta property="og:description">
+<meta property="og:description" content="这篇文章是基于对js的作用域链、原型有所了解的朋友们一起交流学习的。
+那么我们先看看：
+js的四种基本数据存取
+字面量：  只代表自身，不存储在特定位置。js中字面量有：字符串、数字、布尔值、对象、数组、函数、正则表达式，以及特殊的null和undefined值。
+本地变量：开发人员使用关键字var定义的数据存储单元。
+数组元素存储在js数组对象内部，咦数据作为索引。
+对象成员存储在js对象内部，">
+<meta property="og:updated_time" content="2016-07-12T14:51:34.564Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2yingying">
-<meta name="twitter:description">
+<meta name="twitter:title" content="js性能（二）——数据存储">
+<meta name="twitter:description" content="这篇文章是基于对js的作用域链、原型有所了解的朋友们一起交流学习的。
+那么我们先看看：
+js的四种基本数据存取
+字面量：  只代表自身，不存储在特定位置。js中字面量有：字符串、数字、布尔值、对象、数组、函数、正则表达式，以及特殊的null和undefined值。
+本地变量：开发人员使用关键字var定义的数据存储单元。
+数组元素存储在js数组对象内部，咦数据作为索引。
+对象成员存储在js对象内部，">
 
     
     <link rel="alternative" href="/atom.xml" title="2yingying" type="application/atom+xml">
@@ -73,12 +92,10 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
   <h1 itemprop="name">
     
       <a href="/2016/07/12/js性能（二）——数据存储/" title="js性能（二）——数据存储" itemprop="url">js性能（二）——数据存储</a>
@@ -92,9 +109,16 @@
     
   </p>
 </header>
-    <div class="article-content">
-        
-        <p>这篇文章是基于对js的作用域链、原型有所了解的朋友们一起交流学习的。</p>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#js_u7684_u56DB_u79CD_u57FA_u672C_u6570_u636E_u5B58_u53D6"><span class="toc-number">1.</span> <span class="toc-text">js的四种基本数据存取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F5C_u7528_u57DF_u94FE_u548C_u6807_u8BC6_u7B26_u89E3_u6790"><span class="toc-number">2.</span> <span class="toc-text">作用域链和标识符解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u6807_u8BC6_u7B26_u89E3_u6790_u7684_u6027_u80FD"><span class="toc-number">2.1.</span> <span class="toc-text">标识符解析的性能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6539_u53D8_u4F5C_u7528_u57DF_u94FE_28_u52A8_u6001_u4F5C_u7528_u57DF_29"><span class="toc-number">2.2.</span> <span class="toc-text">改变作用域链(动态作用域)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u95ED_u5305_u3001_u4F5C_u7528_u57DF_u548C_u5185_u5B58"><span class="toc-number">2.3.</span> <span class="toc-text">闭包、作用域和内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u539F_u578B"><span class="toc-number">2.4.</span> <span class="toc-text">原型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u5D4C_u5957_u6210_u5458"><span class="toc-number">2.5.</span> <span class="toc-text">嵌套成员</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u7F13_u5B58_u5BF9_u8C61_u6210_u5458_u503C"><span class="toc-number">2.6.</span> <span class="toc-text">缓存对象成员值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5C0F_u7ED3"><span class="toc-number"></span> <span class="toc-text">小结</span></a>
+		
+		</div>
+		
+		<p>这篇文章是基于对js的作用域链、原型有所了解的朋友们一起交流学习的。</p>
 <p>那么我们先看看：</p>
 <h3 id="js_u7684_u56DB_u79CD_u57FA_u672C_u6570_u636E_u5B58_u53D6"><a href="#js_u7684_u56DB_u79CD_u57FA_u672C_u6570_u636E_u5B58_u53D6" class="headerlink" title="js的四种基本数据存取"></a>js的四种基本数据存取</h3><ul>
 <li>字面量：<br>  只代表自身，不存储在特定位置。js中字面量有：字符串、数字、布尔值、对象、数组、函数、正则表达式，以及特殊的null和undefined值。</li>
@@ -143,400 +167,57 @@
 <li>属性或方法在原型链中的位置越深，访问速度就越慢</li>
 <li>通过吧常用的对象成员、数组元素、跨域变量保存在局部变量中来改善javascript的性能。</li>
 </ol>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/07/12/js性能（二）——数据存储/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/07/12/js性能（二）——数据存储/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/06/05/Node最佳调试方法/" title="Node最佳调试方法" itemprop="url">Node最佳调试方法</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-06-05T15:24:36.000Z" itemprop="datePublished"> 发表于 2016-06-05</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>最近有在学习node，总是有个东西困扰我，比如，我们在客户端看不到相应的js代码，所以这个时候我们要怎么调试呢？</p>
-<p>所以今天想简单介绍一下一个node的调试方法：<strong>node-inspector</strong></p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/06/05/Node最佳调试方法/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
   
-  <span></span> <a href="/tags/js/">js</a><a href="/tags/node/">node</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/06/05/Node最佳调试方法/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/06/05/Node最佳调试方法/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/20/getElementByClassName的实现/" title="getElementByClassName的实现" itemprop="url">getElementByClassName的实现</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-20T09:41:13.000Z" itemprop="datePublished"> 发表于 2016-05-20</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>## </p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
+	</div>
+		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/js/">js</a>
-  </div>
-
 </div>
 
 
 
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://github.com/Zyingying/2016/07/12/js性能（二）——数据存储/" data-title="js性能（二）——数据存储 | 2yingying" data-tsina="2133445925" class="share clearfix">
+	  </div>
+	
+	</div>
 
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/05/20/getElementByClassName的实现/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/20/getElementByClassName的实现/" data-count-type="comments">&nbsp;</a>
-	
-</div>
 
 </footer>
 
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/18/ie的那些兼容问题/" title="ie的那些兼容问题" itemprop="url">ie的那些兼容问题</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-18T09:39:40.000Z" itemprop="datePublished"> 发表于 2016-05-18</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>在我们写出css的过程中，会发现在命明明在高级浏览器中完美展现，可是在ie中却发现各种血崩<br>莫慌，其实慢慢把这些经常出现的兼容问题摸透，就会溜很多的哟~</p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/05/18/ie的那些兼容问题/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/css/">css</a><a href="/tags/兼容/">兼容</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
+   	       
+	</article>
 	
-	  	<span></span>
-		<a href="/2016/05/18/ie的那些兼容问题/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/18/ie的那些兼容问题/" data-count-type="comments">&nbsp;</a>
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/06/05/Node最佳调试方法/"  title="Node最佳调试方法">
+ <strong>下一篇：</strong><br/> 
+ <span>Node最佳调试方法
+</span>
+</a>
+</div>
+
+</nav>
+
 	
-</div>
-
-</footer>
-
-
-    </article>
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/07/12/js性能（二）——数据存储/" data-title="js性能（二）——数据存储" data-url="https://github.com/Zyingying/2016/07/12/js性能（二）——数据存储/"></div>
+</section>
 
 
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/13/圆角矩形的实现（非css3）/" title="圆角矩形的实现（非css3）" itemprop="url">圆角矩形的实现（非css3）</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-13T15:41:39.000Z" itemprop="datePublished"> 发表于 2016-05-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>额…..我知道现在谈这个东西好像的确是挺旧的，而且现在css3也出了<code>border-radius</code>，圆角简直不能再6。<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/05/13/圆角矩形的实现（非css3）/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/css/">css</a><a href="/tags/兼容/">兼容</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/05/13/圆角矩形的实现（非css3）/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/13/圆角矩形的实现（非css3）/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/05/css布局之高度问题/" title="css布局之高度问题" itemprop="url">css布局之高度问题</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-05T12:29:29.000Z" itemprop="datePublished"> 发表于 2016-05-05</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>在开发过程中会遇到许多等高布局，或者是一些瀑布流布局<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/05/05/css布局之高度问题/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/css/">css</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/05/05/css布局之高度问题/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/05/css布局之高度问题/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/25/css布局之宽度问题/" title="css布局之宽度问题" itemprop="url">css布局之宽度问题</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-04-25T14:32:34.000Z" itemprop="datePublished"> 发表于 2016-04-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>一个好的css布局对于一个页面的重要程度，相信大家心里都明白。<br>完成一个两栏，三栏，等高等布局，在页面总是非常常见。所以我这边总结了一些方法。<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/04/25/css布局之宽度问题/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/css/">css</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/04/25/css布局之宽度问题/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/04/25/css布局之宽度问题/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
-  </nav>
-
-</div>
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#js_u7684_u56DB_u79CD_u57FA_u672C_u6570_u636E_u5B58_u53D6"><span class="toc-number">1.</span> <span class="toc-text">js的四种基本数据存取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F5C_u7528_u57DF_u94FE_u548C_u6807_u8BC6_u7B26_u89E3_u6790"><span class="toc-number">2.</span> <span class="toc-text">作用域链和标识符解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u6807_u8BC6_u7B26_u89E3_u6790_u7684_u6027_u80FD"><span class="toc-number">2.1.</span> <span class="toc-text">标识符解析的性能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6539_u53D8_u4F5C_u7528_u57DF_u94FE_28_u52A8_u6001_u4F5C_u7528_u57DF_29"><span class="toc-number">2.2.</span> <span class="toc-text">改变作用域链(动态作用域)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u95ED_u5305_u3001_u4F5C_u7528_u57DF_u548C_u5185_u5B58"><span class="toc-number">2.3.</span> <span class="toc-text">闭包、作用域和内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u539F_u578B"><span class="toc-number">2.4.</span> <span class="toc-text">原型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u5D4C_u5957_u6210_u5458"><span class="toc-number">2.5.</span> <span class="toc-text">嵌套成员</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u7F13_u5B58_u5BF9_u8C61_u6210_u5458_u503C"><span class="toc-number">2.6.</span> <span class="toc-text">缓存对象成员值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5C0F_u7ED3"><span class="toc-number"></span> <span class="toc-text">小结</span></a>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -735,14 +416,103 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
 
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zyingying"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
@@ -811,4 +581,4 @@ var _hmt = _hmt || [];
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
