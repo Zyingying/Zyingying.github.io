@@ -17,7 +17,7 @@
 <meta property="og:url" content="https://github.com/Zyingying/2016/07/12/js性能（二）——数据存储/index.html">
 <meta property="og:site_name" content="2yingying">
 <meta property="og:description" content="这篇文章是基于对js的作用域链、原型有所了解的朋友们一起交流学习的。">
-<meta property="og:updated_time" content="2016-07-12T14:55:57.714Z">
+<meta property="og:updated_time" content="2016-07-12T16:17:36.131Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js性能（二）——数据存储">
 <meta name="twitter:description" content="这篇文章是基于对js的作用域链、原型有所了解的朋友们一起交流学习的。">
@@ -96,7 +96,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#js_u7684_u56DB_u79CD_u57FA_u672C_u6570_u636E_u5B58_u53D6"><span class="toc-number">1.</span> <span class="toc-text">js的四种基本数据存取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F5C_u7528_u57DF_u94FE_u548C_u6807_u8BC6_u7B26_u89E3_u6790"><span class="toc-number">2.</span> <span class="toc-text">作用域链和标识符解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u6807_u8BC6_u7B26_u89E3_u6790_u7684_u6027_u80FD"><span class="toc-number">2.1.</span> <span class="toc-text">标识符解析的性能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6539_u53D8_u4F5C_u7528_u57DF_u94FE_28_u52A8_u6001_u4F5C_u7528_u57DF_29"><span class="toc-number">2.2.</span> <span class="toc-text">改变作用域链(动态作用域)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u95ED_u5305_u3001_u4F5C_u7528_u57DF_u548C_u5185_u5B58"><span class="toc-number">2.3.</span> <span class="toc-text">闭包、作用域和内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u539F_u578B"><span class="toc-number">2.4.</span> <span class="toc-text">原型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u5D4C_u5957_u6210_u5458"><span class="toc-number">2.5.</span> <span class="toc-text">嵌套成员</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u7F13_u5B58_u5BF9_u8C61_u6210_u5458_u503C"><span class="toc-number">2.6.</span> <span class="toc-text">缓存对象成员值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5C0F_u7ED3"><span class="toc-number"></span> <span class="toc-text">小结</span></a>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#js_u7684_u56DB_u79CD_u57FA_u672C_u6570_u636E_u5B58_u53D6"><span class="toc-number">1.</span> <span class="toc-text">js的四种基本数据存取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F5C_u7528_u57DF_u94FE_u548C_u6807_u8BC6_u7B26_u89E3_u6790"><span class="toc-number">2.</span> <span class="toc-text">作用域链和标识符解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u6807_u8BC6_u7B26_u89E3_u6790_u7684_u6027_u80FD"><span class="toc-number">2.1.</span> <span class="toc-text">标识符解析的性能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6539_u53D8_u4F5C_u7528_u57DF_u94FE_28_u52A8_u6001_u4F5C_u7528_u57DF_29"><span class="toc-number">2.2.</span> <span class="toc-text">改变作用域链(动态作用域)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u95ED_u5305_u3001_u4F5C_u7528_u57DF_u548C_u5185_u5B58"><span class="toc-number">2.3.</span> <span class="toc-text">闭包、作用域和内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u539F_u578B"><span class="toc-number">2.4.</span> <span class="toc-text">原型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u5D4C_u5957_u6210_u5458"><span class="toc-number">2.5.</span> <span class="toc-text">嵌套成员</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u7F13_u5B58_u5BF9_u8C61_u6210_u5458_u503C"><span class="toc-number">2.6.</span> <span class="toc-text">缓存对象成员值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5C0F_u7ED3"><span class="toc-number"></span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u53C2_u8003_u8D44_u6599"><span class="toc-number"></span> <span class="toc-text">参考资料</span></a>
 		
 		</div>
 		
@@ -148,11 +148,19 @@
 <li>属性或方法在原型链中的位置越深，访问速度就越慢</li>
 <li>通过吧常用的对象成员、数组元素、跨域变量保存在局部变量中来改善javascript的性能。</li>
 </ol>
+<h2 id="u53C2_u8003_u8D44_u6599"><a href="#u53C2_u8003_u8D44_u6599" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li>高性能javascript</li>
+</ol>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/js/">js</a><a href="/tags/性能优化/">性能优化</a>
+  </div>
 
 </div>
 
@@ -173,6 +181,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2016/07/13/js性能（三）——DOM编程/" title="js性能（三）——DOM编程">
+  <strong>上一篇：</strong><br/>
+  <span>
+  js性能（三）——DOM编程</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2016/06/05/Node最佳调试方法/"  title="Node最佳调试方法">
@@ -196,7 +212,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#js_u7684_u56DB_u79CD_u57FA_u672C_u6570_u636E_u5B58_u53D6"><span class="toc-number">1.</span> <span class="toc-text">js的四种基本数据存取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F5C_u7528_u57DF_u94FE_u548C_u6807_u8BC6_u7B26_u89E3_u6790"><span class="toc-number">2.</span> <span class="toc-text">作用域链和标识符解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u6807_u8BC6_u7B26_u89E3_u6790_u7684_u6027_u80FD"><span class="toc-number">2.1.</span> <span class="toc-text">标识符解析的性能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6539_u53D8_u4F5C_u7528_u57DF_u94FE_28_u52A8_u6001_u4F5C_u7528_u57DF_29"><span class="toc-number">2.2.</span> <span class="toc-text">改变作用域链(动态作用域)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u95ED_u5305_u3001_u4F5C_u7528_u57DF_u548C_u5185_u5B58"><span class="toc-number">2.3.</span> <span class="toc-text">闭包、作用域和内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u539F_u578B"><span class="toc-number">2.4.</span> <span class="toc-text">原型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u5D4C_u5957_u6210_u5458"><span class="toc-number">2.5.</span> <span class="toc-text">嵌套成员</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u7F13_u5B58_u5BF9_u8C61_u6210_u5458_u503C"><span class="toc-number">2.6.</span> <span class="toc-text">缓存对象成员值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5C0F_u7ED3"><span class="toc-number"></span> <span class="toc-text">小结</span></a>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#js_u7684_u56DB_u79CD_u57FA_u672C_u6570_u636E_u5B58_u53D6"><span class="toc-number">1.</span> <span class="toc-text">js的四种基本数据存取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F5C_u7528_u57DF_u94FE_u548C_u6807_u8BC6_u7B26_u89E3_u6790"><span class="toc-number">2.</span> <span class="toc-text">作用域链和标识符解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u6807_u8BC6_u7B26_u89E3_u6790_u7684_u6027_u80FD"><span class="toc-number">2.1.</span> <span class="toc-text">标识符解析的性能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6539_u53D8_u4F5C_u7528_u57DF_u94FE_28_u52A8_u6001_u4F5C_u7528_u57DF_29"><span class="toc-number">2.2.</span> <span class="toc-text">改变作用域链(动态作用域)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u95ED_u5305_u3001_u4F5C_u7528_u57DF_u548C_u5185_u5B58"><span class="toc-number">2.3.</span> <span class="toc-text">闭包、作用域和内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u539F_u578B"><span class="toc-number">2.4.</span> <span class="toc-text">原型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u5D4C_u5957_u6210_u5458"><span class="toc-number">2.5.</span> <span class="toc-text">嵌套成员</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u7F13_u5B58_u5BF9_u8C61_u6210_u5458_u503C"><span class="toc-number">2.6.</span> <span class="toc-text">缓存对象成员值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5C0F_u7ED3"><span class="toc-number"></span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u53C2_u8003_u8D44_u6599"><span class="toc-number"></span> <span class="toc-text">参考资料</span></a>
  
   </div>
 
@@ -222,7 +238,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/js/" title="js">js<sup>11</sup></a></li>
+				<li><a href="/tags/js/" title="js">js<sup>13</sup></a></li>
 			
 		
 			
@@ -234,6 +250,10 @@
 			
 		
 			
+				<li><a href="/tags/兼容/" title="兼容">兼容<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/攻击/" title="攻击">攻击<sup>2</sup></a></li>
 			
 		
@@ -242,11 +262,7 @@
 			
 		
 			
-				<li><a href="/tags/兼容/" title="兼容">兼容<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/渲染/" title="渲染">渲染<sup>1</sup></a></li>
+				<li><a href="/tags/性能优化/" title="性能优化">性能优化<sup>2</sup></a></li>
 			
 		
 			
@@ -267,6 +283,10 @@
 		
 			
 				<li><a href="/tags/硬件加速/" title="硬件加速">硬件加速<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/渲染/" title="渲染">渲染<sup>1</sup></a></li>
 			
 		
 			
