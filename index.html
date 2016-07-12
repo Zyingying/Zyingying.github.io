@@ -94,59 +94,12 @@
 </header>
     <div class="article-content">
         
-        <p>这篇文章是基于对js的作用域链、原型有所了解的朋友们一起交流学习的。</p>
-<p>那么我们先看看：</p>
-<h3 id="js_u7684_u56DB_u79CD_u57FA_u672C_u6570_u636E_u5B58_u53D6"><a href="#js_u7684_u56DB_u79CD_u57FA_u672C_u6570_u636E_u5B58_u53D6" class="headerlink" title="js的四种基本数据存取"></a>js的四种基本数据存取</h3><ul>
-<li>字面量：<br>  只代表自身，不存储在特定位置。js中字面量有：字符串、数字、布尔值、对象、数组、函数、正则表达式，以及特殊的null和undefined值。</li>
-<li>本地变量：<br>开发人员使用关键字var定义的数据存储单元。</li>
-<li>数组元素<br>存储在js数组对象内部，咦数据作为索引。</li>
-<li>对象成员<br>存储在js对象内部，以字符串作为索引</li>
-</ul>
-<h3 id="u4F5C_u7528_u57DF_u94FE_u548C_u6807_u8BC6_u7B26_u89E3_u6790"><a href="#u4F5C_u7528_u57DF_u94FE_u548C_u6807_u8BC6_u7B26_u89E3_u6790" class="headerlink" title="作用域链和标识符解析"></a>作用域链和标识符解析</h3><p>每个js函数都表示为一个对象，更确切的说，是Function对象的一个实例，Function对象同其他对象一样，拥有可以编程访问的属性，和一系列不能通过代码访问而仅供JavaScript引擎存取的内部属性。</p>
-<p>其中一个内部属性是[[Scope]],这个属性包含了一个函数被创建的作用域中对象的集合。这个集合被称为函数的作用域链，它决定哪些数据能被函数访问。函数作用域中的每个UI小被称为一个可变对象，每个可变对象都以“键值对”的形式存在。</p>
-<p><em>作用域链详情查看红宝书（js高级程序设计）第六章</em></p>
-<p><strong>如何影响性能？</strong></p>
-<p>在函数执行过程中，每遇到一个变量，都会经历一次标识符解析过程，从而决定从哪里获取数据。然后就会开始去搜索执行环境的作用域链，查找同名的标识符。搜索过程从当前的作用域头开始，也就是当前运行函数的活动对象。</p>
-<ul>
-<li>如果找到了，就使用这个标识符对应的那个变量</li>
-<li>如果没有找到，就继续搜索作用域链的下个对象，持续进行，直到找到</li>
-<li>最后若无法搜索到，则会视为未定义改标识符</li>
-</ul>
-<p>重点来了！就是这个<code>搜索过程</code>影响了我们的性能。</p>
-<h4 id="u6807_u8BC6_u7B26_u89E3_u6790_u7684_u6027_u80FD"><a href="#u6807_u8BC6_u7B26_u89E3_u6790_u7684_u6027_u80FD" class="headerlink" title="标识符解析的性能"></a>标识符解析的性能</h4><p>首先要认清一个事实，一个标识符所在的位置越深，它的读写速度也就越慢。so，局部变量的总是最快的，全局变量的读写通常是最慢的。（因为全局变量总是存在执行环境作用域链的最末端）</p>
-<p><strong>举个例子</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initUI</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> bd    = <span class="built_in">document</span>.body,</span><br><span class="line">        links = <span class="built_in">document</span>.getElememtsByTagName(<span class="string">'a'</span>),</span><br><span class="line">        i     = <span class="number">0</span>,</span><br><span class="line">        len   = links.length;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">while</span>(i &lt; len)&#123;</span><br><span class="line">        update(link[i++]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"go-btn"</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        start();</span><br><span class="line">    &#125;;</span><br><span class="line">    bd.className = <span class="string">'active'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>上面这个函数，引用了三次document，而document是全局对象，必须遍历整个作用域链才能在全局作用域链中找到。</p>
-<p>那么该怎么优化呢<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initUI</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> doc   = <span class="built_in">document</span>,</span><br><span class="line">        bd    = doc.body,</span><br><span class="line">        links = doc.getElememtsByTagName(<span class="string">'a'</span>),</span><br><span class="line">        i     = <span class="number">0</span>,</span><br><span class="line">        len   = links.length;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">while</span>(i &lt; len)&#123;</span><br><span class="line">        update(link[i++]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"go-btn"</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        start();</span><br><span class="line">    &#125;;</span><br><span class="line">    bd.className = <span class="string">'active'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这样访问全局变量的次数瞬间减少到一次</p>
-<h4 id="u6539_u53D8_u4F5C_u7528_u57DF_u94FE_28_u52A8_u6001_u4F5C_u7528_u57DF_29"><a href="#u6539_u53D8_u4F5C_u7528_u57DF_u94FE_28_u52A8_u6001_u4F5C_u7528_u57DF_29" class="headerlink" title="改变作用域链(动态作用域)"></a>改变作用域链(动态作用域)</h4><p>一般来说，一个执行环境的作用域链是不会被改变的，但是js有两个语句可以在实行时临时改变作用域链。</p>
-<ul>
-<li>with</li>
-<li>try catch</li>
-<li>eval</li>
-</ul>
-<p>这的用法需要谨慎,这次不展开详说（其实因为我也没有完全弄通/(ㄒoㄒ)/~~）</p>
-<h4 id="u95ED_u5305_u3001_u4F5C_u7528_u57DF_u548C_u5185_u5B58"><a href="#u95ED_u5305_u3001_u4F5C_u7528_u57DF_u548C_u5185_u5B58" class="headerlink" title="闭包、作用域和内存"></a>闭包、作用域和内存</h4><p>闭包闭包，总是说闭包会使得内存泄漏，性能下降之类，可是你们知道是为什么吗？</p>
-<p>首先，闭包是允许函数访问局部作用域之外的数据。<br>先看下个代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assignEvent</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> id = <span class="string">'zyy'</span></span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'save-btn'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        saveDocument(id);</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>assignEvent()函数给一个dom元素设置时间处理函数，这个时间处理函数就是一个闭包。在函数执行时创建，并且能访问所属作用域的id变量。为了让这个闭包访问id，必须创建一个特定的作用域链。</p>
-<p>执行时，一个包含了变量id以及其他数据的活动对象呗创建，成为执行环境作用域链中的第一个对象，全局在后。</p>
-<p>一般来说，函数的活动对象会随着执行环境一同销毁，但是引入闭包的同事，由于存在闭包，所以激活对象复发被销毁，意味着脚本中的闭包与非闭包相比，需要更多内存开销</p>
-<h4 id="u539F_u578B"><a href="#u539F_u578B" class="headerlink" title="原型"></a>原型</h4><p>提到原型，则不能不提原型链，原型原型链是什么就不详细介绍了。</p>
-<p>但是了解原型链的同学都知道，原型链的深度越深，访问的越深，访问时间就越久，当然，最久的就是找不到的属性，它会一直找到最深处~~</p>
-<h4 id="u5D4C_u5957_u6210_u5458"><a href="#u5D4C_u5957_u6210_u5458" class="headerlink" title="嵌套成员"></a>嵌套成员</h4><p>和所有的原理一样，eg：<code>window.location.href</code> 每次遇到点操作符，嵌套成员会导js引擎搜索所有对象成员。而<br><code>location.href</code>比<code>window.location.href</code>快。如果不是实例属性，还需要花更多时间去搜索。</p>
-<h4 id="u7F13_u5B58_u5BF9_u8C61_u6210_u5458_u503C"><a href="#u7F13_u5B58_u5BF9_u8C61_u6210_u5458_u503C" class="headerlink" title="缓存对象成员值"></a>缓存对象成员值</h4><p>eg：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasEitherClass</span>(<span class="params">element,className1,className2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> element.className == className1 || element.className == className2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>上面的element.className被用了两次，我们可以用个变量保存<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasEitherClass</span>(<span class="params">element,className1,className2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> currentClass = element.className;</span><br><span class="line">    <span class="keyword">return</span> currentClass == className1 || currentClass == className2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h2><ol>
-<li>访问字面量和局部变量速度最快，访问数组元素和对象成员相对慢。</li>
-<li>访问局部变量比夸作用域的快。变量在作用域链中越深，时间越长。全局访问速度最慢。</li>
-<li>避免使用with 和try catch</li>
-<li>嵌套对象成员会影响性能，尽量少用</li>
-<li>属性或方法在原型链中的位置越深，访问速度就越慢</li>
-<li>通过吧常用的对象成员、数组元素、跨域变量保存在局部变量中来改善javascript的性能。</li>
-</ol>
-
+        <p>这篇文章是基于对js的作用域链、原型有所了解的朋友们一起交流学习的。<br>
         
         
         <p class="article-more-link">
+          
+            <a href="/2016/07/12/js性能（二）——数据存储/#more">Read More</a>
           
        </p>
     </div>

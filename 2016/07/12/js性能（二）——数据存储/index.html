@@ -11,34 +11,16 @@
     
 
     
-    <meta name="description" content="这篇文章是基于对js的作用域链、原型有所了解的朋友们一起交流学习的。
-那么我们先看看：
-js的四种基本数据存取
-字面量：  只代表自身，不存储在特定位置。js中字面量有：字符串、数字、布尔值、对象、数组、函数、正则表达式，以及特殊的null和undefined值。
-本地变量：开发人员使用关键字var定义的数据存储单元。
-数组元素存储在js数组对象内部，咦数据作为索引。
-对象成员存储在js对象内部，">
+    <meta name="description" content="这篇文章是基于对js的作用域链、原型有所了解的朋友们一起交流学习的。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js性能（二）——数据存储">
 <meta property="og:url" content="https://github.com/Zyingying/2016/07/12/js性能（二）——数据存储/index.html">
 <meta property="og:site_name" content="2yingying">
-<meta property="og:description" content="这篇文章是基于对js的作用域链、原型有所了解的朋友们一起交流学习的。
-那么我们先看看：
-js的四种基本数据存取
-字面量：  只代表自身，不存储在特定位置。js中字面量有：字符串、数字、布尔值、对象、数组、函数、正则表达式，以及特殊的null和undefined值。
-本地变量：开发人员使用关键字var定义的数据存储单元。
-数组元素存储在js数组对象内部，咦数据作为索引。
-对象成员存储在js对象内部，">
-<meta property="og:updated_time" content="2016-07-12T14:51:34.564Z">
+<meta property="og:description" content="这篇文章是基于对js的作用域链、原型有所了解的朋友们一起交流学习的。">
+<meta property="og:updated_time" content="2016-07-12T14:55:57.714Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js性能（二）——数据存储">
-<meta name="twitter:description" content="这篇文章是基于对js的作用域链、原型有所了解的朋友们一起交流学习的。
-那么我们先看看：
-js的四种基本数据存取
-字面量：  只代表自身，不存储在特定位置。js中字面量有：字符串、数字、布尔值、对象、数组、函数、正则表达式，以及特殊的null和undefined值。
-本地变量：开发人员使用关键字var定义的数据存储单元。
-数组元素存储在js数组对象内部，咦数据作为索引。
-对象成员存储在js对象内部，">
+<meta name="twitter:description" content="这篇文章是基于对js的作用域链、原型有所了解的朋友们一起交流学习的。">
 
     
     <link rel="alternative" href="/atom.xml" title="2yingying" type="application/atom+xml">
@@ -118,8 +100,7 @@ js的四种基本数据存取
 		
 		</div>
 		
-		<p>这篇文章是基于对js的作用域链、原型有所了解的朋友们一起交流学习的。</p>
-<p>那么我们先看看：</p>
+		<p>这篇文章是基于对js的作用域链、原型有所了解的朋友们一起交流学习的。<br><a id="more"></a><br>那么我们先看看：</p>
 <h3 id="js_u7684_u56DB_u79CD_u57FA_u672C_u6570_u636E_u5B58_u53D6"><a href="#js_u7684_u56DB_u79CD_u57FA_u672C_u6570_u636E_u5B58_u53D6" class="headerlink" title="js的四种基本数据存取"></a>js的四种基本数据存取</h3><ul>
 <li>字面量：<br>  只代表自身，不存储在特定位置。js中字面量有：字符串、数字、布尔值、对象、数组、函数、正则表达式，以及特殊的null和undefined值。</li>
 <li>本地变量：<br>开发人员使用关键字var定义的数据存储单元。</li>
