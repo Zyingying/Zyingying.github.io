@@ -11,16 +11,16 @@
     
 
     
-    <meta name="description" content="这一篇简短的文章简单说明了在DOM编程过程可以优化的一些点">
+    <meta name="description" content="hi~第三篇啦这一篇简短的文章简单说明了在DOM编程过程可以优化的一些点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js性能——DOM编程">
 <meta property="og:url" content="https://github.com/Zyingying/2016/07/13/js性能（三）——DOM编程/index.html">
 <meta property="og:site_name" content="2yingying">
-<meta property="og:description" content="这一篇简短的文章简单说明了在DOM编程过程可以优化的一些点">
-<meta property="og:updated_time" content="2016-07-12T16:32:29.591Z">
+<meta property="og:description" content="hi~第三篇啦这一篇简短的文章简单说明了在DOM编程过程可以优化的一些点">
+<meta property="og:updated_time" content="2016-07-14T15:12:55.115Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js性能——DOM编程">
-<meta name="twitter:description" content="这一篇简短的文章简单说明了在DOM编程过程可以优化的一些点">
+<meta name="twitter:description" content="hi~第三篇啦这一篇简短的文章简单说明了在DOM编程过程可以优化的一些点">
 
     
     <link rel="alternative" href="/atom.xml" title="2yingying" type="application/atom+xml">
@@ -100,16 +100,17 @@
 		
 		</div>
 		
-		<p>这一篇简短的文章简单说明了在DOM编程过程可以优化的一些点<br><a id="more"></a></p>
+		<p>hi~第三篇啦<br>这一篇简短的文章简单说明了在DOM编程过程可以优化的一些点<br><a id="more"></a><br>下面有一些概念需要大家一起认识一下；</p>
 <h2 id="DOM_u904D_u5386"><a href="#DOM_u904D_u5386" class="headerlink" title="DOM遍历"></a>DOM遍历</h2><p>减少对DOM的遍历。</p>
 <h3 id="u9009_u62E9_u5668API"><a href="#u9009_u62E9_u5668API" class="headerlink" title="选择器API"></a>选择器API</h3><p>querySelectorAll()的原生DOM方法比使用js与DOM遍历要快</p>
 <h2 id="u91CD_u7ED8_u91CD_u6392"><a href="#u91CD_u7ED8_u91CD_u6392" class="headerlink" title="重绘重排"></a>重绘重排</h2><p>浏览器下载完页面的所有组件——html标记、js、css、图片——之后会解析并生成两个内部数据结构：</p>
 <p><strong>DOM树</strong><br>       表示页面结构</p>
 <p><strong>渲染树</strong><br>        表示DOM节点如何显示</p>
-<p>当DOM的变化影响了元素的几何属性，浏览器就需要重新计算元素的几何属性，同样其他元素的几何属性也会因此受到影响。浏览器会使渲染树种受到影响的部分失效，并重新狗见渲染树。<strong>这个过程称为“重排”</strong>。</p>
-<p>完成重排互殴，浏览器会重新绘制受影响的部分到屏幕中，<strong>称为“重绘”</strong>。</p>
+<p>当DOM的变化影响了元素的几何属性，浏览器就需要重新计算元素的几何属性，同样其他元素的几何属性也会因此受到影响。浏览器会使渲染树种受到影响的部分失效，并重新构建渲染树。<strong>这个过程称为“重排”</strong>。</p>
+<p>完成重排后，浏览器会重新绘制受影响的部分到屏幕中，<strong>称为“重绘”</strong>。</p>
 <p>但是！！<br>并不是所有的DOM变化都会影响到几何属性（宽和高之类），比如改变颜色。这个时候只会发生重绘，不会重排。</p>
-<p>All in all,重回重排是代价很昂贵的操作，所以尽可能减少发生。</p>
+<p>All in all,重绘重排是代价很昂贵的操作，所以尽可能减少发生。</p>
+<p>所以，怎样会有重排的发生呢？</p>
 <h4 id="u91CD_u6392_u53D1_u751F_u60C5_u51B5"><a href="#u91CD_u6392_u53D1_u751F_u60C5_u51B5" class="headerlink" title="重排发生情况"></a>重排发生情况</h4><ul>
 <li>添加或删除可见的DOM元素</li>
 <li>元素位置改变</li>
@@ -126,7 +127,7 @@
 <li>clientTop,clientLeft,clientwidth,clientHeight</li>
 <li>getComputedStyle()</li>
 </ul>
-<p>以上属性和方法需要返回最新的布局信息，所以浏览器不得不执行渲染队列中的“待处理变化”并处罚重排咦返回正确的值。</p>
+<p>以上属性和方法需要返回最新的布局信息，所以浏览器不得不执行渲染队列中的“待处理变化”并重返重排以返回正确的值。</p>
 <h4 id="u6700_u5C0F_u5316_u91CD_u7ED8_u548C_u91CD_u6392"><a href="#u6700_u5C0F_u5316_u91CD_u7ED8_u548C_u91CD_u6392" class="headerlink" title="最小化重绘和重排"></a>最小化重绘和重排</h4><p>下面举个例子说明如何减少重绘重排<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> e = <span class="built_in">document</span>.getElementById(<span class="string">'mydiv'</span>);</span><br><span class="line">e.style.borderLeft = <span class="string">'1px'</span>;</span><br><span class="line">e.style.padding = <span class="string">'5px'</span>;</span><br></pre></td></tr></table></figure></p>
 <p>上面三个样式属性被改变，每次都会影响元素几何结构，最糟糕的情况下，会导致浏览器处罚三次重排。现在大部分现代浏览器为此做了优化，只触发一次重排，但是在旧版浏览器中，或者有一个分离的异步处理过程时，效率还是很低，如果在上面代码执行时，有其他代码请求布局，将会导致三次重排。<br>可以改为如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e.style.cssText += <span class="string">";border-left:1px;"</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="u6279_u91CF_u4FEE_u6539DOM"><a href="#u6279_u91CF_u4FEE_u6539DOM" class="headerlink" title="批量修改DOM"></a>批量修改DOM</h4><p>通过一些改善来减少重绘与重排的次数：</p>
@@ -141,7 +142,7 @@
 <li>使用文档片段在当前DOM之外构建一个子树，再把它拷贝会文档</li>
 <li>将原始元素拷贝到一个脱离文档的节点中，修改副本，完成后再替换原始元素</li>
 </ul>
-<h4 id="u8BA9_u5143_u7D20_u8131_u79BB_u52A8_u753B_u6D41"><a href="#u8BA9_u5143_u7D20_u8131_u79BB_u52A8_u753B_u6D41" class="headerlink" title="让元素脱离动画流"></a>让元素脱离动画流</h4><p>用展开/折叠的方式来显示和影藏部分页面是一种常见的交互模式。它通常包括产开区域的几何 动画，并将页面其他部分推向下方。</p>
+<h4 id="u8BA9_u5143_u7D20_u8131_u79BB_u52A8_u753B_u6D41"><a href="#u8BA9_u5143_u7D20_u8131_u79BB_u52A8_u753B_u6D41" class="headerlink" title="让元素脱离动画流"></a>让元素脱离动画流</h4><p>用展开/折叠的方式来显示和隐藏部分页面是一种常见的交互模式。它通常包括产开区域的几何 动画，并将页面其他部分推向下方。</p>
 <p>如果程序需要重新计算的节点越多，重排产生的卡顿感也会越明显。</p>
 <p>那么应该如何解决呢？下面的步骤可以解决问题</p>
 <ol>
@@ -234,19 +235,15 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/js/" title="js">js<sup>11</sup></a></li>
+				<li><a href="/tags/js/" title="js">js<sup>10</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/css/" title="css">css<sup>5</sup></a></li>
+				<li><a href="/tags/css/" title="css">css<sup>4</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/模块化/" title="模块化">模块化<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/兼容/" title="兼容">兼容<sup>2</sup></a></li>
 			
 		
 			
@@ -259,6 +256,10 @@
 		
 			
 				<li><a href="/tags/性能优化/" title="性能优化">性能优化<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/兼容/" title="兼容">兼容<sup>1</sup></a></li>
 			
 		
 			

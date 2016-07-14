@@ -17,7 +17,7 @@
 <meta property="og:url" content="https://github.com/Zyingying/2016/07/01/js性能（二）——数据存储/index.html">
 <meta property="og:site_name" content="2yingying">
 <meta property="og:description" content="这篇文章是基于对js的作用域链、原型有所了解的朋友们一起交流学习的。">
-<meta property="og:updated_time" content="2016-07-12T16:33:26.882Z">
+<meta property="og:updated_time" content="2016-07-13T14:57:59.440Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js性能——数据存储">
 <meta name="twitter:description" content="这篇文章是基于对js的作用域链、原型有所了解的朋友们一起交流学习的。">
@@ -121,7 +121,7 @@
 <h4 id="u6807_u8BC6_u7B26_u89E3_u6790_u7684_u6027_u80FD"><a href="#u6807_u8BC6_u7B26_u89E3_u6790_u7684_u6027_u80FD" class="headerlink" title="标识符解析的性能"></a>标识符解析的性能</h4><p>首先要认清一个事实，一个标识符所在的位置越深，它的读写速度也就越慢。so，局部变量的总是最快的，全局变量的读写通常是最慢的。（因为全局变量总是存在执行环境作用域链的最末端）</p>
 <p><strong>举个例子</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initUI</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> bd    = <span class="built_in">document</span>.body,</span><br><span class="line">        links = <span class="built_in">document</span>.getElememtsByTagName(<span class="string">'a'</span>),</span><br><span class="line">        i     = <span class="number">0</span>,</span><br><span class="line">        len   = links.length;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">while</span>(i &lt; len)&#123;</span><br><span class="line">        update(link[i++]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"go-btn"</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        start();</span><br><span class="line">    &#125;;</span><br><span class="line">    bd.className = <span class="string">'active'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>上面这个函数，引用了三次document，而document是全局对象，必须遍历整个作用域链才能在全局作用域链中找到。</p>
-<p>那么该怎么优化呢<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initUI</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> doc   = <span class="built_in">document</span>,</span><br><span class="line">        bd    = doc.body,</span><br><span class="line">        links = doc.getElememtsByTagName(<span class="string">'a'</span>),</span><br><span class="line">        i     = <span class="number">0</span>,</span><br><span class="line">        len   = links.length;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">while</span>(i &lt; len)&#123;</span><br><span class="line">        update(link[i++]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"go-btn"</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        start();</span><br><span class="line">    &#125;;</span><br><span class="line">    bd.className = <span class="string">'active'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>那么该怎么优化呢<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initUI</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> doc   = <span class="built_in">document</span>,</span><br><span class="line">        bd    = doc.body,</span><br><span class="line">        links = doc.getElememtsByTagName(<span class="string">'a'</span>),</span><br><span class="line">        i     = <span class="number">0</span>,</span><br><span class="line">        len   = links.length;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">while</span>(i &lt; len)&#123;</span><br><span class="line">        update(link[i++]);</span><br><span class="line">    &#125;</span><br><span class="line">    doc.getElementById(<span class="string">"go-btn"</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        start();</span><br><span class="line">    &#125;;</span><br><span class="line">    bd.className = <span class="string">'active'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这样访问全局变量的次数瞬间减少到一次</p>
 <h4 id="u6539_u53D8_u4F5C_u7528_u57DF_u94FE_28_u52A8_u6001_u4F5C_u7528_u57DF_29"><a href="#u6539_u53D8_u4F5C_u7528_u57DF_u94FE_28_u52A8_u6001_u4F5C_u7528_u57DF_29" class="headerlink" title="改变作用域链(动态作用域)"></a>改变作用域链(动态作用域)</h4><p>一般来说，一个执行环境的作用域链是不会被改变的，但是js有两个语句可以在实行时临时改变作用域链。</p>
 <ul>
@@ -238,19 +238,15 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/js/" title="js">js<sup>11</sup></a></li>
+				<li><a href="/tags/js/" title="js">js<sup>10</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/css/" title="css">css<sup>5</sup></a></li>
+				<li><a href="/tags/css/" title="css">css<sup>4</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/模块化/" title="模块化">模块化<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/兼容/" title="兼容">兼容<sup>2</sup></a></li>
 			
 		
 			
@@ -263,6 +259,10 @@
 		
 			
 				<li><a href="/tags/性能优化/" title="性能优化">性能优化<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/兼容/" title="兼容">兼容<sup>1</sup></a></li>
 			
 		
 			
