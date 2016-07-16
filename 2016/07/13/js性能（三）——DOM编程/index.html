@@ -17,7 +17,7 @@
 <meta property="og:url" content="https://github.com/Zyingying/2016/07/13/js性能（三）——DOM编程/index.html">
 <meta property="og:site_name" content="2yingying">
 <meta property="og:description" content="hi~第三篇啦这一篇简短的文章简单说明了在DOM编程过程可以优化的一些点">
-<meta property="og:updated_time" content="2016-07-14T15:12:55.115Z">
+<meta property="og:updated_time" content="2016-07-16T03:11:08.479Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js性能——DOM编程">
 <meta name="twitter:description" content="hi~第三篇啦这一篇简短的文章简单说明了在DOM编程过程可以优化的一些点">
@@ -129,7 +129,7 @@
 </ul>
 <p>以上属性和方法需要返回最新的布局信息，所以浏览器不得不执行渲染队列中的“待处理变化”并重返重排以返回正确的值。</p>
 <h4 id="u6700_u5C0F_u5316_u91CD_u7ED8_u548C_u91CD_u6392"><a href="#u6700_u5C0F_u5316_u91CD_u7ED8_u548C_u91CD_u6392" class="headerlink" title="最小化重绘和重排"></a>最小化重绘和重排</h4><p>下面举个例子说明如何减少重绘重排<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> e = <span class="built_in">document</span>.getElementById(<span class="string">'mydiv'</span>);</span><br><span class="line">e.style.borderLeft = <span class="string">'1px'</span>;</span><br><span class="line">e.style.padding = <span class="string">'5px'</span>;</span><br></pre></td></tr></table></figure></p>
-<p>上面三个样式属性被改变，每次都会影响元素几何结构，最糟糕的情况下，会导致浏览器处罚三次重排。现在大部分现代浏览器为此做了优化，只触发一次重排，但是在旧版浏览器中，或者有一个分离的异步处理过程时，效率还是很低，如果在上面代码执行时，有其他代码请求布局，将会导致三次重排。<br>可以改为如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e.style.cssText += <span class="string">";border-left:1px;"</span></span><br></pre></td></tr></table></figure></p>
+<p>上面三个样式属性被改变，每次都会影响元素几何结构，最糟糕的情况下，会导致浏览器触发三次重排。现在大部分现代浏览器为此做了优化，只触发一次重排，但是在旧版浏览器中，或者有一个分离的异步处理过程时，效率还是很低，如果在上面代码执行时，有其他代码请求布局，将会导致三次重排。<br>可以改为如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e.style.cssText += <span class="string">";border-left:1px;"</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="u6279_u91CF_u4FEE_u6539DOM"><a href="#u6279_u91CF_u4FEE_u6539DOM" class="headerlink" title="批量修改DOM"></a>批量修改DOM</h4><p>通过一些改善来减少重绘与重排的次数：</p>
 <ul>
 <li>使元素脱离文档流</li>
