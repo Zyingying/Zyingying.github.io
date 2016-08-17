@@ -81,6 +81,70 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/08/17/排序算法（一）/" title="排序算法（一）" itemprop="url">排序算法（一）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
+		
+  <p class="article-time">
+    <time datetime="2016-08-17T15:25:26.000Z" itemprop="datePublished"> 发表于 2016-08-17</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="u5192_u6CE1_u6392_u5E8F_uFF08Bubble_sort_uFF09"><a href="#u5192_u6CE1_u6392_u5E8F_uFF08Bubble_sort_uFF09" class="headerlink" title="冒泡排序（Bubble sort）"></a>冒泡排序（Bubble sort）</h2><p><strong>思想:</strong> 比较相邻的两个数，如果后面的比前面的小，把小的放在前面。一轮过后，会有这一轮最小（大）的值去到应到的位置。</p>
+<p><strong>时间复杂度:</strong> O(n2)</p>
+<p><strong>code：优化点:如果数组已经是有序了，就没必要再比较了</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr=[<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">0</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 定义一个变量为false，未交换位置</span></span><br><span class="line">    <span class="keyword">var</span> flag = <span class="literal">false</span>;  </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;arr.length-<span class="number">1</span>;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[j+<span class="number">1</span>]&lt;arr[j])&#123;</span><br><span class="line">                temp = arr[j+<span class="number">1</span>];</span><br><span class="line">                arr[j+<span class="number">1</span>] = arr[j];</span><br><span class="line">                arr[j] = temp;</span><br><span class="line">                flag = <span class="literal">true</span>; <span class="comment">//true，已交换位置</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">            flag = <span class="literal">false</span>; <span class="comment">//如果交换了位置，将flag重新设为false</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">             <span class="keyword">break</span>;       <span class="comment">//如果未交换，则跳出循环</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort(arr));  <span class="comment">//0,1,2,3,4,5</span></span><br></pre></td></tr></table></figure></p>
+<p>设置一个中断标志位，在条件测试中如果发生了交换就将中断位屏蔽，然后在外层循环中检查中断位，如果中断位没有被屏蔽，将结束循环。每次开始内层循环之前重置中断位。这样就可以在已经是正序排列时不继续进行循环，达到最优的复杂度.</p>
+<h2 id="u9009_u62E9_u6392_u5E8F"><a href="#u9009_u62E9_u6392_u5E8F" class="headerlink" title="选择排序"></a>选择排序</h2><p><strong>思想：</strong> 先从原始数组中选择一个最小的数据，和第一个位置1的数据交换。再从剩下的n-1个数据中选择次小的数据，将其和第二个位置的数据交换。不断重复，知道最后两个数据完成交换。可以很清楚的发现，选择排序是固定位置，找元素。</p>
+<p><strong>时间复杂度：</strong> O(n2)</p>
+<p><strong>code</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr=[<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">0</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectionSort</span>(<span class="params">array</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> min,temp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;array.length-<span class="number">1</span>; i++)&#123;</span><br><span class="line">        min=i; </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> j=i+<span class="number">1</span>; j&lt;array.length; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(array[j]&lt;array[min])&#123;</span><br><span class="line">                min=j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(array,min,i);</span><br><span class="line">            </span><br><span class="line">    &#125;</span><br><span class="line">        <span class="keyword">return</span> array;</span><br><span class="line">&#125;<span class="comment">//选择排序</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">swap</span>(<span class="params">array,i,j</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> temp =array[i];</span><br><span class="line">    array[i]=array[j];</span><br><span class="line">    array[j]=temp;</span><br><span class="line">&#125;<span class="comment">//两个数字交换 </span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(selectionSort(arr));  <span class="comment">//0,1,2,3,4,5</span></span><br></pre></td></tr></table></figure></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/算法/">算法</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/08/17/排序算法（一）/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/08/17/排序算法（一）/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/07/13/js性能（三）——DOM编程/" title="js性能——DOM编程" itemprop="url">js性能——DOM编程</a>
   </h1>
   <p class="article-author">By
@@ -430,65 +494,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/16/CSS3开启硬件加速及利弊/" title="CSS3开启硬件加速及利弊" itemprop="url">CSS3开启硬件加速及利弊</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-04-16T07:23:59.000Z" itemprop="datePublished"> 发表于 2016-04-16</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>最近了解了一下用css3开启硬件加速的这个功能，不得不感叹浏览器这些东西太神奇了，要不是师兄提起，我根本就不知道居然有这种东西。所以还是要提高一下自己的信息来源渠道的。<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/04/16/CSS3开启硬件加速及利弊/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/css3/">css3</a><a href="/tags/硬件加速/">硬件加速</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/04/16/CSS3开启硬件加速及利弊/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/04/16/CSS3开启硬件加速及利弊/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -547,11 +552,15 @@
 			
 		
 			
-				<li><a href="/tags/兼容/" title="兼容">兼容<sup>1</sup></a></li>
+				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/硬件加速/" title="硬件加速">硬件加速<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/闭包/" title="闭包">闭包<sup>1</sup></a></li>
 			
 		
 			
@@ -579,7 +588,7 @@
 			
 		
 			
-				<li><a href="/tags/闭包/" title="闭包">闭包<sup>1</sup></a></li>
+				<li><a href="/tags/兼容/" title="兼容">兼容<sup>1</sup></a></li>
 			
 		
 		</ul>

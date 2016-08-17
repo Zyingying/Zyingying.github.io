@@ -4,23 +4,29 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>js性能——DOM编程 | 2yingying</title>
+    <title>排序算法（一） | 2yingying</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="盈盈">
     
 
     
-    <meta name="description" content="hi~第三篇啦这一篇简短的文章简单说明了在DOM编程过程可以优化的一些点">
+    <meta name="description" content="冒泡排序（Bubble sort）思想: 比较相邻的两个数，如果后面的比前面的小，把小的放在前面。一轮过后，会有这一轮最小（大）的值去到应到的位置。
+时间复杂度: O(n2)
+code：优化点:如果数组已经是有序了，就没必要再比较了12345678910111213141516171819202122var arr=[5,3,2,4,1,0];function bubbleSort(arr)&amp;#1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js性能——DOM编程">
-<meta property="og:url" content="https://github.com/Zyingying/2016/07/13/js性能（三）——DOM编程/index.html">
+<meta property="og:title" content="排序算法（一）">
+<meta property="og:url" content="https://github.com/Zyingying/2016/08/17/排序算法（一）/index.html">
 <meta property="og:site_name" content="2yingying">
-<meta property="og:description" content="hi~第三篇啦这一篇简短的文章简单说明了在DOM编程过程可以优化的一些点">
-<meta property="og:updated_time" content="2016-07-16T03:11:08.479Z">
+<meta property="og:description" content="冒泡排序（Bubble sort）思想: 比较相邻的两个数，如果后面的比前面的小，把小的放在前面。一轮过后，会有这一轮最小（大）的值去到应到的位置。
+时间复杂度: O(n2)
+code：优化点:如果数组已经是有序了，就没必要再比较了12345678910111213141516171819202122var arr=[5,3,2,4,1,0];function bubbleSort(arr)&amp;#1">
+<meta property="og:updated_time" content="2016-08-17T15:32:44.626Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js性能——DOM编程">
-<meta name="twitter:description" content="hi~第三篇啦这一篇简短的文章简单说明了在DOM编程过程可以优化的一些点">
+<meta name="twitter:title" content="排序算法（一）">
+<meta name="twitter:description" content="冒泡排序（Bubble sort）思想: 比较相邻的两个数，如果后面的比前面的小，把小的放在前面。一轮过后，会有这一轮最小（大）的值去到应到的位置。
+时间复杂度: O(n2)
+code：优化点:如果数组已经是有序了，就没必要再比较了12345678910111213141516171819202122var arr=[5,3,2,4,1,0];function bubbleSort(arr)&amp;#1">
 
     
     <link rel="alternative" href="/atom.xml" title="2yingying" type="application/atom+xml">
@@ -80,14 +86,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/07/13/js性能（三）——DOM编程/" title="js性能——DOM编程" itemprop="url">js性能——DOM编程</a>
+      <a href="/2016/08/17/排序算法（一）/" title="排序算法（一）" itemprop="url">排序算法（一）</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
 		
   <p class="article-time">
-    <time datetime="2016-07-12T16:15:22.000Z" itemprop="datePublished"> 发表于 2016-07-13</time>
+    <time datetime="2016-08-17T15:25:26.000Z" itemprop="datePublished"> 发表于 2016-08-17</time>
     
   </p>
 </header>
@@ -96,66 +102,17 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM_u904D_u5386"><span class="toc-number">1.</span> <span class="toc-text">DOM遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u9009_u62E9_u5668API"><span class="toc-number">1.1.</span> <span class="toc-text">选择器API</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u91CD_u7ED8_u91CD_u6392"><span class="toc-number">2.</span> <span class="toc-text">重绘重排</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u91CD_u6392_u53D1_u751F_u60C5_u51B5"><span class="toc-number">2.0.1.</span> <span class="toc-text">重排发生情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6E32_u67D3_u6811_u53D8_u5316_u7684_u6392_u961F_u4E0E_u5237_u65B0"><span class="toc-number">2.0.2.</span> <span class="toc-text">渲染树变化的排队与刷新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6700_u5C0F_u5316_u91CD_u7ED8_u548C_u91CD_u6392"><span class="toc-number">2.0.3.</span> <span class="toc-text">最小化重绘和重排</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6279_u91CF_u4FEE_u6539DOM"><span class="toc-number">2.0.4.</span> <span class="toc-text">批量修改DOM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u8BA9_u5143_u7D20_u8131_u79BB_u52A8_u753B_u6D41"><span class="toc-number">2.0.5.</span> <span class="toc-text">让元素脱离动画流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IE_u4E0E_uFF1Ahover"><span class="toc-number">2.0.6.</span> <span class="toc-text">IE与：hover</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E8B_u4EF6_u59D4_u6258"><span class="toc-number">2.1.</span> <span class="toc-text">事件委托</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u53C2_u8003_u8D44_u6599"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5192_u6CE1_u6392_u5E8F_uFF08Bubble_sort_uFF09"><span class="toc-number">1.</span> <span class="toc-text">冒泡排序（Bubble sort）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u9009_u62E9_u6392_u5E8F"><span class="toc-number">2.</span> <span class="toc-text">选择排序</span></a></li></ol>
 		
 		</div>
 		
-		<p>hi~第三篇啦<br>这一篇简短的文章简单说明了在DOM编程过程可以优化的一些点<br><a id="more"></a><br>下面有一些概念需要大家一起认识一下；</p>
-<h2 id="DOM_u904D_u5386"><a href="#DOM_u904D_u5386" class="headerlink" title="DOM遍历"></a>DOM遍历</h2><p>减少对DOM的遍历。</p>
-<h3 id="u9009_u62E9_u5668API"><a href="#u9009_u62E9_u5668API" class="headerlink" title="选择器API"></a>选择器API</h3><p>querySelectorAll()的原生DOM方法比使用js与DOM遍历要快</p>
-<h2 id="u91CD_u7ED8_u91CD_u6392"><a href="#u91CD_u7ED8_u91CD_u6392" class="headerlink" title="重绘重排"></a>重绘重排</h2><p>浏览器下载完页面的所有组件——html标记、js、css、图片——之后会解析并生成两个内部数据结构：</p>
-<p><strong>DOM树</strong><br>       表示页面结构</p>
-<p><strong>渲染树</strong><br>        表示DOM节点如何显示</p>
-<p>当DOM的变化影响了元素的几何属性，浏览器就需要重新计算元素的几何属性，同样其他元素的几何属性也会因此受到影响。浏览器会使渲染树种受到影响的部分失效，并重新构建渲染树。<strong>这个过程称为“重排”</strong>。</p>
-<p>完成重排后，浏览器会重新绘制受影响的部分到屏幕中，<strong>称为“重绘”</strong>。</p>
-<p>但是！！<br>并不是所有的DOM变化都会影响到几何属性（宽和高之类），比如改变颜色。这个时候只会发生重绘，不会重排。</p>
-<p>All in all,重绘重排是代价很昂贵的操作，所以尽可能减少发生。</p>
-<p>所以，怎样会有重排的发生呢？</p>
-<h4 id="u91CD_u6392_u53D1_u751F_u60C5_u51B5"><a href="#u91CD_u6392_u53D1_u751F_u60C5_u51B5" class="headerlink" title="重排发生情况"></a>重排发生情况</h4><ul>
-<li>添加或删除可见的DOM元素</li>
-<li>元素位置改变</li>
-<li>元素尺寸改变</li>
-<li>内容改变</li>
-<li>页面渲染器初始化</li>
-<li>浏览器窗口尺寸改变</li>
-</ul>
-<h4 id="u6E32_u67D3_u6811_u53D8_u5316_u7684_u6392_u961F_u4E0E_u5237_u65B0"><a href="#u6E32_u67D3_u6811_u53D8_u5316_u7684_u6392_u961F_u4E0E_u5237_u65B0" class="headerlink" title="渲染树变化的排队与刷新"></a>渲染树变化的排队与刷新</h4><p>大多数浏览器通过队列化修改并批量执行来优化重排过程。然而，或许我们会不知不觉的强制刷新队列并要求计划任务立刻执行。</p>
-<p>获取布局信息的操作会导致队列刷新，eg:</p>
-<ul>
-<li>offsetTop,offsetLeft,offsetwidth,offsetHeight</li>
-<li>scrollTop,scrollLeft,scrollwidth,scrollHeight</li>
-<li>clientTop,clientLeft,clientwidth,clientHeight</li>
-<li>getComputedStyle()</li>
-</ul>
-<p>以上属性和方法需要返回最新的布局信息，所以浏览器不得不执行渲染队列中的“待处理变化”并重返重排以返回正确的值。</p>
-<h4 id="u6700_u5C0F_u5316_u91CD_u7ED8_u548C_u91CD_u6392"><a href="#u6700_u5C0F_u5316_u91CD_u7ED8_u548C_u91CD_u6392" class="headerlink" title="最小化重绘和重排"></a>最小化重绘和重排</h4><p>下面举个例子说明如何减少重绘重排<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> e = <span class="built_in">document</span>.getElementById(<span class="string">'mydiv'</span>);</span><br><span class="line">e.style.borderLeft = <span class="string">'1px'</span>;</span><br><span class="line">e.style.padding = <span class="string">'5px'</span>;</span><br></pre></td></tr></table></figure></p>
-<p>上面三个样式属性被改变，每次都会影响元素几何结构，最糟糕的情况下，会导致浏览器触发三次重排。现在大部分现代浏览器为此做了优化，只触发一次重排，但是在旧版浏览器中，或者有一个分离的异步处理过程时，效率还是很低，如果在上面代码执行时，有其他代码请求布局，将会导致三次重排。<br>可以改为如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e.style.cssText += <span class="string">";border-left:1px;"</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="u6279_u91CF_u4FEE_u6539DOM"><a href="#u6279_u91CF_u4FEE_u6539DOM" class="headerlink" title="批量修改DOM"></a>批量修改DOM</h4><p>通过一些改善来减少重绘与重排的次数：</p>
-<ul>
-<li>使元素脱离文档流</li>
-<li>对其应用多重改变</li>
-<li>把元素带回文档中</li>
-</ul>
-<p>通过三种方法来使DOM脱离文档：</p>
-<ul>
-<li>隐藏元素，应用修改，重新显示</li>
-<li>使用文档片段在当前DOM之外构建一个子树，再把它拷贝会文档</li>
-<li>将原始元素拷贝到一个脱离文档的节点中，修改副本，完成后再替换原始元素</li>
-</ul>
-<h4 id="u8BA9_u5143_u7D20_u8131_u79BB_u52A8_u753B_u6D41"><a href="#u8BA9_u5143_u7D20_u8131_u79BB_u52A8_u753B_u6D41" class="headerlink" title="让元素脱离动画流"></a>让元素脱离动画流</h4><p>用展开/折叠的方式来显示和隐藏部分页面是一种常见的交互模式。它通常包括产开区域的几何 动画，并将页面其他部分推向下方。</p>
-<p>如果程序需要重新计算的节点越多，重排产生的卡顿感也会越明显。</p>
-<p>那么应该如何解决呢？下面的步骤可以解决问题</p>
-<ol>
-<li>使用绝对定位页面上面的动画，脱离文档流</li>
-<li>让元素动起来，当他扩大时，会覆盖部分页面。但这只是页面的一个小区域的重绘过程，不会产生重排并重绘页面的大部分内容</li>
-<li>动画结束的时候，恢复定位，从而只会计算一次。</li>
-</ol>
-<h4 id="IE_u4E0E_uFF1Ahover"><a href="#IE_u4E0E_uFF1Ahover" class="headerlink" title="IE与：hover"></a>IE与：hover</h4><p>从IE7开始，IE允许在任何元素（严格模式下）使用:hover这个CSS伪选择器。然而，如果你有大量元素使用了：hover，那么会降低响应速度，IE8更明显</p>
-<h3 id="u4E8B_u4EF6_u59D4_u6258"><a href="#u4E8B_u4EF6_u59D4_u6258" class="headerlink" title="事件委托"></a>事件委托</h3><p>事件委托，通俗来说，就是解决页面中大量元素都需要绑定事件处理器从而影响的性能的办法。<br>它基于：事件逐层冒泡并能被父级元素捕获。</p>
-<p>只需要给外层元素绑定一个处理器，就可以处理在其子元素上出发的事件</p>
-<h2 id="u53C2_u8003_u8D44_u6599"><a href="#u53C2_u8003_u8D44_u6599" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
-<li>高性能javascript</li>
-</ol>
+		<h2 id="u5192_u6CE1_u6392_u5E8F_uFF08Bubble_sort_uFF09"><a href="#u5192_u6CE1_u6392_u5E8F_uFF08Bubble_sort_uFF09" class="headerlink" title="冒泡排序（Bubble sort）"></a>冒泡排序（Bubble sort）</h2><p><strong>思想:</strong> 比较相邻的两个数，如果后面的比前面的小，把小的放在前面。一轮过后，会有这一轮最小（大）的值去到应到的位置。</p>
+<p><strong>时间复杂度:</strong> O(n2)</p>
+<p><strong>code：优化点:如果数组已经是有序了，就没必要再比较了</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr=[<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">0</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 定义一个变量为false，未交换位置</span></span><br><span class="line">    <span class="keyword">var</span> flag = <span class="literal">false</span>;  </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;arr.length-<span class="number">1</span>;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[j+<span class="number">1</span>]&lt;arr[j])&#123;</span><br><span class="line">                temp = arr[j+<span class="number">1</span>];</span><br><span class="line">                arr[j+<span class="number">1</span>] = arr[j];</span><br><span class="line">                arr[j] = temp;</span><br><span class="line">                flag = <span class="literal">true</span>; <span class="comment">//true，已交换位置</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">            flag = <span class="literal">false</span>; <span class="comment">//如果交换了位置，将flag重新设为false</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">             <span class="keyword">break</span>;       <span class="comment">//如果未交换，则跳出循环</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort(arr));  <span class="comment">//0,1,2,3,4,5</span></span><br></pre></td></tr></table></figure></p>
+<p>设置一个中断标志位，在条件测试中如果发生了交换就将中断位屏蔽，然后在外层循环中检查中断位，如果中断位没有被屏蔽，将结束循环。每次开始内层循环之前重置中断位。这样就可以在已经是正序排列时不继续进行循环，达到最优的复杂度.</p>
+<h2 id="u9009_u62E9_u6392_u5E8F"><a href="#u9009_u62E9_u6392_u5E8F" class="headerlink" title="选择排序"></a>选择排序</h2><p><strong>思想：</strong> 先从原始数组中选择一个最小的数据，和第一个位置1的数据交换。再从剩下的n-1个数据中选择次小的数据，将其和第二个位置的数据交换。不断重复，知道最后两个数据完成交换。可以很清楚的发现，选择排序是固定位置，找元素。</p>
+<p><strong>时间复杂度：</strong> O(n2)</p>
+<p><strong>code</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr=[<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">0</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectionSort</span>(<span class="params">array</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> min,temp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;array.length-<span class="number">1</span>; i++)&#123;</span><br><span class="line">        min=i; </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> j=i+<span class="number">1</span>; j&lt;array.length; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(array[j]&lt;array[min])&#123;</span><br><span class="line">                min=j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(array,min,i);</span><br><span class="line">            </span><br><span class="line">    &#125;</span><br><span class="line">        <span class="keyword">return</span> array;</span><br><span class="line">&#125;<span class="comment">//选择排序</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">swap</span>(<span class="params">array,i,j</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> temp =array[i];</span><br><span class="line">    array[i]=array[j];</span><br><span class="line">    array[j]=temp;</span><br><span class="line">&#125;<span class="comment">//两个数字交换 </span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(selectionSort(arr));  <span class="comment">//0,1,2,3,4,5</span></span><br></pre></td></tr></table></figure></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -164,7 +121,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/性能优化/">性能优化</a>
+  <span></span> <a href="/tags/算法/">算法</a>
   </div>
 
 </div>
@@ -173,7 +130,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://github.com/Zyingying/2016/07/13/js性能（三）——DOM编程/" data-title="js性能——DOM编程 | 2yingying" data-tsina="2133445925" class="share clearfix">
+	  <div data-url="https://github.com/Zyingying/2016/08/17/排序算法（一）/" data-title="排序算法（一） | 2yingying" data-tsina="2133445925" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -186,19 +143,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/08/17/排序算法（一）/" title="排序算法（一）">
-  <strong>上一篇：</strong><br/>
-  <span>
-  排序算法（一）</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/07/01/js性能（二）——数据存储/"  title="js性能——数据存储">
+<a href="/2016/07/13/js性能（三）——DOM编程/"  title="js性能——DOM编程">
  <strong>下一篇：</strong><br/> 
- <span>js性能——数据存储
+ <span>js性能——DOM编程
 </span>
 </a>
 </div>
@@ -207,7 +156,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/07/13/js性能（三）——DOM编程/" data-title="js性能——DOM编程" data-url="https://github.com/Zyingying/2016/07/13/js性能（三）——DOM编程/"></div>
+	<div class="ds-thread" data-thread-key="2016/08/17/排序算法（一）/" data-title="排序算法（一）" data-url="https://github.com/Zyingying/2016/08/17/排序算法（一）/"></div>
 </section>
 
 
@@ -217,7 +166,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM_u904D_u5386"><span class="toc-number">1.</span> <span class="toc-text">DOM遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u9009_u62E9_u5668API"><span class="toc-number">1.1.</span> <span class="toc-text">选择器API</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u91CD_u7ED8_u91CD_u6392"><span class="toc-number">2.</span> <span class="toc-text">重绘重排</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u91CD_u6392_u53D1_u751F_u60C5_u51B5"><span class="toc-number">2.0.1.</span> <span class="toc-text">重排发生情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6E32_u67D3_u6811_u53D8_u5316_u7684_u6392_u961F_u4E0E_u5237_u65B0"><span class="toc-number">2.0.2.</span> <span class="toc-text">渲染树变化的排队与刷新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6700_u5C0F_u5316_u91CD_u7ED8_u548C_u91CD_u6392"><span class="toc-number">2.0.3.</span> <span class="toc-text">最小化重绘和重排</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6279_u91CF_u4FEE_u6539DOM"><span class="toc-number">2.0.4.</span> <span class="toc-text">批量修改DOM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u8BA9_u5143_u7D20_u8131_u79BB_u52A8_u753B_u6D41"><span class="toc-number">2.0.5.</span> <span class="toc-text">让元素脱离动画流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IE_u4E0E_uFF1Ahover"><span class="toc-number">2.0.6.</span> <span class="toc-text">IE与：hover</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E8B_u4EF6_u59D4_u6258"><span class="toc-number">2.1.</span> <span class="toc-text">事件委托</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u53C2_u8003_u8D44_u6599"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5192_u6CE1_u6392_u5E8F_uFF08Bubble_sort_uFF09"><span class="toc-number">1.</span> <span class="toc-text">冒泡排序（Bubble sort）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u9009_u62E9_u6392_u5E8F"><span class="toc-number">2.</span> <span class="toc-text">选择排序</span></a></li></ol>
  
   </div>
 
