@@ -11,22 +11,16 @@
     
 
     
-    <meta name="description" content="冒泡排序（Bubble sort）思想: 比较相邻的两个数，如果后面的比前面的小，把小的放在前面。一轮过后，会有这一轮最小（大）的值去到应到的位置。
-时间复杂度: O(n2)
-code：优化点:如果数组已经是有序了，就没必要再比较了12345678910111213141516171819202122var arr=[5,3,2,4,1,0];function bubbleSort(arr)&amp;#1">
+    <meta name="description" content="最近感觉算法在前端方面也是十分重要的，感觉屁颠屁颠的跑过来整理算法了">
 <meta property="og:type" content="article">
 <meta property="og:title" content="排序算法（一）">
 <meta property="og:url" content="https://github.com/Zyingying/2016/08/17/排序算法（一）/index.html">
 <meta property="og:site_name" content="2yingying">
-<meta property="og:description" content="冒泡排序（Bubble sort）思想: 比较相邻的两个数，如果后面的比前面的小，把小的放在前面。一轮过后，会有这一轮最小（大）的值去到应到的位置。
-时间复杂度: O(n2)
-code：优化点:如果数组已经是有序了，就没必要再比较了12345678910111213141516171819202122var arr=[5,3,2,4,1,0];function bubbleSort(arr)&amp;#1">
-<meta property="og:updated_time" content="2016-08-17T15:32:44.626Z">
+<meta property="og:description" content="最近感觉算法在前端方面也是十分重要的，感觉屁颠屁颠的跑过来整理算法了">
+<meta property="og:updated_time" content="2016-08-17T15:40:23.730Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="排序算法（一）">
-<meta name="twitter:description" content="冒泡排序（Bubble sort）思想: 比较相邻的两个数，如果后面的比前面的小，把小的放在前面。一轮过后，会有这一轮最小（大）的值去到应到的位置。
-时间复杂度: O(n2)
-code：优化点:如果数组已经是有序了，就没必要再比较了12345678910111213141516171819202122var arr=[5,3,2,4,1,0];function bubbleSort(arr)&amp;#1">
+<meta name="twitter:description" content="最近感觉算法在前端方面也是十分重要的，感觉屁颠屁颠的跑过来整理算法了">
 
     
     <link rel="alternative" href="/atom.xml" title="2yingying" type="application/atom+xml">
@@ -106,7 +100,8 @@ code：优化点:如果数组已经是有序了，就没必要再比较了123456
 		
 		</div>
 		
-		<h2 id="u5192_u6CE1_u6392_u5E8F_uFF08Bubble_sort_uFF09"><a href="#u5192_u6CE1_u6392_u5E8F_uFF08Bubble_sort_uFF09" class="headerlink" title="冒泡排序（Bubble sort）"></a>冒泡排序（Bubble sort）</h2><p><strong>思想:</strong> 比较相邻的两个数，如果后面的比前面的小，把小的放在前面。一轮过后，会有这一轮最小（大）的值去到应到的位置。</p>
+		<p>最近感觉算法在前端方面也是十分重要的，感觉屁颠屁颠的跑过来整理算法了<br><a id="more"></a></p>
+<h2 id="u5192_u6CE1_u6392_u5E8F_uFF08Bubble_sort_uFF09"><a href="#u5192_u6CE1_u6392_u5E8F_uFF08Bubble_sort_uFF09" class="headerlink" title="冒泡排序（Bubble sort）"></a>冒泡排序（Bubble sort）</h2><p><strong>思想:</strong> 比较相邻的两个数，如果后面的比前面的小，把小的放在前面。一轮过后，会有这一轮最小（大）的值去到应到的位置。</p>
 <p><strong>时间复杂度:</strong> O(n2)</p>
 <p><strong>code：优化点:如果数组已经是有序了，就没必要再比较了</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr=[<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">0</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 定义一个变量为false，未交换位置</span></span><br><span class="line">    <span class="keyword">var</span> flag = <span class="literal">false</span>;  </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;arr.length-<span class="number">1</span>;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[j+<span class="number">1</span>]&lt;arr[j])&#123;</span><br><span class="line">                temp = arr[j+<span class="number">1</span>];</span><br><span class="line">                arr[j+<span class="number">1</span>] = arr[j];</span><br><span class="line">                arr[j] = temp;</span><br><span class="line">                flag = <span class="literal">true</span>; <span class="comment">//true，已交换位置</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">            flag = <span class="literal">false</span>; <span class="comment">//如果交换了位置，将flag重新设为false</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">             <span class="keyword">break</span>;       <span class="comment">//如果未交换，则跳出循环</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort(arr));  <span class="comment">//0,1,2,3,4,5</span></span><br></pre></td></tr></table></figure></p>
 <p>设置一个中断标志位，在条件测试中如果发生了交换就将中断位屏蔽，然后在外层循环中检查中断位，如果中断位没有被屏蔽，将结束循环。每次开始内层循环之前重置中断位。这样就可以在已经是正序排列时不继续进行循环，达到最优的复杂度.</p>
