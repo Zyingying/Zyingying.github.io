@@ -1,0 +1,565 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>抛出自定义错误 | 2yingying</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="盈盈">
+    
+
+    
+    <meta name="description" content="什么？你问我为什么要抛出错误？程序员的天职难道不是干掉错误吗？是的，我当初的想法也和你的一样，但是阅读完本文章，相信你会十分愿意去抛出一个错误。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="抛出自定义错误">
+<meta property="og:url" content="https://github.com/Zyingying/2016/10/26/抛出自定义错误/index.html">
+<meta property="og:site_name" content="2yingying">
+<meta property="og:description" content="什么？你问我为什么要抛出错误？程序员的天职难道不是干掉错误吗？是的，我当初的想法也和你的一样，但是阅读完本文章，相信你会十分愿意去抛出一个错误。">
+<meta property="og:updated_time" content="2016-12-06T15:12:22.810Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="抛出自定义错误">
+<meta name="twitter:description" content="什么？你问我为什么要抛出错误？程序员的天职难道不是干掉错误吗？是的，我当初的想法也和你的一样，但是阅读完本文章，相信你会十分愿意去抛出一个错误。">
+
+    
+    <link rel="alternative" href="/atom.xml" title="2yingying" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/smile.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="2yingying" title="2yingying"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="2yingying">2yingying</a></h1>
+				<h2 class="blog-motto">你可长点心吧！     点心？什么点心？</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:github.com/Zyingying">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/10/26/抛出自定义错误/" title="抛出自定义错误" itemprop="url">抛出自定义错误</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
+		
+  <p class="article-time">
+    <time datetime="2016-10-26T15:07:42.000Z" itemprop="datePublished"> 发表于 2016-10-26</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u9519_u8BEF_u7684_u672C_u8D28"><span class="toc-number">1.</span> <span class="toc-text">错误的本质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5728js_u4E2D_u629B_u51FA_u9519_u8BEF"><span class="toc-number">2.</span> <span class="toc-text">在js中抛出错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u629B_u51FA_u4E00_u4E2A_u597D_u9519_u8BEF"><span class="toc-number">3.</span> <span class="toc-text">抛出一个好错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F55_u65F6_u629B_u51FA_u9519_u8BEF"><span class="toc-number">4.</span> <span class="toc-text">何时抛出错误</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#try-catch"><span class="toc-number"></span> <span class="toc-text">try-catch</span></a>
+		
+		</div>
+		
+		<p>什么？你问我为什么要抛出错误？程序员的天职难道不是干掉错误吗？<br>是的，我当初的想法也和你的一样，但是阅读完本文章，相信你会十分愿意去抛出一个错误。<br><a id="more"></a></p>
+<h3 id="u9519_u8BEF_u7684_u672C_u8D28"><a href="#u9519_u8BEF_u7684_u672C_u8D28" class="headerlink" title="错误的本质"></a>错误的本质</h3><p>当你在遇到了一些变量在不同浏览器的自定义值不一样的时候，或者是给一个函数传递了不正确的值，或者是运算的时候碰到一个非数字，就会导致一些错误，但是，如果这个错误，没有被返回给你的话，调试是非常困难的。如果所有的失败都是悄无声息的话，那么程序员就要爆炸啦boom！</p>
+<p>在以前，js的错误总是特别稀少而且不精确，但是现在也会稍微好很多了。</p>
+<h3 id="u5728js_u4E2D_u629B_u51FA_u9519_u8BEF"><a href="#u5728js_u4E2D_u629B_u51FA_u9519_u8BEF" class="headerlink" title="在js中抛出错误"></a>在js中抛出错误</h3><p>我们可以使用<code>throw</code>操作符，将提供的一个对象作为错误抛出。任何类型的对象都可以作为错误抛出，Error对象是最常见的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(message);</span><br></pre></td></tr></table></figure></p>
+<p>如果没有通过<code>try-catch</code>语句来捕获的话，浏览器通常直接显示该消息<code>message</code>在<code>console</code>控制台</p>
+<p>有些同学可能会这样写<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不好的写法</span></span><br><span class="line"><span class="keyword">throw</span> <span class="string">"message"</span></span><br></pre></td></tr></table></figure></p>
+<p>在Firefox、Opera和Chorme里面都将显示一条<code>throw &quot;message&quot;</code>这样的错误，这对我们调试错误一点帮助也木有。</p>
+<p>当然，如果你开心的话，可以用throw抛出任何类型的数据，没有任何规则约束不能是特定的数据类型</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">throw</span> &#123;name : <span class="string">'dashabi'</span>&#125;;</span><br><span class="line"><span class="keyword">throw</span> <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">throw</span> <span class="number">123456</span>;</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br></pre></td></tr></table></figure>
+<p>但是….如果没有try-catch语句捕获，抛出任何值都将引发一个错误。</p>
+<h3 id="u629B_u51FA_u4E00_u4E2A_u597D_u9519_u8BEF"><a href="#u629B_u51FA_u4E00_u4E2A_u597D_u9519_u8BEF" class="headerlink" title="抛出一个好错误"></a>抛出一个好错误</h3><p>抛出自己的错误，可以使用确切的文本提供浏览器显示。除了行列number，还可以包含任何你需要的有助于调试问题的信息。我推荐总是在错误消息中包含函数名称，以及函数失败的原因。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getDiv</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> element.getElementsByTagName(<span class="string">"div"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个函数想获取所有div的元素，但是，传递给函数的DOM元素为null的值是很有可能是的，如果传给它一个null，你就会看到object expected这种含糊的错误，然后又得去看执行栈，再看实际定位到源文件中，通过抛出一个错误，调试会简单些</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getDiv</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(element &amp;&amp; element.getElementsByTagName)&#123;</span><br><span class="line">        <span class="keyword">return</span> element.getElementsByTagName(<span class="string">"div"</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"getDiv():Argument must be a DOM elemnt"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>酱紫，你就能在浏览器控制台输出错误的时候，可以马上着手去调试，6666</p>
+<h3 id="u4F55_u65F6_u629B_u51FA_u9519_u8BEF"><a href="#u4F55_u65F6_u629B_u51FA_u9519_u8BEF" class="headerlink" title="何时抛出错误"></a>何时抛出错误</h3><ul>
+<li>一旦修复了一个很难调试的错误，尝试增加一两个自定义错误。当再次发生错误的湿乎乎，有助于更容易的解决问题。</li>
+<li>如果正在写代码，思考下：“我希望某些事情最好不要发生，如果发生，我的代码就惨了”。这事，如果那件事情发生的话，就抛出一个错误</li>
+<li>如果再编写给别人的代码，思考一下别人的使用方式，在一些地方抛出错误。</li>
+</ul>
+<h2 id="try-catch"><a href="#try-catch" class="headerlink" title="try-catch"></a>try-catch</h2><p>js提供了try-catch语句，能在浏览器处理抛出的错误之前来解析它，可以把能引发错误的代码放在try块中，处理错误的代码放在catch中。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    somethingThatMihtCauseAnError();</span><br><span class="line">&#125;<span class="keyword">catch</span>(ex)&#123;</span><br><span class="line">    handleError(ex);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果try中发生了一个错误，程序立刻停止执行，然后跳到catch块，并传入一个错误对象。检查该对象可以确定中恢复的最佳动作。</p>
+<p>也可以在最后加一个finally块。finally块中的代码不管是否有错误发生，最后都会被执行<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    somethingThatMihtCauseAnError();</span><br><span class="line">&#125;<span class="keyword">catch</span>(ex)&#123;</span><br><span class="line">    handleError(ex);</span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">    dosomething();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个地方有点微妙，如果try中包含了一个return语句，实际上它必须等到finally块中的代码执行后才能返回，所以这个finally不常用。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/js/">js</a><a href="/tags/性能优化/">性能优化</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://github.com/Zyingying/2016/10/26/抛出自定义错误/" data-title="抛出自定义错误 | 2yingying" data-tsina="2133445925" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/12/06/replace/" title="正则test, exec, match, replace">
+  <strong>上一篇：</strong><br/>
+  <span>
+  正则test, exec, match, replace</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/09/18/移动网络下的页面调试/"  title="移动网络下的页面调试">
+ <strong>下一篇：</strong><br/> 
+ <span>移动网络下的页面调试
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/10/26/抛出自定义错误/" data-title="抛出自定义错误" data-url="https://github.com/Zyingying/2016/10/26/抛出自定义错误/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u9519_u8BEF_u7684_u672C_u8D28"><span class="toc-number">1.</span> <span class="toc-text">错误的本质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5728js_u4E2D_u629B_u51FA_u9519_u8BEF"><span class="toc-number">2.</span> <span class="toc-text">在js中抛出错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u629B_u51FA_u4E00_u4E2A_u597D_u9519_u8BEF"><span class="toc-number">3.</span> <span class="toc-text">抛出一个好错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F55_u65F6_u629B_u51FA_u9519_u8BEF"><span class="toc-number">4.</span> <span class="toc-text">何时抛出错误</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#try-catch"><span class="toc-number"></span> <span class="toc-text">try-catch</span></a>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="Zyingying" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/js/" title="js">js<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/css/" title="css">css<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/安全/" title="安全">安全<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/攻击/" title="攻击">攻击<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/模块化/" title="模块化">模块化<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/性能优化/" title="性能优化">性能优化<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/移动端/" title="移动端">移动端<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/渲染/" title="渲染">渲染<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/硬件加速/" title="硬件加速">硬件加速<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/闭包/" title="闭包">闭包<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/正则/" title="正则">正则<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/node/" title="node">node<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Grunt/" title="Grunt">Grunt<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/css3/" title="css3">css3<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/兼容/" title="兼容">兼容<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2133445925&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, I&#39;m zyy.  This is my blog on GitHub. <br/>
+			I wish you like it</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2133445925" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/Zyingying" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/2hang-ying-ying-" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:zyingying.zyy@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="盈盈">盈盈</a>
+		
+		&nbsp&nbsp&nbsp&nbsp本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次, 本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次
+		</p>
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zyingying"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

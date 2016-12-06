@@ -77,6 +77,335 @@
 
    
     
+    <article class="post-expand 正则test," itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/12/06/replace/" title="正则test, exec, match, replace" itemprop="url">正则test, exec, match, replace</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
+		
+  <p class="article-time">
+    <time datetime="2016-12-06T15:13:33.000Z" itemprop="datePublished"> 发表于 2016-12-06</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <a id="more"></a>
+<h2 id="RegExp_u5BF9_u8C61_u65B9_u6CD5"><a href="#RegExp_u5BF9_u8C61_u65B9_u6CD5" class="headerlink" title="RegExp对象方法"></a>RegExp对象方法</h2><h3 id="test_28_29"><a href="#test_28_29" class="headerlink" title="test()"></a>test()</h3><p>字符串的<code>test</code>方法，比较常用在判断语句中,用于检测一个字符串是否匹配某个模式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RegExpObject.test(string)</span><br></pre></td></tr></table></figure>
+<p>如果字符串 string 中含有与 RegExpObject 匹配的文本，则返回 true，否则返回 false：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/\d/.test(&#39;asdf2&#39;) // --true   &#26816;&#27979;&#23383;&#31526;&#20018;`&#39;asdf2&#39;`&#20013;&#26159;&#21542;&#20989;&#25968;&#25968;&#23383;</span><br></pre></td></tr></table></figure></p>
+<h3 id="exec_28_29"><a href="#exec_28_29" class="headerlink" title="exec()"></a>exec()</h3><p>exec()方法功能非常强大，它是一个通用的方法，用于比较复杂的模式匹配或者是你为你提供更多的信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RegExpObject.exec(string)</span><br></pre></td></tr></table></figure>
+<p>如果在string中找到了匹配的文本，则返回一个包含这些文本的数组，否侧返回null。这里有几个注意的地方：</p>
+<ol>
+<li><p>返回的数组的第一个元素是与整个正则匹配的文本</p>
+<p> 然后数组的第二个元素是与整个正则的第一个子表达式(分组)相匹配的文本</p>
+<p> 数组的第三个元素整个正则的第二个子表达式(分组)相匹配的文本，以此类推。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var result = /(\d+)-(\w+)/.exec(&#39;12-ab&#39;);&#10;console.log(result) // --&#62; [&#34;12-ab&#34;, &#34;12&#34;, &#34;ab&#34;, index: 0, input: &#34;12-ab&#34;] &#10;//exec() &#37117;&#20250;&#25226;&#23436;&#25972;&#30340;&#32454;&#33410;&#28155;&#21152;&#21040;&#23427;&#36820;&#22238;&#30340;&#25968;&#32452;&#20013;&#65292;&#36825;&#37324;&#30340;&#32454;&#33410;&#25351;&#30340;&#23601;&#26159;index&#21644;input&#10;&#10;&#25972;&#20010;&#27491;&#21017;&#34920;&#36798;&#24335;&#21305;&#37197;&#30340;&#25991;&#26412;&#65306;`&#34;12-ab&#34;`&#10;&#31532;&#19968;&#20010;&#23376;&#34920;&#36798;&#24335;&#21305;&#37197;&#30340;&#25991;&#26412;&#65306;`&#34;12&#34;`&#10;&#31532;&#20108;&#20010;&#23376;&#34920;&#36798;&#24335;&#21305;&#37197;&#30340;&#25991;&#26412;&#65306;`&#34;ab&#34;`</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>从上面返回的数组结果可知，数组添加了两个额外的属性，分别是：index, input<br>index: 匹配文本的第一个字符的位置.<br>input: 顾名思义，就是指输入的整体的文本了.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(result.index) // --&#62; 0&#10;console.log(result.input) // --&#62; &#39;12-ab&#39;</span><br></pre></td></tr></table></figure>
+<p> 执行exec函数时，尽管是全局匹配的正则表达式，但是exec方法只对指定的字符串进行一次匹配，</p>
+<p> 获取字符串中第一个与正则表达式想匹配的内容，并且将匹配内容和子匹配的结果存储到返回的数组中,</p>
+<p> 例如：<code>/\d/g.exec(&#39;a22&#39;)</code> ，返回的结果和上面的结果一样： <code>[&quot;2&quot;]</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/\d/g.exec(&#39;a22&#39;) // --&#62;[&#34;2&#34;]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="u6DF1_u5165_u4E86_u89E3_exec_28_29"><a href="#u6DF1_u5165_u4E86_u89E3_exec_28_29" class="headerlink" title="深入了解 exec()"></a>深入了解 exec()</h4><p>深入前看看RegExp的实例有哪些属性：</p>
+<ul>
+<li><code>global</code> 布尔，表示是否设置了 g 标志</li>
+<li><code>ignoreCase</code> 布尔，表示是否设置了 i 标志</li>
+<li><code>lastIndex</code> 搜索下一个匹配项时开始的位置，从0开始</li>
+<li><code>multiline</code> 布尔值，表示是否设置了 m 标志</li>
+<li><code>source</code> 正则表达式的字符串表示</li>
+</ul>
+<h5 id="u4F8B1_uFF1A_u975E_u5168_u5C40_u5339_u914D"><a href="#u4F8B1_uFF1A_u975E_u5168_u5C40_u5339_u914D" class="headerlink" title="例1：非全局匹配"></a>例1：非全局匹配</h5><p><img src="https://segmentfault.com/img/bVoPZL" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var reg = /\d/;&#10;//&#31532;&#19968;&#27425;&#21305;&#37197;&#10;console.log(reg.exec(&#39;a123&#39;));&#10;console.log(reg.lastIndex);&#10;//&#36755;&#20986;&#10;[&#34;1&#34;]&#10;  0&#10;  &#10;&#31532;&#20108;&#27425;&#21305;&#37197;&#10;console.log(reg.exec(&#39;a123&#39;));&#10;console.log(reg.lastIndex);&#10;//&#36755;&#20986;&#10;[&#34;1&#34;]&#10;  0</span><br></pre></td></tr></table></figure>
+<p>结论：</p>
+<p>同一正则表达式，在非全局匹配模式下，每次实例的lastIndex属性的值总是不变的(为第一次找到匹配文本所在的位置，上面为0 )；<br>每次的匹配查找都是将lastIndex作为起始位置的</p>
+<h5 id="u4F8B2_uFF1A_u5168_u5C40_u5339_u914D"><a href="#u4F8B2_uFF1A_u5168_u5C40_u5339_u914D" class="headerlink" title="例2：全局匹配"></a>例2：全局匹配</h5><p><img src="https://segmentfault.com/img/bVoP0C" alt="image"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var reg = /\d/g;&#10;//&#31532;&#19968;&#27425;&#21305;&#37197;&#10;console.log(reg.exec(&#39;a123&#39;));&#10;console.log(reg.lastIndex);&#10;//&#36755;&#20986;&#10;[&#34;1&#34;]&#10;  2&#10;  &#10;&#31532;&#20108;&#27425;&#21305;&#37197;&#10;console.log(reg.exec(&#39;a123&#39;));&#10;console.log(reg.lastIndex);&#10;//&#36755;&#20986;&#10;[&#34;2&#34;]&#10;  3 &#10;&#10;&#31532;&#19977;&#27425;&#21305;&#37197;&#10;console.log(reg.exec(&#39;a123&#39;));&#10;console.log(reg.lastIndex);&#10;//&#36755;&#20986;&#10;[&#34;3&#34;]&#10;  4 &#10;&#10;&#31532;&#22235;&#21305;&#37197;&#10;console.log(reg.exec(&#39;a123&#39;));&#10;console.log(reg.lastIndex);&#10;//&#36755;&#20986;&#10;null&#10;  0</span><br></pre></td></tr></table></figure></p>
+<p>结论：</p>
+<p>同一正则表达式，在全局匹配模式下，每次实例的lastIndex属性的值为匹配文本最后一个字符的下一个位置，上面例子中第一次匹配的时候最后一个字符位置为1，则下一个位置为：2<br><strong>当 exec() 再也找不到匹配的文本时，它将返回 null，并把 lastIndex 属性重置为 0。</strong></p>
+<p>那当要获取全局匹配的全部匹配项时，可以通过循环来获取：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var reg = /\d/g,&#10;    result = [],&#10;    crt;&#10;while((crt = reg.exec(&#39;a123&#39;)) !== null)&#123;&#10;    result = result.concat(crt)&#10;&#125;;&#10;result; //[&#34;1&#34;, &#34;2&#34;, &#34;3&#34;]</span><br></pre></td></tr></table></figure></p>
+<h2 id="String_u5BF9_u8C61_u65B9_u6CD5"><a href="#String_u5BF9_u8C61_u65B9_u6CD5" class="headerlink" title="String对象方法"></a>String对象方法</h2><h3 id="match_28_29"><a href="#match_28_29" class="headerlink" title="match()"></a>match()</h3><p>match() 方法可在字符串内检索指定的值，或找到一个或多个正则表达式的匹配。和exec()有些相似：</p>
+<h5 id="u4F8B1_uFF1A_u975E_u5168_u5C40_u5339_u914D-1"><a href="#u4F8B1_uFF1A_u975E_u5168_u5C40_u5339_u914D-1" class="headerlink" title="例1：非全局匹配"></a>例1：非全局匹配</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var a = &#39;aaaa&#39;.match(/\w/);&#10;console.log(a); // [&#34;a&#34;, index: 0, input: &#34;aaaa&#34;]</span><br></pre></td></tr></table></figure>
+<p>可以看到，和exec()一样，在数组中返回了index 和 input属性。</p>
+<p>或者是这样，match返回分组<br><img src="http://nos.netease.com/popo/a0c28355be533077e13238e69ec29fe9.png" alt="image"></p>
+<h5 id="u4F8B2_uFF1A_u5168_u5C40_u5339_u914D-1"><a href="#u4F8B2_uFF1A_u5168_u5C40_u5339_u914D-1" class="headerlink" title="例2：全局匹配"></a>例2：全局匹配</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var a = &#39;aaaa&#39;.match(/\w/g);&#10;console.log(a); // [&#34;a&#34;, &#34;a&#34;, &#34;a&#34;, &#34;a&#34;]</span><br></pre></td></tr></table></figure>
+<p>全局匹配就和exec方法有很大的不同了，他直接返回了所有符合匹配的子字符串的数组，另外，index和input属性也不在其中了，所以这个方法效率可能会高一些，但是如果你需要更多的信息，则用exec()吧</p>
+<p>match函数在满足如下条件能实现和exec一样的功能：</p>
+<pre><code>1. 正则表达式中含有分组（括号）
+2. 返回唯一的匹配
+</code></pre><h3 id="replace_28_29"><a href="#replace_28_29" class="headerlink" title="replace()"></a>replace()</h3><p>这也是一个比较灵活常用的方法，它用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。</p>
+<p>这个方法接收两个必须的参数：</p>
+<p><code>pattern</code>: 这个参数可以是字符串或是RegExp对象<br><code>replacement</code>： 替换匹配项的字符串或处理函数的返回值</p>
+<p>返回结果：<br>当未找到匹配项的时候，返回原始字符串。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#39;aaaa&#39;.replace(&#39;bbb&#39;, &#39;b&#39;)     //&#34;aaaa&#34;&#10;``` &#10;&#24403;`pattern`&#20026;&#23383;&#31526;&#20018;&#25110;&#32773;&#20026;&#38750;&#20840;&#23616;&#30340;RegExp&#23545;&#35937;&#30340;&#26102;&#20505;&#65292;&#21482;&#26367;&#25442;&#25214;&#21040;&#30340;&#31532;&#19968;&#39033;&#21305;&#37197;&#39033;&#12290;</span><br></pre></td></tr></table></figure></p>
+<p>‘aaaa’.replace(‘a’, ‘b’)     //“baaa”<br>‘aaaa’.replace(/\w/, ‘b’)    //“baaa”<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#24403;`pattern`&#20026;&#20840;&#23616;&#30340;RegExp&#23545;&#35937;&#30340;&#26102;&#20505;&#65292;&#26367;&#25442;&#27599;&#19968;&#39033;&#21305;&#37197;&#39033;&#12290;</span><br></pre></td></tr></table></figure></p>
+<p>‘aaaa’.replace(/\w/g, ‘b’)    //“bbbb”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`replacement`&#65306;&#20026;&#20989;&#25968;&#26102;&#65306;&#10;```javascript&#10;&#39;aaaa&#39;.replace(/\w/g, function() &#123;&#10;    return &#39;b&#39;;&#10;&#125;); // &#34;bbbb&#34;&#10;&#10;&#39;aaaa&#39;.replace(/\w/g, function(value) &#123;&#10;    return value.toUpperCase();&#10;&#125;); // &#34;AAAA&#34;</span><br></pre></td></tr></table></figure></p>
+<p>结论：</p>
+<p>函数的返回值将作为替换字符串</p>
+<p>函数的第一个参数的值是每一个匹配项,当然还有第二个参数，它的值是每个匹配项在原始字符串的中位置，从0开始</p>
+<h5 id="u7279_u6B8A_u7684__24_3A"><a href="#u7279_u6B8A_u7684__24_3A" class="headerlink" title="特殊的 $:"></a>特殊的 $:</h5><p>replacement 中的 $ 字符具有特定的含义。如下表所示，它说明从模式匹配得到的字符串将用于替换。</p>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>替换文本 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1、2、…、$99</td>
+<td>与 regexp 中的第 1 到第 99 个子表达式相匹配的文本</td>
+</tr>
+<tr>
+<td>$&amp;</td>
+<td>与 regexp 相匹配的子串</td>
+</tr>
+<tr>
+<td>$`</td>
+<td>位于匹配子串左侧的文本</td>
+</tr>
+<tr>
+<td>$’</td>
+<td>位于匹配子串右侧的文本</td>
+</tr>
+<tr>
+<td>$$</td>
+<td>直接量符号</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//第一种情况：</span></span><br><span class="line"><span class="string">'aa11AA'</span>.replace(<span class="regexp">/([a-z]+)(\d+)([A-Z]+)/g</span>, <span class="string">'$1'</span>); <span class="comment">// "aa"</span></span><br><span class="line"><span class="string">'aa11AA'</span>.replace(<span class="regexp">/([a-z]+)(\d+)([A-Z]+)/g</span>, <span class="string">'$2'</span>); <span class="comment">// "11"</span></span><br><span class="line"><span class="string">'aa11AA'</span>.replace(<span class="regexp">/([a-z]+)(\d+)([A-Z]+)/g</span>, <span class="string">'$3'</span>); <span class="comment">// "AA"</span></span><br><span class="line"><span class="comment">//要是没有该子项，则当成普通字符串处理了</span></span><br><span class="line"><span class="string">'aa11AA'</span>.replace(<span class="regexp">/([a-z]+)(\d+)([A-Z]+)/g</span>, <span class="string">'$4'</span>); <span class="comment">// "$4"</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">//第二种情况：</span></span><br><span class="line"><span class="string">'aa11AA'</span>.replace(<span class="regexp">/([a-z]+)(\d+)([A-Z]+)/g</span>, <span class="string">'$&amp;'</span>); <span class="comment">//"aa11AA"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//第三种情况：</span></span><br><span class="line"><span class="string">'aa11AA'</span>.replace(<span class="regexp">/(\d+)/g</span>, <span class="string">'$`'</span>); <span class="comment">//"aaaaAA"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//第四种情况：</span></span><br><span class="line"><span class="string">'aa11AA'</span>.replace(<span class="regexp">/(\d+)/g</span>, <span class="string">"$'"</span>); <span class="comment">//"aaAAAA"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//第五种情况：</span></span><br><span class="line"><span class="string">'aa11AA'</span>.replace(<span class="regexp">/(\d+)/g</span>, <span class="string">'$$'</span>); <span class="comment">//"aa$AA"</span></span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/js/">js</a><a href="/tags/正则/">正则</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/12/06/replace/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/12/06/replace/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/10/26/抛出自定义错误/" title="抛出自定义错误" itemprop="url">抛出自定义错误</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
+		
+  <p class="article-time">
+    <time datetime="2016-10-26T15:07:42.000Z" itemprop="datePublished"> 发表于 2016-10-26</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>什么？你问我为什么要抛出错误？程序员的天职难道不是干掉错误吗？<br>是的，我当初的想法也和你的一样，但是阅读完本文章，相信你会十分愿意去抛出一个错误。<br>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2016/10/26/抛出自定义错误/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/js/">js</a><a href="/tags/性能优化/">性能优化</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/10/26/抛出自定义错误/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/10/26/抛出自定义错误/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/09/18/移动网络下的页面调试/" title="移动网络下的页面调试" itemprop="url">移动网络下的页面调试</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
+		
+  <p class="article-time">
+    <time datetime="2016-09-18T02:54:22.000Z" itemprop="datePublished"> 发表于 2016-09-18</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>以前我们调试移动端的时候，一般都是在谷歌浏览器直接用模拟器打开，先保证所有的逻辑都跑的通。</p>
+<p>接着我们可能就会用代理，将手机代理到本地主机，设置host，保证各个机型的兼容问题，再次检查程序的功能和逻辑。</p>
+<p>当以上都完全跑通之后，基本也差不到哪里去了，但是一般QA还是会在移动网络下对所有功能再进行一次调试。</p>
+<p>今天我想说的一个就是如何在移动网络下审查你的页面。<br>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2016/09/18/移动网络下的页面调试/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/移动端/">移动端</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/09/18/移动网络下的页面调试/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/18/移动网络下的页面调试/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/08/23/那些年我们懵逼的安全知识之HTTP-DNS劫持/" title="那些年我们懵逼的安全知识之HTTP/DNS劫持" itemprop="url">那些年我们懵逼的安全知识之HTTP/DNS劫持</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
+		
+  <p class="article-time">
+    <time datetime="2016-08-23T13:54:56.000Z" itemprop="datePublished"> 发表于 2016-08-23</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>在详述这篇文章之前<br>我有两篇类似的关于安全的文章</p>
+<p><a href="http://zyingying.github.io/2016/03/29/%E9%82%A3%E4%BA%9B%E5%B9%B4%E6%88%91%E4%BB%AC%E6%87%B5%E9%80%BC%E7%9A%84%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E4%B9%8BXSS/" target="_blank" rel="external"> 1.那些年我们懵逼的安全知识——XSS </a><br><a href="http://zyingying.github.io/2016/03/30/%E9%82%A3%E4%BA%9B%E5%B9%B4%E6%88%91%E4%BB%AC%E6%87%B5%E9%80%BC%E7%9A%84%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E4%B9%8BCSRF/" target="_blank" rel="external"> 2.那些年我们懵逼的安全知识——CSRF</a><br><a href="/">3.</a></p>
+<h2 id="HTTP_u52AB_u6301"><a href="#HTTP_u52AB_u6301" class="headerlink" title="HTTP劫持"></a>HTTP劫持</h2><p>什么是HTTP劫持呢，大多数情况是运营商HTTP劫持，当我们使用HTTP请求请求一个网站页面的时候，网络运营商会在正常的数据流中插入精心设计的网络数据报文，让客户端（通常是浏览器）展示“错误”的数据，通常是一些弹窗，宣传性广告或者直接显示某网站的内容，大家应该都有遇到过。</p>
+<h2 id="DNS_u52AB_u6301"><a href="#DNS_u52AB_u6301" class="headerlink" title="DNS劫持"></a>DNS劫持</h2><p>DNS劫持就是通过劫持了DNS服务器，通过某些手段取得某域名的解析记录控制权，进而修改此域名的解析结果，导致对该域名的访问由原IP地址转入到修改后的指定IP，其结果就是对特定的网址不能访问或访问的是假网址，从而实现窃取资料或者破坏原有正常服务的目的。<br>简单说就是我们请求的是 <a href="http://www.a.com/index.html" target="_blank" rel="external">http://www.a.com/index.html</a> ，直接被重定向了 <a href="http://www.b.com/index.html" target="_blank" rel="external">http://www.b.com/index.html</a> ，本文不会过多讨论这种情况。</p>
+<h2 id="u9875_u9762_u88AB_u5D4C_u5165_iframe__u4E2D_u60C5_u51B5"><a href="#u9875_u9762_u88AB_u5D4C_u5165_iframe__u4E2D_u60C5_u51B5" class="headerlink" title="页面被嵌入 iframe 中情况"></a>页面被嵌入 iframe 中情况</h2><p>网络运营商为了尽可能地减少植入广告对原有网站页面的影响，通常会通过把原有网站页面放置到一个和原页面相同大小的 iframe 里面去，那么就可以通过这个 iframe 来隔离广告代码对原有页面的影响。<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/iframe%E5%86%85%E5%B5%8C%E7%BD%91%E9%A1%B5.jpg" alt="" style="display:block;margin:0 auto;width:600px;"><br>要是遇到这种情况的话，就需要我们把外层页面重定向我们自己的页面即可了</p>
+<p><code>window.self</code> 返回一个指向当前 window 对象的引用。</p>
+<p><code>window.top</code>返回窗口体系中的最顶层窗口的引用。</p>
+<p>对于非同源的域名，iframe 子页面无法通过 parent.location 或者 top.location 拿到具体的页面地址，但是可以写入 top.location ，也就是可以控制父页面的跳转。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(self! = top)&#123;</span><br><span class="line">    top.location = location.href;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/js/">js</a><a href="/tags/安全/">安全</a><a href="/tags/攻击/">攻击</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/08/23/那些年我们懵逼的安全知识之HTTP-DNS劫持/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/08/23/那些年我们懵逼的安全知识之HTTP-DNS劫持/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
     <article class="post-expand post" itemprop="articleBody"> 
         <header class="article-info clearfix">
   <h1 itemprop="name">
@@ -252,246 +581,9 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/06/05/Node最佳调试方法/" title="Node最佳调试方法" itemprop="url">Node最佳调试方法</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-06-05T15:24:36.000Z" itemprop="datePublished"> 发表于 2016-06-05</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>最近有在学习node，总是有个东西困扰我，比如，我们在客户端看不到相应的js代码，所以这个时候我们要怎么调试呢？</p>
-<p>所以今天想简单介绍一下一个node的调试方法：<strong>node-inspector</strong></p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/06/05/Node最佳调试方法/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/js/">js</a><a href="/tags/node/">node</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/06/05/Node最佳调试方法/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/06/05/Node最佳调试方法/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/13/圆角矩形的实现（非css3）/" title="圆角矩形的实现（非css3）" itemprop="url">圆角矩形的实现（非css3）</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-13T15:41:39.000Z" itemprop="datePublished"> 发表于 2016-05-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>额…..我知道现在谈这个东西好像的确是挺旧的，而且现在css3也出了<code>border-radius</code>，圆角简直不能再6。<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/05/13/圆角矩形的实现（非css3）/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/css/">css</a><a href="/tags/兼容/">兼容</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/05/13/圆角矩形的实现（非css3）/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/13/圆角矩形的实现（非css3）/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/05/css布局之高度问题/" title="css布局之高度问题" itemprop="url">css布局之高度问题</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-05T12:29:29.000Z" itemprop="datePublished"> 发表于 2016-05-05</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>在开发过程中会遇到许多等高布局，或者是一些瀑布流布局<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/05/05/css布局之高度问题/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/css/">css</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/05/05/css布局之高度问题/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/05/05/css布局之高度问题/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/25/css布局之宽度问题/" title="css布局之宽度问题" itemprop="url">css布局之宽度问题</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-04-25T14:32:34.000Z" itemprop="datePublished"> 发表于 2016-04-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>一个好的css布局对于一个页面的重要程度，相信大家心里都明白。<br>完成一个两栏，三栏，等高等布局，在页面总是非常常见。所以我这边总结了一些方法。<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/04/25/css布局之宽度问题/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/css/">css</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/04/25/css布局之宽度问题/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/04/25/css布局之宽度问题/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
   </nav>
 
 </div>
@@ -519,7 +611,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/js/" title="js">js<sup>10</sup></a></li>
+				<li><a href="/tags/js/" title="js">js<sup>13</sup></a></li>
 			
 		
 			
@@ -527,27 +619,31 @@
 			
 		
 			
+				<li><a href="/tags/安全/" title="安全">安全<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/攻击/" title="攻击">攻击<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/模块化/" title="模块化">模块化<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/安全/" title="安全">安全<sup>2</sup></a></li>
+				<li><a href="/tags/性能优化/" title="性能优化">性能优化<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/攻击/" title="攻击">攻击<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/性能优化/" title="性能优化">性能优化<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/移动端/" title="移动端">移动端<sup>1</sup></a></li>
+				<li><a href="/tags/移动端/" title="移动端">移动端<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/渲染/" title="渲染">渲染<sup>1</sup></a></li>
 			
 		
 			
@@ -559,7 +655,7 @@
 			
 		
 			
-				<li><a href="/tags/渲染/" title="渲染">渲染<sup>1</sup></a></li>
+				<li><a href="/tags/正则/" title="正则">正则<sup>1</sup></a></li>
 			
 		
 			

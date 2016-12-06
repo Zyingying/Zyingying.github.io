@@ -17,7 +17,7 @@
 <meta property="og:url" content="https://github.com/Zyingying/2016/04/25/css布局之宽度问题/index.html">
 <meta property="og:site_name" content="2yingying">
 <meta property="og:description" content="一个好的css布局对于一个页面的重要程度，相信大家心里都明白。完成一个两栏，三栏，等高等布局，在页面总是非常常见。所以我这边总结了一些方法。">
-<meta property="og:updated_time" content="2016-05-17T12:29:44.152Z">
+<meta property="og:updated_time" content="2016-11-16T13:11:07.157Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css布局之宽度问题">
 <meta name="twitter:description" content="一个好的css布局对于一个页面的重要程度，相信大家心里都明白。完成一个两栏，三栏，等高等布局，在页面总是非常常见。所以我这边总结了一些方法。">
@@ -114,7 +114,7 @@
 <h1 id="u4E09_u680F_u5E03_u5C40"><a href="#u4E09_u680F_u5E03_u5C40" class="headerlink" title="三栏布局"></a>三栏布局</h1><h2 id="u4E24_u4FA7_u5B9A_u5BBD_uFF0C_u4E2D_u95F4_u81EA_u52A8"><a href="#u4E24_u4FA7_u5B9A_u5BBD_uFF0C_u4E2D_u95F4_u81EA_u52A8" class="headerlink" title="两侧定宽，中间自动"></a>两侧定宽，中间自动</h2><h3 id="u601D_u8DEF_u4E00_uFF1Afloat+margin"><a href="#u601D_u8DEF_u4E00_uFF1Afloat+margin" class="headerlink" title="思路一：float+margin"></a>思路一：float+margin</h3><p>左右两侧分别浮动左右（或者是绝对定位，参考 <strong>一栏顶宽</strong> 的思路二）<br>中间 <code>margin : 0  右边宽度  0  左边宽度</code></p>
 <iframe width="100%" height="300" src="//jsfiddle.net/6qpwdsqq/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-<h3 id="u601D_u8DEF_u4E8C_uFF1Afloat_+__u8D1Fmargin"><a href="#u601D_u8DEF_u4E8C_uFF1Afloat_+__u8D1Fmargin" class="headerlink" title="思路二：float + 负margin"></a>思路二：float + 负margin</h3><p>中间在另一个div里面嵌套<br>左边 <code>margin:-100%</code><br>右边 <code>margin:自身宽度</code></p>
+<h3 id="u601D_u8DEF_u4E8C_uFF1Afloat_+__u8D1Fmargin"><a href="#u601D_u8DEF_u4E8C_uFF1Afloat_+__u8D1Fmargin" class="headerlink" title="思路二：float + 负margin"></a>思路二：float + 负margin</h3><p>中间在另一个div里面嵌套<br>左边 <code>margin:-100%</code><br>右边 <code>margin:-自身宽度</code></p>
 <iframe width="100%" height="300" src="//jsfiddle.net/44j7dv4e/1/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 <h3 id="u601D_u8DEF_u4E09_uFF1A_float+flex__28flex_u6709_u517C_u5BB9_u95EE_u9898_29"><a href="#u601D_u8DEF_u4E09_uFF1A_float+flex__28flex_u6709_u517C_u5BB9_u95EE_u9898_29" class="headerlink" title="思路三： float+flex (flex有兼容问题)"></a>思路三： float+flex (flex有兼容问题)</h3><p>在父级设定 <code>display:flex</code><br>中间的div <code>flex:1</code><br>(假设中间的最小在100px的时候)</p>
@@ -214,7 +214,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/js/" title="js">js<sup>10</sup></a></li>
+				<li><a href="/tags/js/" title="js">js<sup>13</sup></a></li>
 			
 		
 			
@@ -222,27 +222,31 @@
 			
 		
 			
+				<li><a href="/tags/安全/" title="安全">安全<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/攻击/" title="攻击">攻击<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/模块化/" title="模块化">模块化<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/安全/" title="安全">安全<sup>2</sup></a></li>
+				<li><a href="/tags/性能优化/" title="性能优化">性能优化<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/攻击/" title="攻击">攻击<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/性能优化/" title="性能优化">性能优化<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/移动端/" title="移动端">移动端<sup>1</sup></a></li>
+				<li><a href="/tags/移动端/" title="移动端">移动端<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/渲染/" title="渲染">渲染<sup>1</sup></a></li>
 			
 		
 			
@@ -254,7 +258,7 @@
 			
 		
 			
-				<li><a href="/tags/渲染/" title="渲染">渲染<sup>1</sup></a></li>
+				<li><a href="/tags/正则/" title="正则">正则<sup>1</sup></a></li>
 			
 		
 			
