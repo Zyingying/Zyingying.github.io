@@ -11,25 +11,19 @@
     
 
     
-    <meta name="description" content="RegExp对象方法test()字符串的test方法，比较常用在判断语句中,用于检测一个字符串是否匹配某个模式：
-1RegExpObject.test(string)
-如果字符串 string 中含有与 RegExpObject 匹配的文本，则返回 true，否则返回 false：1/\d/.test(&amp;#39;asdf2&amp;#39;) // --true   &amp;#26816;&amp;#27979;&amp;#2">
+    <meta name="description" content="最近又用到了正则啦，发现匹配相同东西的时候，我和同事用不同的方法都可以，这里特意来归纳一下。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则test, exec, match, replace">
-<meta property="og:url" content="https://github.com/Zyingying/2016/12/06/replace/index.html">
+<meta property="og:url" content="https://github.com/Zyingying/2016/11/26/replace/index.html">
 <meta property="og:site_name" content="2yingying">
-<meta property="og:description" content="RegExp对象方法test()字符串的test方法，比较常用在判断语句中,用于检测一个字符串是否匹配某个模式：
-1RegExpObject.test(string)
-如果字符串 string 中含有与 RegExpObject 匹配的文本，则返回 true，否则返回 false：1/\d/.test(&amp;#39;asdf2&amp;#39;) // --true   &amp;#26816;&amp;#27979;&amp;#2">
+<meta property="og:description" content="最近又用到了正则啦，发现匹配相同东西的时候，我和同事用不同的方法都可以，这里特意来归纳一下。">
 <meta property="og:image" content="https://segmentfault.com/img/bVoPZL">
 <meta property="og:image" content="https://segmentfault.com/img/bVoP0C">
 <meta property="og:image" content="http://nos.netease.com/popo/a0c28355be533077e13238e69ec29fe9.png">
-<meta property="og:updated_time" content="2016-12-06T15:14:21.051Z">
+<meta property="og:updated_time" content="2016-12-06T15:50:13.447Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则test, exec, match, replace">
-<meta name="twitter:description" content="RegExp对象方法test()字符串的test方法，比较常用在判断语句中,用于检测一个字符串是否匹配某个模式：
-1RegExpObject.test(string)
-如果字符串 string 中含有与 RegExpObject 匹配的文本，则返回 true，否则返回 false：1/\d/.test(&amp;#39;asdf2&amp;#39;) // --true   &amp;#26816;&amp;#27979;&amp;#2">
+<meta name="twitter:description" content="最近又用到了正则啦，发现匹配相同东西的时候，我和同事用不同的方法都可以，这里特意来归纳一下。">
 
     
     <link rel="alternative" href="/atom.xml" title="2yingying" type="application/atom+xml">
@@ -83,20 +77,20 @@
 </div>
     </header>
     <div id="container">
-      <div id="main" class="正则test," itemscope itemprop="blogPost">
+      <div id="main" class="post" itemscope itemprop="blogPost">
   
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/12/06/replace/" title="正则test, exec, match, replace" itemprop="url">正则test, exec, match, replace</a>
+      <a href="/2016/11/26/replace/" title="正则test, exec, match, replace" itemprop="url">正则test, exec, match, replace</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
 		
   <p class="article-time">
-    <time datetime="2016-12-06T15:13:33.000Z" itemprop="datePublished"> 发表于 2016-12-06</time>
+    <time datetime="2016-11-26T15:13:33.000Z" itemprop="datePublished"> 发表于 2016-11-26</time>
     
   </p>
 </header>
@@ -109,25 +103,25 @@
 		
 		</div>
 		
-		<a id="more"></a>
+		<p>最近又用到了正则啦，发现匹配相同东西的时候，我和同事用不同的方法都可以，这里特意来归纳一下。<br><a id="more"></a></p>
 <h2 id="RegExp_u5BF9_u8C61_u65B9_u6CD5"><a href="#RegExp_u5BF9_u8C61_u65B9_u6CD5" class="headerlink" title="RegExp对象方法"></a>RegExp对象方法</h2><h3 id="test_28_29"><a href="#test_28_29" class="headerlink" title="test()"></a>test()</h3><p>字符串的<code>test</code>方法，比较常用在判断语句中,用于检测一个字符串是否匹配某个模式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RegExpObject.test(string)</span><br></pre></td></tr></table></figure>
-<p>如果字符串 string 中含有与 RegExpObject 匹配的文本，则返回 true，否则返回 false：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/\d/.test(&#39;asdf2&#39;) // --true   &#26816;&#27979;&#23383;&#31526;&#20018;`&#39;asdf2&#39;`&#20013;&#26159;&#21542;&#20989;&#25968;&#25968;&#23383;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RegExpObject.test(string)</span><br></pre></td></tr></table></figure>
+<p>如果字符串 string 中含有与 RegExpObject 匹配的文本，则返回 true，否则返回 false：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/\d/.test(<span class="string">'asdf2'</span>) <span class="comment">// --true   检测字符串`'asdf2'`中是否函数数字</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="exec_28_29"><a href="#exec_28_29" class="headerlink" title="exec()"></a>exec()</h3><p>exec()方法功能非常强大，它是一个通用的方法，用于比较复杂的模式匹配或者是你为你提供更多的信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RegExpObject.exec(string)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RegExpObject.exec(string)</span><br></pre></td></tr></table></figure>
 <p>如果在string中找到了匹配的文本，则返回一个包含这些文本的数组，否侧返回null。这里有几个注意的地方：</p>
 <ol>
 <li><p>返回的数组的第一个元素是与整个正则匹配的文本</p>
 <p> 然后数组的第二个元素是与整个正则的第一个子表达式(分组)相匹配的文本</p>
 <p> 数组的第三个元素整个正则的第二个子表达式(分组)相匹配的文本，以此类推。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var result = /(\d+)-(\w+)/.exec(&#39;12-ab&#39;);&#10;console.log(result) // --&#62; [&#34;12-ab&#34;, &#34;12&#34;, &#34;ab&#34;, index: 0, input: &#34;12-ab&#34;] &#10;//exec() &#37117;&#20250;&#25226;&#23436;&#25972;&#30340;&#32454;&#33410;&#28155;&#21152;&#21040;&#23427;&#36820;&#22238;&#30340;&#25968;&#32452;&#20013;&#65292;&#36825;&#37324;&#30340;&#32454;&#33410;&#25351;&#30340;&#23601;&#26159;index&#21644;input&#10;&#10;&#25972;&#20010;&#27491;&#21017;&#34920;&#36798;&#24335;&#21305;&#37197;&#30340;&#25991;&#26412;&#65306;`&#34;12-ab&#34;`&#10;&#31532;&#19968;&#20010;&#23376;&#34920;&#36798;&#24335;&#21305;&#37197;&#30340;&#25991;&#26412;&#65306;`&#34;12&#34;`&#10;&#31532;&#20108;&#20010;&#23376;&#34920;&#36798;&#24335;&#21305;&#37197;&#30340;&#25991;&#26412;&#65306;`&#34;ab&#34;`</span><br></pre></td></tr></table></figure>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = <span class="regexp">/(\d+)-(\w+)/</span>.exec(<span class="string">'12-ab'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(result) <span class="comment">// --&gt; ["12-ab", "12", "ab", index: 0, input: "12-ab"] </span></span><br><span class="line"><span class="comment">//exec() 都会把完整的细节添加到它返回的数组中，这里的细节指的就是index和input</span></span><br><span class="line"></span><br><span class="line">整个正则表达式匹配的文本：<span class="string">`"12-ab"`</span></span><br><span class="line">第一个子表达式匹配的文本：<span class="string">`"12"`</span></span><br><span class="line">第二个子表达式匹配的文本：<span class="string">`"ab"`</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>从上面返回的数组结果可知，数组添加了两个额外的属性，分别是：index, input<br>index: 匹配文本的第一个字符的位置.<br>input: 顾名思义，就是指输入的整体的文本了.</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(result.index) // --&#62; 0&#10;console.log(result.input) // --&#62; &#39;12-ab&#39;</span><br></pre></td></tr></table></figure>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(result.index) <span class="comment">// --&gt; 0</span></span><br><span class="line"><span class="built_in">console</span>.log(result.input) <span class="comment">// --&gt; '12-ab'</span></span><br></pre></td></tr></table></figure>
 <p> 执行exec函数时，尽管是全局匹配的正则表达式，但是exec方法只对指定的字符串进行一次匹配，</p>
 <p> 获取字符串中第一个与正则表达式想匹配的内容，并且将匹配内容和子匹配的结果存储到返回的数组中,</p>
 <p> 例如：<code>/\d/g.exec(&#39;a22&#39;)</code> ，返回的结果和上面的结果一样： <code>[&quot;2&quot;]</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/\d/g.exec(&#39;a22&#39;) // --&#62;[&#34;2&#34;]</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/\d/g.exec(<span class="string">'a22'</span>) <span class="comment">// --&gt;["2"]</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h4 id="u6DF1_u5165_u4E86_u89E3_exec_28_29"><a href="#u6DF1_u5165_u4E86_u89E3_exec_28_29" class="headerlink" title="深入了解 exec()"></a>深入了解 exec()</h4><p>深入前看看RegExp的实例有哪些属性：</p>
@@ -139,18 +133,18 @@
 <li><code>source</code> 正则表达式的字符串表示</li>
 </ul>
 <h5 id="u4F8B1_uFF1A_u975E_u5168_u5C40_u5339_u914D"><a href="#u4F8B1_uFF1A_u975E_u5168_u5C40_u5339_u914D" class="headerlink" title="例1：非全局匹配"></a>例1：非全局匹配</h5><p><img src="https://segmentfault.com/img/bVoPZL" alt="image"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var reg = /\d/;&#10;//&#31532;&#19968;&#27425;&#21305;&#37197;&#10;console.log(reg.exec(&#39;a123&#39;));&#10;console.log(reg.lastIndex);&#10;//&#36755;&#20986;&#10;[&#34;1&#34;]&#10;  0&#10;  &#10;&#31532;&#20108;&#27425;&#21305;&#37197;&#10;console.log(reg.exec(&#39;a123&#39;));&#10;console.log(reg.lastIndex);&#10;//&#36755;&#20986;&#10;[&#34;1&#34;]&#10;  0</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\d/</span>;</span><br><span class="line"><span class="comment">//第一次匹配</span></span><br><span class="line"><span class="built_in">console</span>.log(reg.exec(<span class="string">'a123'</span>));</span><br><span class="line"><span class="built_in">console</span>.log(reg.lastIndex);</span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line">[<span class="string">"1"</span>]</span><br><span class="line">  <span class="number">0</span></span><br><span class="line">  </span><br><span class="line">第二次匹配</span><br><span class="line"><span class="built_in">console</span>.log(reg.exec(<span class="string">'a123'</span>));</span><br><span class="line"><span class="built_in">console</span>.log(reg.lastIndex);</span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line">[<span class="string">"1"</span>]</span><br><span class="line">  <span class="number">0</span></span><br></pre></td></tr></table></figure>
 <p>结论：</p>
 <p>同一正则表达式，在非全局匹配模式下，每次实例的lastIndex属性的值总是不变的(为第一次找到匹配文本所在的位置，上面为0 )；<br>每次的匹配查找都是将lastIndex作为起始位置的</p>
-<h5 id="u4F8B2_uFF1A_u5168_u5C40_u5339_u914D"><a href="#u4F8B2_uFF1A_u5168_u5C40_u5339_u914D" class="headerlink" title="例2：全局匹配"></a>例2：全局匹配</h5><p><img src="https://segmentfault.com/img/bVoP0C" alt="image"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var reg = /\d/g;&#10;//&#31532;&#19968;&#27425;&#21305;&#37197;&#10;console.log(reg.exec(&#39;a123&#39;));&#10;console.log(reg.lastIndex);&#10;//&#36755;&#20986;&#10;[&#34;1&#34;]&#10;  2&#10;  &#10;&#31532;&#20108;&#27425;&#21305;&#37197;&#10;console.log(reg.exec(&#39;a123&#39;));&#10;console.log(reg.lastIndex);&#10;//&#36755;&#20986;&#10;[&#34;2&#34;]&#10;  3 &#10;&#10;&#31532;&#19977;&#27425;&#21305;&#37197;&#10;console.log(reg.exec(&#39;a123&#39;));&#10;console.log(reg.lastIndex);&#10;//&#36755;&#20986;&#10;[&#34;3&#34;]&#10;  4 &#10;&#10;&#31532;&#22235;&#21305;&#37197;&#10;console.log(reg.exec(&#39;a123&#39;));&#10;console.log(reg.lastIndex);&#10;//&#36755;&#20986;&#10;null&#10;  0</span><br></pre></td></tr></table></figure></p>
+<h5 id="u4F8B2_uFF1A_u5168_u5C40_u5339_u914D"><a href="#u4F8B2_uFF1A_u5168_u5C40_u5339_u914D" class="headerlink" title="例2：全局匹配"></a>例2：全局匹配</h5><p><img src="https://segmentfault.com/img/bVoP0C" alt="image"><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\d/g</span>;</span><br><span class="line"><span class="comment">//第一次匹配</span></span><br><span class="line"><span class="built_in">console</span>.log(reg.exec(<span class="string">'a123'</span>));</span><br><span class="line"><span class="built_in">console</span>.log(reg.lastIndex);</span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line">[<span class="string">"1"</span>]</span><br><span class="line">  <span class="number">2</span></span><br><span class="line">  </span><br><span class="line">第二次匹配</span><br><span class="line"><span class="built_in">console</span>.log(reg.exec(<span class="string">'a123'</span>));</span><br><span class="line"><span class="built_in">console</span>.log(reg.lastIndex);</span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line">[<span class="string">"2"</span>]</span><br><span class="line">  <span class="number">3</span> </span><br><span class="line"></span><br><span class="line">第三次匹配</span><br><span class="line"><span class="built_in">console</span>.log(reg.exec(<span class="string">'a123'</span>));</span><br><span class="line"><span class="built_in">console</span>.log(reg.lastIndex);</span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line">[<span class="string">"3"</span>]</span><br><span class="line">  <span class="number">4</span> </span><br><span class="line"></span><br><span class="line">第四匹配</span><br><span class="line"><span class="built_in">console</span>.log(reg.exec(<span class="string">'a123'</span>));</span><br><span class="line"><span class="built_in">console</span>.log(reg.lastIndex);</span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line"><span class="literal">null</span></span><br><span class="line">  <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
 <p>结论：</p>
 <p>同一正则表达式，在全局匹配模式下，每次实例的lastIndex属性的值为匹配文本最后一个字符的下一个位置，上面例子中第一次匹配的时候最后一个字符位置为1，则下一个位置为：2<br><strong>当 exec() 再也找不到匹配的文本时，它将返回 null，并把 lastIndex 属性重置为 0。</strong></p>
-<p>那当要获取全局匹配的全部匹配项时，可以通过循环来获取：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var reg = /\d/g,&#10;    result = [],&#10;    crt;&#10;while((crt = reg.exec(&#39;a123&#39;)) !== null)&#123;&#10;    result = result.concat(crt)&#10;&#125;;&#10;result; //[&#34;1&#34;, &#34;2&#34;, &#34;3&#34;]</span><br></pre></td></tr></table></figure></p>
+<p>那当要获取全局匹配的全部匹配项时，可以通过循环来获取：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\d/g</span>,</span><br><span class="line">    result = [],</span><br><span class="line">    crt;</span><br><span class="line"><span class="keyword">while</span>((crt = reg.exec(<span class="string">'a123'</span>)) !== <span class="literal">null</span>)&#123;</span><br><span class="line">    result = result.concat(crt)</span><br><span class="line">&#125;;</span><br><span class="line">result; <span class="comment">//["1", "2", "3"]</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="String_u5BF9_u8C61_u65B9_u6CD5"><a href="#String_u5BF9_u8C61_u65B9_u6CD5" class="headerlink" title="String对象方法"></a>String对象方法</h2><h3 id="match_28_29"><a href="#match_28_29" class="headerlink" title="match()"></a>match()</h3><p>match() 方法可在字符串内检索指定的值，或找到一个或多个正则表达式的匹配。和exec()有些相似：</p>
-<h5 id="u4F8B1_uFF1A_u975E_u5168_u5C40_u5339_u914D-1"><a href="#u4F8B1_uFF1A_u975E_u5168_u5C40_u5339_u914D-1" class="headerlink" title="例1：非全局匹配"></a>例1：非全局匹配</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var a = &#39;aaaa&#39;.match(/\w/);&#10;console.log(a); // [&#34;a&#34;, index: 0, input: &#34;aaaa&#34;]</span><br></pre></td></tr></table></figure>
+<h5 id="u4F8B1_uFF1A_u975E_u5168_u5C40_u5339_u914D-1"><a href="#u4F8B1_uFF1A_u975E_u5168_u5C40_u5339_u914D-1" class="headerlink" title="例1：非全局匹配"></a>例1：非全局匹配</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'aaaa'</span>.match(<span class="regexp">/\w/</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// ["a", index: 0, input: "aaaa"]</span></span><br></pre></td></tr></table></figure>
 <p>可以看到，和exec()一样，在数组中返回了index 和 input属性。</p>
 <p>或者是这样，match返回分组<br><img src="http://nos.netease.com/popo/a0c28355be533077e13238e69ec29fe9.png" alt="image"></p>
-<h5 id="u4F8B2_uFF1A_u5168_u5C40_u5339_u914D-1"><a href="#u4F8B2_uFF1A_u5168_u5C40_u5339_u914D-1" class="headerlink" title="例2：全局匹配"></a>例2：全局匹配</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var a = &#39;aaaa&#39;.match(/\w/g);&#10;console.log(a); // [&#34;a&#34;, &#34;a&#34;, &#34;a&#34;, &#34;a&#34;]</span><br></pre></td></tr></table></figure>
+<h5 id="u4F8B2_uFF1A_u5168_u5C40_u5339_u914D-1"><a href="#u4F8B2_uFF1A_u5168_u5C40_u5339_u914D-1" class="headerlink" title="例2：全局匹配"></a>例2：全局匹配</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'aaaa'</span>.match(<span class="regexp">/\w/g</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// ["a", "a", "a", "a"]</span></span><br></pre></td></tr></table></figure>
 <p>全局匹配就和exec方法有很大的不同了，他直接返回了所有符合匹配的子字符串的数组，另外，index和input属性也不在其中了，所以这个方法效率可能会高一些，但是如果你需要更多的信息，则用exec()吧</p>
 <p>match函数在满足如下条件能实现和exec一样的功能：</p>
 <pre><code>1. 正则表达式中含有分组（括号）
@@ -158,9 +152,9 @@
 </code></pre><h3 id="replace_28_29"><a href="#replace_28_29" class="headerlink" title="replace()"></a>replace()</h3><p>这也是一个比较灵活常用的方法，它用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。</p>
 <p>这个方法接收两个必须的参数：</p>
 <p><code>pattern</code>: 这个参数可以是字符串或是RegExp对象<br><code>replacement</code>： 替换匹配项的字符串或处理函数的返回值</p>
-<p>返回结果：<br>当未找到匹配项的时候，返回原始字符串。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#39;aaaa&#39;.replace(&#39;bbb&#39;, &#39;b&#39;)     //&#34;aaaa&#34;&#10;``` &#10;&#24403;`pattern`&#20026;&#23383;&#31526;&#20018;&#25110;&#32773;&#20026;&#38750;&#20840;&#23616;&#30340;RegExp&#23545;&#35937;&#30340;&#26102;&#20505;&#65292;&#21482;&#26367;&#25442;&#25214;&#21040;&#30340;&#31532;&#19968;&#39033;&#21305;&#37197;&#39033;&#12290;</span><br></pre></td></tr></table></figure></p>
-<p>‘aaaa’.replace(‘a’, ‘b’)     //“baaa”<br>‘aaaa’.replace(/\w/, ‘b’)    //“baaa”<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#24403;`pattern`&#20026;&#20840;&#23616;&#30340;RegExp&#23545;&#35937;&#30340;&#26102;&#20505;&#65292;&#26367;&#25442;&#27599;&#19968;&#39033;&#21305;&#37197;&#39033;&#12290;</span><br></pre></td></tr></table></figure></p>
-<p>‘aaaa’.replace(/\w/g, ‘b’)    //“bbbb”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`replacement`&#65306;&#20026;&#20989;&#25968;&#26102;&#65306;&#10;```javascript&#10;&#39;aaaa&#39;.replace(/\w/g, function() &#123;&#10;    return &#39;b&#39;;&#10;&#125;); // &#34;bbbb&#34;&#10;&#10;&#39;aaaa&#39;.replace(/\w/g, function(value) &#123;&#10;    return value.toUpperCase();&#10;&#125;); // &#34;AAAA&#34;</span><br></pre></td></tr></table></figure></p>
+<p>返回结果：<br>当未找到匹配项的时候，返回原始字符串。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aaaa'</span>.replace(<span class="string">'bbb'</span>, <span class="string">'b'</span>)     <span class="comment">//"aaaa"</span></span><br><span class="line"><span class="string">``</span><span class="string">` </span><br><span class="line">当`</span>pattern<span class="string">`为字符串或者为非全局的RegExp对象的时候，只替换找到的第一项匹配项。</span><br><span class="line">`</span><span class="string">``</span>javascript</span><br><span class="line"><span class="string">'aaaa'</span>.replace(<span class="string">'a'</span>, <span class="string">'b'</span>)     <span class="comment">//"baaa"</span></span><br><span class="line"><span class="string">'aaaa'</span>.replace(<span class="regexp">/\w/</span>, <span class="string">'b'</span>)    <span class="comment">//"baaa"</span></span><br></pre></td></tr></table></figure></p>
+<p>当<code>pattern</code>为全局的RegExp对象的时候，替换每一项匹配项。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aaaa'</span>.replace(<span class="regexp">/\w/g</span>, <span class="string">'b'</span>)    <span class="comment">//"bbbb"</span></span><br></pre></td></tr></table></figure></p>
+<p><code>replacement</code>：为函数时：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aaaa'</span>.replace(<span class="regexp">/\w/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'b'</span>;</span><br><span class="line">&#125;); <span class="comment">// "bbbb"</span></span><br><span class="line"></span><br><span class="line"><span class="string">'aaaa'</span>.replace(<span class="regexp">/\w/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value.toUpperCase();</span><br><span class="line">&#125;); <span class="comment">// "AAAA"</span></span><br></pre></td></tr></table></figure></p>
 <p>结论：</p>
 <p>函数的返回值将作为替换字符串</p>
 <p>函数的第一个参数的值是每一个匹配项,当然还有第二个参数，它的值是每个匹配项在原始字符串的中位置，从0开始</p>
@@ -212,7 +206,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://github.com/Zyingying/2016/12/06/replace/" data-title="正则test, exec, match, replace | 2yingying" data-tsina="2133445925" class="share clearfix">
+	  <div data-url="https://github.com/Zyingying/2016/11/26/replace/" data-title="正则test, exec, match, replace | 2yingying" data-tsina="2133445925" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -238,12 +232,19 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/12/06/replace/" data-title="正则test, exec, match, replace" data-url="https://github.com/Zyingying/2016/12/06/replace/"></div>
+	<div class="ds-thread" data-thread-key="2016/11/26/replace/" data-title="正则test, exec, match, replace" data-url="https://github.com/Zyingying/2016/11/26/replace/"></div>
 </section>
 
 
 </div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RegExp_u5BF9_u8C61_u65B9_u6CD5"><span class="toc-number">1.</span> <span class="toc-text">RegExp对象方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#test_28_29"><span class="toc-number">1.1.</span> <span class="toc-text">test()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exec_28_29"><span class="toc-number">1.2.</span> <span class="toc-text">exec()</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u6DF1_u5165_u4E86_u89E3_exec_28_29"><span class="toc-number">1.2.1.</span> <span class="toc-text">深入了解 exec()</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#u4F8B1_uFF1A_u975E_u5168_u5C40_u5339_u914D"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">例1：非全局匹配</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u4F8B2_uFF1A_u5168_u5C40_u5339_u914D"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">例2：全局匹配</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String_u5BF9_u8C61_u65B9_u6CD5"><span class="toc-number">2.</span> <span class="toc-text">String对象方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#match_28_29"><span class="toc-number">2.1.</span> <span class="toc-text">match()</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#u4F8B1_uFF1A_u975E_u5168_u5C40_u5339_u914D-1"><span class="toc-number">2.1.0.1.</span> <span class="toc-text">例1：非全局匹配</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u4F8B2_uFF1A_u5168_u5C40_u5339_u914D-1"><span class="toc-number">2.1.0.2.</span> <span class="toc-text">例2：全局匹配</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#replace_28_29"><span class="toc-number">2.2.</span> <span class="toc-text">replace()</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#u7279_u6B8A_u7684__24_3A"><span class="toc-number">2.2.0.1.</span> <span class="toc-text">特殊的 $:</span></a></li></ol></li></ol></li></ol></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -489,6 +490,55 @@ $(document).ready(function(){
 </script>
 
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
 
 
 <script type="text/javascript">
@@ -570,4 +620,4 @@ var _hmt = _hmt || [];
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
