@@ -261,71 +261,6 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/23/那些年我们懵逼的安全知识之HTTP-DNS劫持/" title="那些年我们懵逼的安全知识之HTTP/DNS劫持" itemprop="url">那些年我们懵逼的安全知识之HTTP/DNS劫持</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-08-23T13:54:56.000Z" itemprop="datePublished"> 发表于 2016-08-23</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>在详述这篇文章之前<br>我有两篇类似的关于安全的文章</p>
-<p><a href="http://zyingying.github.io/2016/03/29/%E9%82%A3%E4%BA%9B%E5%B9%B4%E6%88%91%E4%BB%AC%E6%87%B5%E9%80%BC%E7%9A%84%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E4%B9%8BXSS/" target="_blank" rel="external"> 1.那些年我们懵逼的安全知识——XSS </a><br><a href="http://zyingying.github.io/2016/03/30/%E9%82%A3%E4%BA%9B%E5%B9%B4%E6%88%91%E4%BB%AC%E6%87%B5%E9%80%BC%E7%9A%84%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E4%B9%8BCSRF/" target="_blank" rel="external"> 2.那些年我们懵逼的安全知识——CSRF</a><br><a href="/">3.</a></p>
-<h2 id="HTTP_u52AB_u6301"><a href="#HTTP_u52AB_u6301" class="headerlink" title="HTTP劫持"></a>HTTP劫持</h2><p>什么是HTTP劫持呢，大多数情况是运营商HTTP劫持，当我们使用HTTP请求请求一个网站页面的时候，网络运营商会在正常的数据流中插入精心设计的网络数据报文，让客户端（通常是浏览器）展示“错误”的数据，通常是一些弹窗，宣传性广告或者直接显示某网站的内容，大家应该都有遇到过。</p>
-<h2 id="DNS_u52AB_u6301"><a href="#DNS_u52AB_u6301" class="headerlink" title="DNS劫持"></a>DNS劫持</h2><p>DNS劫持就是通过劫持了DNS服务器，通过某些手段取得某域名的解析记录控制权，进而修改此域名的解析结果，导致对该域名的访问由原IP地址转入到修改后的指定IP，其结果就是对特定的网址不能访问或访问的是假网址，从而实现窃取资料或者破坏原有正常服务的目的。<br>简单说就是我们请求的是 <a href="http://www.a.com/index.html" target="_blank" rel="external">http://www.a.com/index.html</a> ，直接被重定向了 <a href="http://www.b.com/index.html" target="_blank" rel="external">http://www.b.com/index.html</a> ，本文不会过多讨论这种情况。</p>
-<h2 id="u9875_u9762_u88AB_u5D4C_u5165_iframe__u4E2D_u60C5_u51B5"><a href="#u9875_u9762_u88AB_u5D4C_u5165_iframe__u4E2D_u60C5_u51B5" class="headerlink" title="页面被嵌入 iframe 中情况"></a>页面被嵌入 iframe 中情况</h2><p>网络运营商为了尽可能地减少植入广告对原有网站页面的影响，通常会通过把原有网站页面放置到一个和原页面相同大小的 iframe 里面去，那么就可以通过这个 iframe 来隔离广告代码对原有页面的影响。<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/iframe%E5%86%85%E5%B5%8C%E7%BD%91%E9%A1%B5.jpg" alt="" style="display:block;margin:0 auto;width:600px;"><br>要是遇到这种情况的话，就需要我们把外层页面重定向我们自己的页面即可了</p>
-<p><code>window.self</code> 返回一个指向当前 window 对象的引用。</p>
-<p><code>window.top</code>返回窗口体系中的最顶层窗口的引用。</p>
-<p>对于非同源的域名，iframe 子页面无法通过 parent.location 或者 top.location 拿到具体的页面地址，但是可以写入 top.location ，也就是可以控制父页面的跳转。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(self! = top)&#123;</span><br><span class="line">    top.location = location.href;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/js/">js</a><a href="/tags/安全/">安全</a><a href="/tags/攻击/">攻击</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/08/23/那些年我们懵逼的安全知识之HTTP-DNS劫持/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/08/23/那些年我们懵逼的安全知识之HTTP-DNS劫持/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
       <a href="/2016/08/17/排序算法/" title="排序算法" itemprop="url">排序算法</a>
   </h1>
   <p class="article-author">By
@@ -497,6 +432,66 @@
 
 
 
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/06/05/Node最佳调试方法/" title="Node最佳调试方法" itemprop="url">Node最佳调试方法</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
+		
+  <p class="article-time">
+    <time datetime="2016-06-05T15:24:36.000Z" itemprop="datePublished"> 发表于 2016-06-05</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>最近有在学习node，总是有个东西困扰我，比如，我们在客户端看不到相应的js代码，所以这个时候我们要怎么调试呢？</p>
+<p>所以今天想简单介绍一下一个node的调试方法：<strong>node-inspector</strong></p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2016/06/05/Node最佳调试方法/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/js/">js</a><a href="/tags/node/">node</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/06/05/Node最佳调试方法/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/06/05/Node最佳调试方法/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -527,19 +522,11 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/js/" title="js">js<sup>13</sup></a></li>
+				<li><a href="/tags/js/" title="js">js<sup>12</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/css/" title="css">css<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/安全/" title="安全">安全<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/攻击/" title="攻击">攻击<sup>3</sup></a></li>
 			
 		
 			
@@ -548,6 +535,14 @@
 		
 			
 				<li><a href="/tags/性能优化/" title="性能优化">性能优化<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/安全/" title="安全">安全<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/攻击/" title="攻击">攻击<sup>2</sup></a></li>
 			
 		
 			
