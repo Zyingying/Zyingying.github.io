@@ -1,22 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>CSS3开启硬件加速及利弊 - 盈盈的主页</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
- <!DOCTYPE HTML>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  
-    <title>CSS3开启硬件加速及利弊 | 2yingying</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="盈盈">
-    
 
-    
+
     <meta name="description" content="最近了解了一下用css3开启硬件加速的这个功能，不得不感叹浏览器这些东西太神奇了，要不是师兄提起，我根本就不知道居然有这种东西。所以还是要提高一下自己的信息来源渠道的。">
+<meta name="keywords" content="css3,硬件加速">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS3开启硬件加速及利弊">
 <meta property="og:url" content="https://github.com/Zyingying/2016/04/16/CSS3开启硬件加速及利弊/index.html">
-<meta property="og:site_name" content="2yingying">
+<meta property="og:site_name" content="盈盈的主页">
 <meta property="og:description" content="最近了解了一下用css3开启硬件加速的这个功能，不得不感叹浏览器这些东西太神奇了，要不是师兄提起，我根本就不知道居然有这种东西。所以还是要提高一下自己的信息来源渠道的。">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://images2015.cnblogs.com/blog/763684/201511/763684-20151118171747702-1522618681.png">
 <meta property="og:image" content="http://images2015.cnblogs.com/blog/763684/201511/763684-20151118172506936-1589195563.png">
 <meta property="og:image" content="http://images2015.cnblogs.com/blog/763684/201511/763684-20151118172741968-1652661778.png">
@@ -30,102 +28,158 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS3开启硬件加速及利弊">
 <meta name="twitter:description" content="最近了解了一下用css3开启硬件加速的这个功能，不得不感叹浏览器这些东西太神奇了，要不是师兄提起，我根本就不知道居然有这种东西。所以还是要提高一下自己的信息来源渠道的。">
+<meta name="twitter:image" content="http://images2015.cnblogs.com/blog/763684/201511/763684-20151118171747702-1522618681.png">
+
+
+
+
+
+<link rel="icon" href="/images/smile.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
 
     
-    <link rel="alternative" href="/atom.xml" title="2yingying" type="application/atom+xml">
     
     
-    <link rel="icon" href="/img/smile.ico">
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
     
     
-    <link rel="apple-touch-icon" href="/img/pacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
 </head>
-
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.svg" alt="2yingying" title="2yingying"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="2yingying">2yingying</a></h1>
-				<h2 class="blog-motto">你可长点心吧！     点心？什么点心？</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">主页 | Home</a></li>
-					
-						<li><a href="/archives">归档 | Archives</a></li>
-					
-						<li><a href="/about">简介 | About</a></li>
-					
-					<li>
- 					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:github.com/Zyingying">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="CSS3开启硬件加速及利弊" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
     
-      <a href="/2016/04/16/CSS3开启硬件加速及利弊/" title="CSS3开启硬件加速及利弊" itemprop="url">CSS3开启硬件加速及利弊</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-04-16T07:23:59.000Z" itemprop="datePublished"> 发表于 2016-04-16</time>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
     
-  </p>
-</header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E3E_u4E2A_u4F8B_u5B50_uFF1A"><span class="toc-number">1.</span> <span class="toc-text">举个例子：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u54EA_u4E9BCSS_u89C4_u5219"><span class="toc-number">2.</span> <span class="toc-text">哪些CSS规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS3_u786C_u4EF6_u52A0_u901F_u4E5F_u6709_u5751_uFF01_uFF01_uFF01"><span class="toc-number">3.</span> <span class="toc-text">CSS3硬件加速也有坑！！！</span></a></li></ol>
-		
-		</div>
-		
-		<p>最近了解了一下用css3开启硬件加速的这个功能，不得不感叹浏览器这些东西太神奇了，要不是师兄提起，我根本就不知道居然有这种东西。所以还是要提高一下自己的信息来源渠道的。<br><a id="more"></a></p>
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-04-16T07:23:59.000Z">2016-04-16</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    16 分钟 读完 (大约 2335 个字)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                CSS3开启硬件加速及利弊
+            
+        </h1>
+        <div class="content">
+            <p>最近了解了一下用css3开启硬件加速的这个功能，不得不感叹浏览器这些东西太神奇了，要不是师兄提起，我根本就不知道居然有这种东西。所以还是要提高一下自己的信息来源渠道的。<br><a id="more"></a></p>
 <blockquote>
 <p>又把自己原来的博客一篇文章搬了过来zyy</p>
 </blockquote>
 <p>　　巴拉巴拉了一下，下面我们正式来看下css3是如何开启硬件加速的：</p>
 <p>　　其实，所谓的加速，就是浏览器中用css开启硬件加速，使<strong>GPU</strong> (Graphics Processing Unit) 发挥功能的一系列活动。</p>
 <p>　　（写在前面重点之中的重点，建议在动画或者是使用比较多变化的网页使用这个技巧，如果是一般普通网页，建议不要使用，或者是慎用。这个我后面会提到原因）</p>
-<h3 id="u4E3E_u4E2A_u4F8B_u5B50_uFF1A"><a href="#u4E3E_u4E2A_u4F8B_u5B50_uFF1A" class="headerlink" title="举个例子："></a>举个例子：</h3><p>　　CSS的 <code>animations</code>, <code>transforms</code> 以及 <code>transitions</code> 不会自动开启<code>GPU</code>加速，而是由浏览器的缓慢的软件渲染引擎来执行。为了性能，这个时候或许你就需要开启硬件加速功能。那我们怎样才可以切换到<code>GPU</code>模式呢，很多浏览器提供了某些触发的CSS规则。</p>
+<h3 id="举个例子："><a href="#举个例子：" class="headerlink" title="举个例子："></a>举个例子：</h3><p>　　CSS的 <code>animations</code>, <code>transforms</code> 以及 <code>transitions</code> 不会自动开启<code>GPU</code>加速，而是由浏览器的缓慢的软件渲染引擎来执行。为了性能，这个时候或许你就需要开启硬件加速功能。那我们怎样才可以切换到<code>GPU</code>模式呢，很多浏览器提供了某些触发的CSS规则。</p>
 <p><code>Chrome</code>, <code>FireFox</code>, <code>Safari</code>, IE9+和最新版本的Opera都支持硬件加速，当它们检测到页面中某个<code>DOM</code>元素应用了某些CSS规则时就会开启，最显著的特征的元素的3D变换。</p>
-<h3 id="u54EA_u4E9BCSS_u89C4_u5219"><a href="#u54EA_u4E9BCSS_u89C4_u5219" class="headerlink" title="哪些CSS规则"></a>哪些CSS规则</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.example</span><span class="rules">&#123;</span><br><span class="line">   <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"> <span class="function">translate3d</span>(<span class="number">250px</span>,<span class="number">250px</span>,<span class="number">250px</span>)</span><br><span class="line">   <span class="function">rotate3d</span>(<span class="number">250px</span>,<span class="number">250px</span>,<span class="number">250px</span>,-<span class="number">120deg</span>)</span><br><span class="line">   <span class="function">scale3d</span>(<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>)</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="哪些CSS规则"><a href="#哪些CSS规则" class="headerlink" title="哪些CSS规则"></a>哪些CSS规则</h3><figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.example</span>&#123;</span><br><span class="line">   <span class="hljs-attribute">-webkit-transform</span>: <span class="hljs-built_in">translate3d</span>(250px,250px,250px)</span><br><span class="line">   <span class="hljs-built_in">rotate3d</span>(250px,250px,250px,-120deg)</span><br><span class="line">   <span class="hljs-built_in">scale3d</span>(0.5, 0.5, 0.5);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果我们并没有用到这些功能呢？<br>没有关系啊，我们可以设置一个<code>空</code>值，也就是让其在页面的效果是—— 无效果的，这样就欺骗了浏览器，让他开启了硬件加速。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.example</span> <span class="rules">&#123;</span><br><span class="line">   <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"> <span class="function">translateZ</span>(<span class="number">0</span>)</span></span>;</span><br><span class="line">   <span class="rule"><span class="attribute">-moz-transform</span>:<span class="value"> <span class="function">translateZ</span>(<span class="number">0</span>)</span></span>;</span><br><span class="line">   <span class="rule"><span class="attribute">-ms-transform</span>:<span class="value"> <span class="function">translateZ</span>(<span class="number">0</span>)</span></span>;</span><br><span class="line">   <span class="rule"><span class="attribute">-o-transform</span>:<span class="value"> <span class="function">translateZ</span>(<span class="number">0</span>)</span></span>;</span><br><span class="line">   <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">translateZ</span>(<span class="number">0</span>)</span></span>;</span><br><span class="line">   <span class="comment">/* Other transform properties here */</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>这个时候或许你又可能会发现有点问题，页面可能会出现闪烁的效果，（可能是浏览器自带的bug？有待研究，如果有知道的朋友欢迎科普）那么我们可以用一下方式来修复：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.example</span> <span class="rules">&#123;</span><br><span class="line">   <span class="rule"><span class="attribute">-webkit-backface-visibility</span>:<span class="value"> hidden</span></span>;</span><br><span class="line">   <span class="rule"><span class="attribute">-moz-backface-visibility</span>:<span class="value"> hidden</span></span>;</span><br><span class="line">   <span class="rule"><span class="attribute">-ms-backface-visibility</span>:<span class="value"> hidden</span></span>;</span><br><span class="line">   <span class="rule"><span class="attribute">backface-visibility</span>:<span class="value"> hidden</span></span>;</span><br><span class="line"> </span><br><span class="line">   <span class="rule"><span class="attribute">-webkit-perspective</span>:<span class="value"> <span class="number">1000</span></span></span>;</span><br><span class="line">   <span class="rule"><span class="attribute">-moz-perspective</span>:<span class="value"> <span class="number">1000</span></span></span>;</span><br><span class="line">   <span class="rule"><span class="attribute">-ms-perspective</span>:<span class="value"> <span class="number">1000</span></span></span>;</span><br><span class="line">   <span class="rule"><span class="attribute">perspective</span>:<span class="value"> <span class="number">1000</span></span></span>;</span><br><span class="line">   <span class="comment">/* Other transform properties here */</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.example</span> &#123;</span><br><span class="line">   <span class="hljs-attribute">-webkit-transform</span>: <span class="hljs-built_in">translateZ</span>(0);</span><br><span class="line">   <span class="hljs-attribute">-moz-transform</span>: <span class="hljs-built_in">translateZ</span>(0);</span><br><span class="line">   <span class="hljs-attribute">-ms-transform</span>: <span class="hljs-built_in">translateZ</span>(0);</span><br><span class="line">   <span class="hljs-attribute">-o-transform</span>: <span class="hljs-built_in">translateZ</span>(0);</span><br><span class="line">   <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateZ</span>(0);</span><br><span class="line">   <span class="hljs-comment">/* Other transform properties here */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个时候或许你又可能会发现有点问题，页面可能会出现闪烁的效果，（可能是浏览器自带的bug？有待研究，如果有知道的朋友欢迎科普）那么我们可以用一下方式来修复：<br><figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.example</span> &#123;</span><br><span class="line">   <span class="hljs-attribute">-webkit-backface-visibility</span>: hidden;</span><br><span class="line">   <span class="hljs-attribute">-moz-backface-visibility</span>: hidden;</span><br><span class="line">   <span class="hljs-attribute">-ms-backface-visibility</span>: hidden;</span><br><span class="line">   <span class="hljs-attribute">backface-visibility</span>: hidden;</span><br><span class="line"> </span><br><span class="line">   <span class="hljs-attribute">-webkit-perspective</span>: <span class="hljs-number">1000</span>;</span><br><span class="line">   <span class="hljs-attribute">-moz-perspective</span>: <span class="hljs-number">1000</span>;</span><br><span class="line">   <span class="hljs-attribute">-ms-perspective</span>: <span class="hljs-number">1000</span>;</span><br><span class="line">   <span class="hljs-attribute">perspective</span>: <span class="hljs-number">1000</span>;</span><br><span class="line">   <span class="hljs-comment">/* Other transform properties here */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p> 如果是webkit内核，还有一种方式可以解决：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.example</span> <span class="rules">&#123;</span><br><span class="line">   <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"> <span class="function">translate3d</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">   <span class="rule"><span class="attribute">-moz-transform</span>:<span class="value"> <span class="function">translate3d</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">   <span class="rule"><span class="attribute">-ms-transform</span>:<span class="value"> <span class="function">translate3d</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">   <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">translate3d</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">  <span class="comment">/* Other transform properties here */</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.example</span> &#123;</span><br><span class="line">   <span class="hljs-attribute">-webkit-transform</span>: <span class="hljs-built_in">translate3d</span>(0, 0, 0);</span><br><span class="line">   <span class="hljs-attribute">-moz-transform</span>: <span class="hljs-built_in">translate3d</span>(0, 0, 0);</span><br><span class="line">   <span class="hljs-attribute">-ms-transform</span>: <span class="hljs-built_in">translate3d</span>(0, 0, 0);</span><br><span class="line">   <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate3d</span>(0, 0, 0);</span><br><span class="line">  <span class="hljs-comment">/* Other transform properties here */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>GPU固然加速了网页，但是同时它增加了内存的使用，实际上是可能会导致严重的性能问题，如果是移动设备，它会减少移动端设备的电池寿命。</p>
-<h3 id="CSS3_u786C_u4EF6_u52A0_u901F_u4E5F_u6709_u5751_uFF01_uFF01_uFF01"><a href="#CSS3_u786C_u4EF6_u52A0_u901F_u4E5F_u6709_u5751_uFF01_uFF01_uFF01" class="headerlink" title="CSS3硬件加速也有坑！！！"></a>CSS3硬件加速也有坑！！！</h3><p>在Webkit内核的浏览器中，硬件加速会把需要渲染的元素放到特定的『Composited Layer』中，表示放到了一个新的『复合层（composited layer）』中渲染。</p>
+<h3 id="CSS3硬件加速也有坑！！！"><a href="#CSS3硬件加速也有坑！！！" class="headerlink" title="CSS3硬件加速也有坑！！！"></a>CSS3硬件加速也有坑！！！</h3><p>在Webkit内核的浏览器中，硬件加速会把需要渲染的元素放到特定的『Composited Layer』中，表示放到了一个新的『复合层（composited layer）』中渲染。</p>
 <p>那我们怎么知道如何才能知道是哪部分被放到了复合层呢？</p>
 <p>在chrome的控制台可以这样开启：<br><img src="http://images2015.cnblogs.com/blog/763684/201511/763684-20151118171747702-1522618681.png" alt=""></p>
 <p>打开了，那么我们要怎么判断呢？</p>
@@ -133,7 +187,7 @@
 <p>这个时候他是这样子的，然后选择一个动画<br><img src="http://images2015.cnblogs.com/blog/763684/201511/763684-20151118172741968-1652661778.png" alt=""></p>
 <p>这个时候，Animate.css标题出现了不一样颜色的框框！！！！里面分两种颜色：蓝色和黄色</p>
 <p>蓝色的细线是浏览器渲染时候的『瓦片』，浏览器绘制页面的时候只会绘制可视区域一定范围内的瓦片，以节省性能开销，而黄色的边框框起来的，就代表了这个元素被放到特殊的复合层中渲染，跟主文档不在一个层中</p>
-<p>下面我引用了一个大神的文章：出处  <a href="http://www.th7.cn/web/html-css/201509/121970.shtml" target="_blank" rel="external">戳这里</a></p>
+<p>下面我引用了一个大神的文章：出处  <a href="http://www.th7.cn/web/html-css/201509/121970.shtml" target="_blank" rel="noopener">戳这里</a></p>
 <p>（这个大神看自己的项目，发现基本所有都用了3D加速，）<br><img src="http://www.th7.cn/d/file/p/2015/09/18/5d632c5e62d61400823695906553db35.jpg" alt="" width="200"></p>
 <blockquote>
 <p>简化代码，很快就发现，原来罪魁祸首在这里：</p>
@@ -141,13 +195,29 @@
 <p><img src="http://www.th7.cn/d/file/p/2015/09/18/0137ff1c30e649e1c1790e2e587df2e9.jpg" alt="" width="300"></p>
 <blockquote>
 <p>头部的那个轮播动画元素的存在居然会导致下面所有相对和绝对定位的元素都被放到复合层中<br>查了一些 资料 ：<br>层创建标准</p>
+</blockquote>
+<blockquote>
 <p>什么情况下能使元素获得自己的层？虽然 Chrome 的启发式方法(heuristic)随着时间在不断发展进步，但是从目前来说，满足以下任意情况便会创建层：</p>
+</blockquote>
+<blockquote>
 <p>3D 或透视变换(perspective transform) CSS 属性 使用加速视频解码的 元素 拥有 3D (WebGL) 上下文或加速的 2D 上下文的 元素 混合插件(如 Flash) 对自己的 opacity 做 CSS 动画或使用一个动画 webkit 变换的元素 拥有加速 CSS 过滤器的元素 元素有一个包含复合层的后代节点(换句话说，就是一个元素拥有一个子元素，该子元素在自己的层里) 元素有一个 z-index 较低且包含一个复合层的兄弟元素(换句话说就是该元素在复合层上面渲染)</p>
+</blockquote>
+<blockquote>
 <p>主要是最后一条，我觉得它的中文翻译不是很准确，原文其实是：</p>
+</blockquote>
+<blockquote>
 <p>Element has a sibling with a lower z-index which has a compositing layer (in other words the it’s rendered on top of a composited layer)</p>
+</blockquote>
+<blockquote>
 <p>这句话的意思是，如果有一个元素，它的兄弟元素在复合层中渲染，而这个兄弟元素的z-index比较小，那么这个元素（不管是不是应用了硬件加速样式）也会被放到复合层中。</p>
+</blockquote>
+<blockquote>
 <p>最可怕的是，浏览器有可能给复合层之后的所有相对或绝对定位的元素都创建一个复合层来渲染，于是就有了上面我厂项目截图的那种效果。我们之前一直追查为什么这个页面多了一个list之后在安卓下滚动会变得非常卡，最终被确定就是这个问题了！</p>
+</blockquote>
+<blockquote>
 <p>于是乎我写了一个页面，让大家看看这东西到底有多大威力：<br>亲测差距非常大，建议手机上打开</p>
+</blockquote>
+<blockquote>
 <p>我在上面这个页面中放置了一个h1标题，应用了translate3d动画，使得它被放到composited layer中渲染，然后在这个元素后面创建了2000个list，每个list中都有一个图片，一个标题和一个日期显示，其中图片和日期显示是绝对定位，父容器li是相对定位，然后，各位可以按照前述的说明打开chrome的『show composited layer borders』选项看看这个页面的内容复合层分布：</p>
 </blockquote>
 <p><img src="http://www.th7.cn/d/file/p/2015/09/18/ea4d3ec2b183bfa361bb698cd730f077.jpg" alt="" width="200"></p>
@@ -157,6 +227,8 @@
 <p><img src="http://www.th7.cn/d/file/p/2015/09/18/33f2c1c4663f45b71b004ade62a9c4a8.jpg" alt=""></p>
 <blockquote>
 <p>一次『Composite Layers』的计算居然要 96.206 ms ！！这还是在我的mac系统上哦，手机上真的会卡出翔。</p>
+</blockquote>
+<blockquote>
 <p>我在页面上放置了一个开关『为动画元素设置z-index』，这个checkbook点击之后，会用js给那个动画的h1元素加 position:relative 和 z-index: 1 ，这种做法的原理是人为提升动画元素的z-index，让浏览器知道这个元素的层排序，就不会很傻逼的把其他z-index比它高的元素也弄到复合层中了，看看这个效果：</p>
 </blockquote>
 <p><img src="http://www.th7.cn/d/file/p/2015/09/18/33b1fa9178378131217692b70ca2c5cd.jpg" alt="" width="600"></p>
@@ -166,449 +238,1354 @@
 <p><img src="http://www.th7.cn/d/file/p/2015/09/18/7abb8715b770f5f1ee2f1da52c249f6c.jpg" alt=""></p>
 <blockquote>
 <p>完全恢复正常了！</p>
+</blockquote>
+<blockquote>
 <p>大家可以用支持『硬件加速』的『安卓』手机浏览器测试上述页面，给动画元素加z-index前后的性能差距非常明显。</p>
+</blockquote>
+<blockquote>
 <p>不过也不是所有浏览器都有这个问题，我在mac上的Safari、firefox都没有明显差异，安卓手机上的QQ浏览器好像也正常，猎豹、UC、欧朋、webview等浏览器差距明显。</p>
 </blockquote>
 <p>好了最后总结一下：</p>
 <p>使用3D硬件加速提升动画性能时，最好给元素增加一个z-index属性，人为干扰复合层的排序，可以有效减少chrome创建不必要的复合层，提升渲染性能，移动端优化效果尤为明显。</p>
 <p>大家可以现在就排查一下这类问题，尤其是用了轮播、动画loading的页面，出现这问题很常见。另外推荐在追查性能问题的时候打开『show composited layer borders』选项，如果页面有很多黄色的框肯定是不对的。</p>
-  
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
 
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/css3/">css3</a><a href="/tags/硬件加速/">硬件加速</a>
-  </div>
-
-</div>
-
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="https://github.com/Zyingying/2016/04/16/CSS3开启硬件加速及利弊/" data-title="CSS3开启硬件加速及利弊 | 2yingying" data-tsina="2133445925" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
-</footer>
-
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2016/04/25/css布局之宽度问题/" title="css布局之宽度问题">
-  <strong>上一篇：</strong><br/>
-  <span>
-  css布局之宽度问题</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2016/04/08/移动端优化的的一些小事/"  title="移动端优化的小事情（一）">
- <strong>下一篇：</strong><br/> 
- <span>移动端优化的小事情（一）
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-<section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/04/16/CSS3开启硬件加速及利弊/" data-title="CSS3开启硬件加速及利弊" data-url="https://github.com/Zyingying/2016/04/16/CSS3开启硬件加速及利弊/"></div>
-</section>
-
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E3E_u4E2A_u4F8B_u5B50_uFF1A"><span class="toc-number">1.</span> <span class="toc-text">举个例子：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u54EA_u4E9BCSS_u89C4_u5219"><span class="toc-number">2.</span> <span class="toc-text">哪些CSS规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS3_u786C_u4EF6_u52A0_u901F_u4E5F_u6709_u5751_uFF01_uFF01_uFF01"><span class="toc-number">3.</span> <span class="toc-text">CSS3硬件加速也有坑！！！</span></a></li></ol>
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  
-<div class="github-card">
-<p class="asidetitle">Github 名片</p>
-<div class="github-card" data-github="Zyingying" data-width="220" data-height="119" data-theme="medium">
-<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
-</div>
-  </div>
-
-
-
-  
-
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/js/" title="js">js<sup>12</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/css/" title="css">css<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/模块化/" title="模块化">模块化<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/性能优化/" title="性能优化">性能优化<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/安全/" title="安全">安全<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/攻击/" title="攻击">攻击<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/移动端/" title="移动端">移动端<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/渲染/" title="渲染">渲染<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/硬件加速/" title="硬件加速">硬件加速<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/闭包/" title="闭包">闭包<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/正则/" title="正则">正则<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/node/" title="node">node<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Grunt/" title="Grunt">Grunt<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/css3/" title="css3">css3<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/兼容/" title="兼容">兼容<sup>1</sup></a></li>
-			
-		
-		</ul>
-</div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
-    <ul>
+        </div>
         
-    </ul>
-</div>
-
-  
-
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-  <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
-    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2133445925&verifier=b3593ceb&dpc=1"></iframe>
-</div>
-
-
-</aside>
-</div>
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/css3/">css3</a>, <a class="has-link-grey -link" href="/tags/硬件加速/">硬件加速</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
     </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello, I&#39;m zyy.  This is my blog on GitHub. <br/>
-			I wish you like it</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		<a href="http://weibo.com/2133445925" target="_blank" class="icon-weibo" title="微博"></a>
-		
-		
-		<a href="https://github.com/Zyingying" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		
-		
-		
-		
-		<a href="http://www.zhihu.com/people/2hang-ying-ying-" target="_blank" class="icon-zhihu" title="知乎"></a>
-		
-		
-		
-		<a href="mailto:zyingying.zyy@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
-
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
-		
-		<a href="/about" target="_blank" title="盈盈">盈盈</a>
-		
-		&nbsp&nbsp&nbsp&nbsp本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次, 本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次
-		</p>
 </div>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
         
-    }
-  });
-});
-</script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
-
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-
-  $('.hoverqrcode').hide();
-
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2016/04/25/css布局之宽度问题/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">css布局之宽度问题</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2016/04/08/移动端优化的的一些小事/">
+                <span class="level-item">移动端优化的小事情（一）</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"zyingying"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script> 
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
-</script>
-
-
-
-<!-- Analytics Begin -->
-
-
-
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
+	var gitment = new Gitment({
+		id: '2016/04/16/CSS3开启硬件加速及利弊/',
+		owner: 'Vinny',
+		repo: 'Zyingying',
+		oauth: {
+			client_id: '36d8246113e8c681c4da',
+			client_secret: 'f52d837ac5dd58999ba01fd8d399fb85f78a8d79',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <img class="image is-128x128 has-mb-6" src="/images/author.jpg" alt="Vinny Chuang | 张盈盈">
+                    
+                    <p class="is-size-4 is-block">
+                        Vinny Chuang | 张盈盈
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Web Developer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Canton,China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        25
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        18
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/Zyingying">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/Zyingying">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="http://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="http://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="http://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">https://hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/Zyingying" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">yingying</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">https://github.com/Zyingying</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 10px;">css3</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/兼容/" style="font-size: 10px;">兼容</a> <a href="/tags/安全/" style="font-size: 12.5px;">安全</a> <a href="/tags/性能优化/" style="font-size: 15px;">性能优化</a> <a href="/tags/攻击/" style="font-size: 12.5px;">攻击</a> <a href="/tags/模块化/" style="font-size: 15px;">模块化</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/渲染/" style="font-size: 10px;">渲染</a> <a href="/tags/硬件加速/" style="font-size: 10px;">硬件加速</a> <a href="/tags/移动端/" style="font-size: 12.5px;">移动端</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2018/04/16/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/hello.jpg" alt="Hello 2018">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-04-16T07:23:59.000Z">2018-04-16</time></div>
+                    <a href="/2018/04/16/hello-world/" class="has-link-black-ter is-size-6">Hello 2018</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/11/26/replace/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="正则test, exec, match, replace">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-11-26T15:13:33.000Z">2016-11-26</time></div>
+                    <a href="/2016/11/26/replace/" class="has-link-black-ter is-size-6">正则test, exec, match, replace</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/10/26/抛出自定义错误/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="抛出自定义错误">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-10-26T15:07:42.000Z">2016-10-26</time></div>
+                    <a href="/2016/10/26/抛出自定义错误/" class="has-link-black-ter is-size-6">抛出自定义错误</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/09/18/移动网络下的页面调试/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="移动网络下的页面调试">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-09-18T02:54:22.000Z">2016-09-18</time></div>
+                    <a href="/2016/09/18/移动网络下的页面调试/" class="has-link-black-ter is-size-6">移动网络下的页面调试</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/08/17/排序算法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="排序算法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-08-17T15:25:26.000Z">2016-08-17</time></div>
+                    <a href="/2016/08/17/排序算法/" class="has-link-black-ter is-size-6">排序算法</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <ul class="menu-list">
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Grunt/">
+                        <span class="level-start">
+                            <span class="level-item">Grunt</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css/">
+                        <span class="level-start">
+                            <span class="level-item">css</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">4</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css3/">
+                        <span class="level-start">
+                            <span class="level-item">css3</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/git/">
+                        <span class="level-start">
+                            <span class="level-item">git</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/js/">
+                        <span class="level-start">
+                            <span class="level-item">js</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">12</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/node/">
+                        <span class="level-start">
+                            <span class="level-item">node</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/兼容/">
+                        <span class="level-start">
+                            <span class="level-item">兼容</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/安全/">
+                        <span class="level-start">
+                            <span class="level-item">安全</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/性能优化/">
+                        <span class="level-start">
+                            <span class="level-item">性能优化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/攻击/">
+                        <span class="level-start">
+                            <span class="level-item">攻击</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/模块化/">
+                        <span class="level-start">
+                            <span class="level-item">模块化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/正则/">
+                        <span class="level-start">
+                            <span class="level-item">正则</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/渲染/">
+                        <span class="level-start">
+                            <span class="level-item">渲染</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/硬件加速/">
+                        <span class="level-start">
+                            <span class="level-item">硬件加速</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/移动端/">
+                        <span class="level-start">
+                            <span class="level-item">移动端</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/算法/">
+                        <span class="level-start">
+                            <span class="level-item">算法</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/闭包/">
+                        <span class="level-start">
+                            <span class="level-item">闭包</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/随笔/">
+                        <span class="level-start">
+                            <span class="level-item">随笔</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2018/04/16/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/hello.jpg" alt="Hello 2018">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-04-16T07:23:59.000Z">2018-04-16</time></div>
+                    <a href="/2018/04/16/hello-world/" class="has-link-black-ter is-size-6">Hello 2018</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/11/26/replace/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="正则test, exec, match, replace">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-11-26T15:13:33.000Z">2016-11-26</time></div>
+                    <a href="/2016/11/26/replace/" class="has-link-black-ter is-size-6">正则test, exec, match, replace</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/10/26/抛出自定义错误/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="抛出自定义错误">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-10-26T15:07:42.000Z">2016-10-26</time></div>
+                    <a href="/2016/10/26/抛出自定义错误/" class="has-link-black-ter is-size-6">抛出自定义错误</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/09/18/移动网络下的页面调试/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="移动网络下的页面调试">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-09-18T02:54:22.000Z">2016-09-18</time></div>
+                    <a href="/2016/09/18/移动网络下的页面调试/" class="has-link-black-ter is-size-6">移动网络下的页面调试</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/08/17/排序算法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="排序算法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-08-17T15:25:26.000Z">2016-08-17</time></div>
+                    <a href="/2016/08/17/排序算法/" class="has-link-black-ter is-size-6">排序算法</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <ul class="menu-list">
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Grunt/">
+                        <span class="level-start">
+                            <span class="level-item">Grunt</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css/">
+                        <span class="level-start">
+                            <span class="level-item">css</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">4</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css3/">
+                        <span class="level-start">
+                            <span class="level-item">css3</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/git/">
+                        <span class="level-start">
+                            <span class="level-item">git</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/js/">
+                        <span class="level-start">
+                            <span class="level-item">js</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">12</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/node/">
+                        <span class="level-start">
+                            <span class="level-item">node</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/兼容/">
+                        <span class="level-start">
+                            <span class="level-item">兼容</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/安全/">
+                        <span class="level-start">
+                            <span class="level-item">安全</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/性能优化/">
+                        <span class="level-start">
+                            <span class="level-item">性能优化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/攻击/">
+                        <span class="level-start">
+                            <span class="level-item">攻击</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/模块化/">
+                        <span class="level-start">
+                            <span class="level-item">模块化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/正则/">
+                        <span class="level-start">
+                            <span class="level-item">正则</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/渲染/">
+                        <span class="level-start">
+                            <span class="level-item">渲染</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/硬件加速/">
+                        <span class="level-start">
+                            <span class="level-item">硬件加速</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/移动端/">
+                        <span class="level-start">
+                            <span class="level-item">移动端</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/算法/">
+                        <span class="level-start">
+                            <span class="level-item">算法</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/闭包/">
+                        <span class="level-start">
+                            <span class="level-item">闭包</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/随笔/">
+                        <span class="level-start">
+                            <span class="level-item">随笔</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="CSS3开启硬件加速及利弊" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2018 Vinny Chuang&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus">Icarus</a>
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
 </script>
 
 
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {matchFontHeight: false},
+        SVG: {matchFontHeight: false},
+        CommonHTML: {matchFontHeight: false}
+    });
+});
+</script>
 
-<!-- Analytics End -->
+    
+    
 
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
 
 
-<!-- MathJax End -->
+    
+    
 
-<!-- Tiny_search Begin -->
+    
+    
+    
+    
 
-<!-- Tiny_search End -->
+    
+    
+    
 
-  </body>
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
 </html>

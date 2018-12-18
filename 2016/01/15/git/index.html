@@ -1,553 +1,1508 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>git命令归纳 - 盈盈的主页</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
- <!DOCTYPE HTML>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  
-    <title>git命令归纳 | 2yingying</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="盈盈">
-    
 
-    
+
     <meta name="description" content="最近在学习git,入门的我TAT觉得命令还是比较多的，为了避免自己忘记，所以把这些命令归纳一下供以后使用。">
+<meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git命令归纳">
 <meta property="og:url" content="https://github.com/Zyingying/2016/01/15/git/index.html">
-<meta property="og:site_name" content="2yingying">
+<meta property="og:site_name" content="盈盈的主页">
 <meta property="og:description" content="最近在学习git,入门的我TAT觉得命令还是比较多的，为了避免自己忘记，所以把这些命令归纳一下供以后使用。">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/Git%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8.png">
 <meta property="og:updated_time" content="2016-01-18T01:55:21.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git命令归纳">
 <meta name="twitter:description" content="最近在学习git,入门的我TAT觉得命令还是比较多的，为了避免自己忘记，所以把这些命令归纳一下供以后使用。">
+<meta name="twitter:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/Git%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8.png">
+
+
+
+
+
+<link rel="icon" href="/images/smile.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
 
     
-    <link rel="alternative" href="/atom.xml" title="2yingying" type="application/atom+xml">
     
     
-    <link rel="icon" href="/img/smile.ico">
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
     
     
-    <link rel="apple-touch-icon" href="/img/pacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
 </head>
-
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.svg" alt="2yingying" title="2yingying"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="2yingying">2yingying</a></h1>
-				<h2 class="blog-motto">你可长点心吧！     点心？什么点心？</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">主页 | Home</a></li>
-					
-						<li><a href="/archives">归档 | Archives</a></li>
-					
-						<li><a href="/about">简介 | About</a></li>
-					
-					<li>
- 					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:github.com/Zyingying">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/01/15/git/" title="git命令归纳" itemprop="url">git命令归纳</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-01-15T08:43:30.000Z" itemprop="datePublished"> 发表于 2016-01-15</time>
-    
-  </p>
-</header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git_u547D_u4EE4_u5927_u5168"><span class="toc-number">1.</span> <span class="toc-text">Git命令大全</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1_29__u8FDC_u7A0B_u4ED3_u5E93_u76F8_u5173_u547D_u4EE4"><span class="toc-number">1.0.1.</span> <span class="toc-text">1) 远程仓库相关命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2_uFF09_u5206_u652F_28branch_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4"><span class="toc-number">1.0.2.</span> <span class="toc-text">2）分支(branch)操作相关命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3_uFF09_u7248_u672C_28tag_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4"><span class="toc-number">1.0.3.</span> <span class="toc-text">3）版本(tag)操作相关命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4_29__u5B50_u6A21_u5757_28submodule_29_u76F8_u5173_u64CD_u4F5C_u547D_u4EE4"><span class="toc-number">1.0.4.</span> <span class="toc-text">4) 子模块(submodule)相关操作命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git__u5E38_u7528_u547D_u4EE4"><span class="toc-number">2.</span> <span class="toc-text">Git 常用命令</span></a></li></ol>
-		
-		</div>
-		
-		<p> 最近在学习git,入门的我TAT觉得命令还是比较多的，为了避免自己忘记，所以把这些命令归纳一下供以后使用。</p>
-<a id="more"></a>
-<h1 id="Git_u547D_u4EE4_u5927_u5168"><a href="#Git_u547D_u4EE4_u5927_u5168" class="headerlink" title="Git命令大全"></a>Git命令大全</h1><hr>
-<h3 id="1_29__u8FDC_u7A0B_u4ED3_u5E93_u76F8_u5173_u547D_u4EE4"><a href="#1_29__u8FDC_u7A0B_u4ED3_u5E93_u76F8_u5173_u547D_u4EE4" class="headerlink" title="1) 远程仓库相关命令"></a>1) 远程仓库相关命令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">检出仓库：</span><br><span class="line">$ git clone git:<span class="comment">//github.com/jquery/jquery.git</span></span><br><span class="line"></span><br><span class="line">查看远程仓库：</span><br><span class="line">$ git remote -v</span><br><span class="line"></span><br><span class="line">添加远程仓库：</span><br><span class="line">$ git remote add [name] [url]</span><br><span class="line"></span><br><span class="line">删除远程仓库：</span><br><span class="line">$ git remote rm [name]</span><br><span class="line"></span><br><span class="line">修改远程仓库：</span><br><span class="line">$ git remote <span class="built_in">set</span>-url --push [name] [newUrl]</span><br><span class="line"></span><br><span class="line">拉取远程仓库：</span><br><span class="line">$ git pull [remoteName] [localBranchName]</span><br><span class="line"></span><br><span class="line">推送远程仓库：</span><br><span class="line">$ git push [remoteName] [localBranchName]</span><br><span class="line"> </span><br><span class="line">*如果想把本地的某个分支test提交到远程仓库，并作为远程仓库的master分支，或者作为另外一个名叫test的分支，如下：</span><br><span class="line">$ git push origin test:master         <span class="comment">// 提交本地test分支作为远程的master分支</span></span><br><span class="line">$ git push origin test:test              <span class="comment">// 提交本地test分支作为远程的test分支</span></span><br></pre></td></tr></table></figure>
-<h3 id="2_uFF09_u5206_u652F_28branch_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4"><a href="#2_uFF09_u5206_u652F_28branch_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4" class="headerlink" title="2）分支(branch)操作相关命令"></a>2）分支(branch)操作相关命令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">查看本地分支：</span><br><span class="line">$ git branch</span><br><span class="line"></span><br><span class="line">查看远程分支：</span><br><span class="line">$ git branch -r</span><br><span class="line"></span><br><span class="line">创建本地分支：</span><br><span class="line">$ git branch [name] ----注意新分支创建后不会自动切换为当前分支</span><br><span class="line"></span><br><span class="line">切换分支：</span><br><span class="line">$ git checkout [name]</span><br><span class="line"></span><br><span class="line">创建新分支并立即切换到新分支：</span><br><span class="line">$ git checkout -b [name]</span><br><span class="line"></span><br><span class="line">删除分支：</span><br><span class="line">$ git branch -d [name] -----d选项只能删除已经参与了合并的分支，对于未有合并的分支是无法删除的。如果想强制删除一个分支，可以使用-D选项</span><br><span class="line"></span><br><span class="line">合并分支：</span><br><span class="line">$ git merge [name] ----将名称为[name]的分支与当前分支合并</span><br><span class="line"></span><br><span class="line">创建远程分支(本地分支push到远程)：</span><br><span class="line">$ git push origin [name]</span><br><span class="line"></span><br><span class="line">删除远程分支：</span><br><span class="line">$ git push origin :heads/[name] 或 $ gitpush origin :[name] </span><br><span class="line"> </span><br><span class="line">*创建空的分支：(执行命令之前记得先提交你当前分支的修改，否则会被强制删干净没得后悔)</span><br><span class="line"></span><br><span class="line">$git symbolic-ref HEAD refs/heads/[name]</span><br><span class="line">$rm .git/index</span><br><span class="line">$git clean -fdx</span><br></pre></td></tr></table></figure>
-<h3 id="3_uFF09_u7248_u672C_28tag_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4"><a href="#3_uFF09_u7248_u672C_28tag_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4" class="headerlink" title="3）版本(tag)操作相关命令"></a>3）版本(tag)操作相关命令</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">查看版本：</span><br><span class="line">$ git tag</span><br><span class="line"></span><br><span class="line">创建版本：</span><br><span class="line">$ git tag [name]</span><br><span class="line"></span><br><span class="line">删除版本：</span><br><span class="line">$ git tag -d [name]</span><br><span class="line"></span><br><span class="line">查看远程版本：</span><br><span class="line">$ git tag -r</span><br><span class="line"></span><br><span class="line">创建远程版本(本地版本push到远程)：</span><br><span class="line">$ git push origin [name]</span><br><span class="line"></span><br><span class="line">删除远程版本：</span><br><span class="line">$ git push origin :refs/tags/[name]</span><br><span class="line"></span><br><span class="line">合并远程仓库的tag到本地：</span><br><span class="line">$ git pull origin --tags</span><br><span class="line"></span><br><span class="line">上传本地tag到远程仓库：</span><br><span class="line">$ git push origin --tags</span><br><span class="line"></span><br><span class="line">创建带注释的tag：</span><br><span class="line">$ git tag -a [name] -m 'yourMessage'</span><br></pre></td></tr></table></figure>
-<h3 id="4_29__u5B50_u6A21_u5757_28submodule_29_u76F8_u5173_u64CD_u4F5C_u547D_u4EE4"><a href="#4_29__u5B50_u6A21_u5757_28submodule_29_u76F8_u5173_u64CD_u4F5C_u547D_u4EE4" class="headerlink" title="4) 子模块(submodule)相关操作命令"></a>4) 子模块(submodule)相关操作命令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">添加子模块：</span><br><span class="line">$ git submodule add [url] [path]</span><br><span class="line">如：</span><br><span class="line">$git submodule add git:<span class="comment">//github.com/soberh/ui-libs.git src/main/webapp/ui-libs</span></span><br><span class="line"></span><br><span class="line">初始化子模块：</span><br><span class="line">$ git submodule init  ----只在首次检出仓库时运行一次就行</span><br><span class="line"></span><br><span class="line">更新子模块：</span><br><span class="line">$ git submodule update ----每次更新或切换分支后都需要运行一下</span><br><span class="line"></span><br><span class="line">删除子模块：（分<span class="number">4</span>步走哦）</span><br><span class="line"> <span class="number">1</span>) $ git rm --cached [path]</span><br><span class="line"> <span class="number">2</span>) 编辑“.gitmodules”文件，将子模块的相关配置节点删除掉</span><br><span class="line"> <span class="number">3</span>) 编辑“ .git/config”文件，将子模块的相关配置节点删除掉</span><br><span class="line"> <span class="number">4</span>) 手动删除子模块残留的目录</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>）忽略一些文件、文件夹不提交</span><br><span class="line">在仓库根目录下创建名称为“.gitignore”的文件，写入不需要的文件夹名或文件，每个元素占一行即可，如</span><br><span class="line">target</span><br><span class="line">bin</span><br><span class="line">*.db</span><br></pre></td></tr></table></figure>
-<hr>
-<h1 id="Git__u5E38_u7528_u547D_u4EE4"><a href="#Git__u5E38_u7528_u547D_u4EE4" class="headerlink" title="Git 常用命令"></a>Git 常用命令</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">git branch 查看本地所有分支</span><br><span class="line">git status 查看当前状态 </span><br><span class="line">git commit 提交 </span><br><span class="line">git branch -a 查看所有的分支</span><br><span class="line">git branch -r 查看本地所有分支</span><br><span class="line">git commit -am "init" 提交并且加注释 </span><br><span class="line">git remote add origin git@192.168.1.119:ndshow</span><br><span class="line">git push origin master 将文件给推到服务器上 </span><br><span class="line">git remote show origin 显示远程库origin里的资源 </span><br><span class="line">git push origin master:develop</span><br><span class="line">git push origin master:hb-dev 将本地库与服务器上的库进行关联 </span><br><span class="line">git checkout --track origin/dev 切换到远程dev分支</span><br><span class="line">git branch -D master develop 删除本地库develop</span><br><span class="line">git checkout -b dev 建立一个新的本地分支dev</span><br><span class="line">git merge origin/dev 将分支dev与当前分支进行合并</span><br><span class="line">git checkout dev 切换到本地dev分支</span><br><span class="line">git remote show 查看远程库</span><br><span class="line">git add .</span><br><span class="line">git rm 文件名(包括路径) 从git中删除指定文件</span><br><span class="line">git clone git://github.com/schacon/grit.git 从服务器上将代码给拉下来</span><br><span class="line">git config --list 看所有用户</span><br><span class="line">git ls-files 看已经被提交的</span><br><span class="line">git rm [file name] 删除一个文件</span><br><span class="line">git commit -a 提交当前repos的所有的改变</span><br><span class="line">git add [file name] 添加一个文件到git index</span><br><span class="line">git commit -v 当你用－v参数的时候可以看commit的差异</span><br><span class="line">git commit -m "This is the message describing the commit" 添加commit信息</span><br><span class="line">git commit -a -a是代表add，把所有的change加到git index里然后再commit</span><br><span class="line">git commit -a -v 一般提交命令</span><br><span class="line">git log 看你commit的日志</span><br><span class="line">git diff 查看尚未暂存的更新</span><br><span class="line">git rm a.a 移除文件(从暂存区和工作区中删除)</span><br><span class="line">git rm --cached a.a 移除文件(只从暂存区中删除)</span><br><span class="line">git commit -m "remove" 移除文件(从Git中删除)</span><br><span class="line">git rm -f a.a 强行移除修改后文件(从暂存区和工作区中删除)</span><br><span class="line">git diff --cached 或 $ git diff --staged 查看尚未提交的更新</span><br><span class="line">git stash push 将文件给push到一个临时空间中</span><br><span class="line">git stash pop 将文件从临时空间pop下来</span><br><span class="line">---------------------------------------------------------</span><br><span class="line">git remote add origin git@github.com:username/Hello-World.git</span><br><span class="line">git push origin master 将本地项目给提交到服务器中</span><br><span class="line">-----------------------------------------------------------</span><br><span class="line">git pull 本地与服务器端同步</span><br><span class="line">-----------------------------------------------------------------</span><br><span class="line">git push (远程仓库名) (分支名) 将本地分支推送到服务器上去。</span><br><span class="line">git push origin serverfix:awesomebranch</span><br><span class="line">------------------------------------------------------------------</span><br><span class="line">git fetch 相当于是从远程获取最新版本到本地，不会自动merge</span><br><span class="line">git commit -a -m "log_message" (-a是提交所有改动，-m是加入log信息) 本地修改同步至服务器端 ：</span><br><span class="line">git branch branch_0.1 master 从主分支master创建branch_0.1分支</span><br><span class="line">git branch -m branch_0.1 branch_1.0 将branch_0.1重命名为branch_1.0</span><br><span class="line">git checkout branch_1.0/master 切换到branch_1.0/master分支</span><br><span class="line">du -hs</span><br><span class="line"></span><br><span class="line">-----------------------------------------------------------</span><br><span class="line">mkdir WebApp</span><br><span class="line">cd WebApp</span><br><span class="line">git init</span><br><span class="line">touch README</span><br><span class="line">git add README</span><br><span class="line">git commit -m 'first commit'</span><br><span class="line">git remote add origin git@github.com:daixu/WebApp.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-<p><img src="http://7xpwlt.com1.z0.glb.clouddn.com/Git%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8.png" alt="啊噢图片不见了" title="Git命令大全"><br><a href="http://www.cnblogs.com/1-2-3/archive/2010/07/18/git-commands.html" target="_blank" rel="external">图片出处</a></p>
-  
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/git/">git</a>
-  </div>
-
-</div>
-
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="https://github.com/Zyingying/2016/01/15/git/" data-title="git命令归纳 | 2yingying" data-tsina="2133445925" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
-</footer>
-
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2016/01/18/模块化（一）/" title="模块化（一）:模块化的简单了解">
-  <strong>上一篇：</strong><br/>
-  <span>
-  模块化（一）:模块化的简单了解</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2016/01/07/hello2016/"  title="第一篇文章">
- <strong>下一篇：</strong><br/> 
- <span>第一篇文章
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-<section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/01/15/git/" data-title="git命令归纳" data-url="https://github.com/Zyingying/2016/01/15/git/"></div>
-</section>
-
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git_u547D_u4EE4_u5927_u5168"><span class="toc-number">1.</span> <span class="toc-text">Git命令大全</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1_29__u8FDC_u7A0B_u4ED3_u5E93_u76F8_u5173_u547D_u4EE4"><span class="toc-number">1.0.1.</span> <span class="toc-text">1) 远程仓库相关命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2_uFF09_u5206_u652F_28branch_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4"><span class="toc-number">1.0.2.</span> <span class="toc-text">2）分支(branch)操作相关命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3_uFF09_u7248_u672C_28tag_29_u64CD_u4F5C_u76F8_u5173_u547D_u4EE4"><span class="toc-number">1.0.3.</span> <span class="toc-text">3）版本(tag)操作相关命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4_29__u5B50_u6A21_u5757_28submodule_29_u76F8_u5173_u64CD_u4F5C_u547D_u4EE4"><span class="toc-number">1.0.4.</span> <span class="toc-text">4) 子模块(submodule)相关操作命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git__u5E38_u7528_u547D_u4EE4"><span class="toc-number">2.</span> <span class="toc-text">Git 常用命令</span></a></li></ol>
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  
-<div class="github-card">
-<p class="asidetitle">Github 名片</p>
-<div class="github-card" data-github="Zyingying" data-width="220" data-height="119" data-theme="medium">
-<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
-</div>
-  </div>
-
-
-
-  
-
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/js/" title="js">js<sup>12</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/css/" title="css">css<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/模块化/" title="模块化">模块化<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/性能优化/" title="性能优化">性能优化<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/安全/" title="安全">安全<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/攻击/" title="攻击">攻击<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/移动端/" title="移动端">移动端<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/渲染/" title="渲染">渲染<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/硬件加速/" title="硬件加速">硬件加速<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/闭包/" title="闭包">闭包<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/正则/" title="正则">正则<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/node/" title="node">node<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Grunt/" title="Grunt">Grunt<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/css3/" title="css3">css3<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/兼容/" title="兼容">兼容<sup>1</sup></a></li>
-			
-		
-		</ul>
-</div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
-    <ul>
-        
-    </ul>
-</div>
-
-  
-
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-  <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
-    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2133445925&verifier=b3593ceb&dpc=1"></iframe>
-</div>
-
-
-</aside>
-</div>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="git命令归纳" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
     </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello, I&#39;m zyy.  This is my blog on GitHub. <br/>
-			I wish you like it</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		<a href="http://weibo.com/2133445925" target="_blank" class="icon-weibo" title="微博"></a>
-		
-		
-		<a href="https://github.com/Zyingying" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		
-		
-		
-		
-		<a href="http://www.zhihu.com/people/2hang-ying-ying-" target="_blank" class="icon-zhihu" title="知乎"></a>
-		
-		
-		
-		<a href="mailto:zyingying.zyy@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
-
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
-		
-		<a href="/about" target="_blank" title="盈盈">盈盈</a>
-		
-		&nbsp&nbsp&nbsp&nbsp本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次, 本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次
-		</p>
-</div>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
         
-    }
-  });
-});
-</script>
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-01-15T08:43:30.000Z">2016-01-15</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    10 分钟 读完 (大约 1545 个字)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                git命令归纳
+            
+        </h1>
+        <div class="content">
+            <p> 最近在学习git,入门的我TAT觉得命令还是比较多的，为了避免自己忘记，所以把这些命令归纳一下供以后使用。</p>
+<a id="more"></a>
+<h1 id="Git命令大全"><a href="#Git命令大全" class="headerlink" title="Git命令大全"></a>Git命令大全</h1><hr>
+<h3 id="1-远程仓库相关命令"><a href="#1-远程仓库相关命令" class="headerlink" title="1) 远程仓库相关命令"></a>1) 远程仓库相关命令</h3><figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">检出仓库：</span><br><span class="line">$ git clone git:<span class="hljs-comment">//github.com/jquery/jquery.git</span></span><br><span class="line"></span><br><span class="line">查看远程仓库：</span><br><span class="line">$ git remote -v</span><br><span class="line"></span><br><span class="line">添加远程仓库：</span><br><span class="line">$ git remote add [name] [url]</span><br><span class="line"></span><br><span class="line">删除远程仓库：</span><br><span class="line">$ git remote rm [name]</span><br><span class="line"></span><br><span class="line">修改远程仓库：</span><br><span class="line">$ git remote <span class="hljs-built_in">set</span>-url --push [name] [newUrl]</span><br><span class="line"></span><br><span class="line">拉取远程仓库：</span><br><span class="line">$ git pull [remoteName] [localBranchName]</span><br><span class="line"></span><br><span class="line">推送远程仓库：</span><br><span class="line">$ git push [remoteName] [localBranchName]</span><br><span class="line"> </span><br><span class="line">*如果想把本地的某个分支test提交到远程仓库，并作为远程仓库的master分支，或者作为另外一个名叫test的分支，如下：</span><br><span class="line">$ git push origin test:master         <span class="hljs-comment">// 提交本地test分支作为远程的master分支</span></span><br><span class="line">$ git push origin test:test              <span class="hljs-comment">// 提交本地test分支作为远程的test分支</span></span><br></pre></td></tr></table></figure>
+<h3 id="2）分支-branch-操作相关命令"><a href="#2）分支-branch-操作相关命令" class="headerlink" title="2）分支(branch)操作相关命令"></a>2）分支(branch)操作相关命令</h3><figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">查看本地分支：</span><br><span class="line">$ git branch</span><br><span class="line"></span><br><span class="line">查看远程分支：</span><br><span class="line">$ git branch -r</span><br><span class="line"></span><br><span class="line">创建本地分支：</span><br><span class="line">$ git branch [name] ----注意新分支创建后不会自动切换为当前分支</span><br><span class="line"></span><br><span class="line">切换分支：</span><br><span class="line">$ git checkout [name]</span><br><span class="line"></span><br><span class="line">创建新分支并立即切换到新分支：</span><br><span class="line">$ git checkout -b [name]</span><br><span class="line"></span><br><span class="line">删除分支：</span><br><span class="line">$ git branch -d [name] -----d选项只能删除已经参与了合并的分支，对于未有合并的分支是无法删除的。如果想强制删除一个分支，可以使用-D选项</span><br><span class="line"></span><br><span class="line">合并分支：</span><br><span class="line">$ git merge [name] ----将名称为[name]的分支与当前分支合并</span><br><span class="line"></span><br><span class="line">创建远程分支(本地分支push到远程)：</span><br><span class="line">$ git push origin [name]</span><br><span class="line"></span><br><span class="line">删除远程分支：</span><br><span class="line">$ git push origin :heads/[name] 或 $ gitpush origin :[name] </span><br><span class="line"> </span><br><span class="line">*创建空的分支：(执行命令之前记得先提交你当前分支的修改，否则会被强制删干净没得后悔)</span><br><span class="line"></span><br><span class="line">$git symbolic-ref HEAD refs/heads/[name]</span><br><span class="line">$rm .git/index</span><br><span class="line">$git clean -fdx</span><br></pre></td></tr></table></figure>
+<h3 id="3）版本-tag-操作相关命令"><a href="#3）版本-tag-操作相关命令" class="headerlink" title="3）版本(tag)操作相关命令"></a>3）版本(tag)操作相关命令</h3><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">查看版本：</span><br><span class="line">$ git tag</span><br><span class="line"></span><br><span class="line">创建版本：</span><br><span class="line">$ git tag [name]</span><br><span class="line"></span><br><span class="line">删除版本：</span><br><span class="line">$ git tag -d [name]</span><br><span class="line"></span><br><span class="line">查看远程版本：</span><br><span class="line">$ git tag -r</span><br><span class="line"></span><br><span class="line">创建远程版本(本地版本push到远程)：</span><br><span class="line">$ git push origin [name]</span><br><span class="line"></span><br><span class="line">删除远程版本：</span><br><span class="line">$ git push origin :refs/tags/[name]</span><br><span class="line"></span><br><span class="line">合并远程仓库的tag到本地：</span><br><span class="line">$ git pull origin --tags</span><br><span class="line"></span><br><span class="line">上传本地tag到远程仓库：</span><br><span class="line">$ git push origin --tags</span><br><span class="line"></span><br><span class="line">创建带注释的tag：</span><br><span class="line">$ git tag -a [name] -m 'yourMessage'</span><br></pre></td></tr></table></figure>
+<h3 id="4-子模块-submodule-相关操作命令"><a href="#4-子模块-submodule-相关操作命令" class="headerlink" title="4) 子模块(submodule)相关操作命令"></a>4) 子模块(submodule)相关操作命令</h3><figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">添加子模块：</span><br><span class="line">$ git submodule add [url] [path]</span><br><span class="line">如：</span><br><span class="line">$git submodule add git:<span class="hljs-comment">//github.com/soberh/ui-libs.git src/main/webapp/ui-libs</span></span><br><span class="line"></span><br><span class="line">初始化子模块：</span><br><span class="line">$ git submodule init  ----只在首次检出仓库时运行一次就行</span><br><span class="line"></span><br><span class="line">更新子模块：</span><br><span class="line">$ git submodule update ----每次更新或切换分支后都需要运行一下</span><br><span class="line"></span><br><span class="line">删除子模块：（分<span class="hljs-number">4</span>步走哦）</span><br><span class="line"> <span class="hljs-number">1</span>) $ git rm --cached [path]</span><br><span class="line"> <span class="hljs-number">2</span>) 编辑“.gitmodules”文件，将子模块的相关配置节点删除掉</span><br><span class="line"> <span class="hljs-number">3</span>) 编辑“ .git/config”文件，将子模块的相关配置节点删除掉</span><br><span class="line"> <span class="hljs-number">4</span>) 手动删除子模块残留的目录</span><br><span class="line"></span><br><span class="line"><span class="hljs-number">5</span>）忽略一些文件、文件夹不提交</span><br><span class="line">在仓库根目录下创建名称为“.gitignore”的文件，写入不需要的文件夹名或文件，每个元素占一行即可，如</span><br><span class="line">target</span><br><span class="line">bin</span><br><span class="line">*.db</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Git-常用命令"><a href="#Git-常用命令" class="headerlink" title="Git 常用命令"></a>Git 常用命令</h1><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">git branch 查看本地所有分支</span><br><span class="line">git status 查看当前状态 </span><br><span class="line">git commit 提交 </span><br><span class="line">git branch -a 查看所有的分支</span><br><span class="line">git branch -r 查看本地所有分支</span><br><span class="line">git commit -am <span class="hljs-string">"init"</span> 提交并且加注释 </span><br><span class="line">git remote add origin git@<span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.119</span>:ndshow</span><br><span class="line">git push origin master 将文件给推到服务器上 </span><br><span class="line">git remote show origin 显示远程库origin里的资源 </span><br><span class="line">git push origin master:develop</span><br><span class="line">git push origin master:hb-dev 将本地库与服务器上的库进行关联 </span><br><span class="line">git checkout --track origin/dev 切换到远程dev分支</span><br><span class="line">git branch -D master develop 删除本地库develop</span><br><span class="line">git checkout -b dev 建立一个新的本地分支dev</span><br><span class="line">git merge origin/dev 将分支dev与当前分支进行合并</span><br><span class="line">git checkout dev 切换到本地dev分支</span><br><span class="line">git remote show 查看远程库</span><br><span class="line">git add .</span><br><span class="line">git rm 文件名(包括路径) 从git中删除指定文件</span><br><span class="line">git clone git:<span class="hljs-comment">//github.com/schacon/grit.git 从服务器上将代码给拉下来</span></span><br><span class="line">git config --<span class="hljs-built_in">list</span> 看所有用户</span><br><span class="line">git ls-files 看已经被提交的</span><br><span class="line">git rm [file name] 删除一个文件</span><br><span class="line">git commit -a 提交当前repos的所有的改变</span><br><span class="line">git add [file name] 添加一个文件到git index</span><br><span class="line">git commit -v 当你用－v参数的时候可以看commit的差异</span><br><span class="line">git commit -m <span class="hljs-string">"This is the message describing the commit"</span> 添加commit信息</span><br><span class="line">git commit -a -a是代表add，把所有的change加到git index里然后再commit</span><br><span class="line">git commit -a -v 一般提交命令</span><br><span class="line">git <span class="hljs-built_in">log</span> 看你commit的日志</span><br><span class="line">git diff 查看尚未暂存的更新</span><br><span class="line">git rm a.a 移除文件(从暂存区和工作区中删除)</span><br><span class="line">git rm --cached a.a 移除文件(只从暂存区中删除)</span><br><span class="line">git commit -m <span class="hljs-string">"remove"</span> 移除文件(从Git中删除)</span><br><span class="line">git rm -f a.a 强行移除修改后文件(从暂存区和工作区中删除)</span><br><span class="line">git diff --cached 或 $ git diff --staged 查看尚未提交的更新</span><br><span class="line">git stash push 将文件给push到一个临时空间中</span><br><span class="line">git stash pop 将文件从临时空间pop下来</span><br><span class="line">---------------------------------------------------------</span><br><span class="line">git remote add origin git@github.com:username/Hello-World.git</span><br><span class="line">git push origin master 将本地项目给提交到服务器中</span><br><span class="line">-----------------------------------------------------------</span><br><span class="line">git pull 本地与服务器端同步</span><br><span class="line">-----------------------------------------------------------------</span><br><span class="line">git push (远程仓库名) (分支名) 将本地分支推送到服务器上去。</span><br><span class="line">git push origin serverfix:awesomebranch</span><br><span class="line">------------------------------------------------------------------</span><br><span class="line">git fetch 相当于是从远程获取最新版本到本地，不会自动merge</span><br><span class="line">git commit -a -m <span class="hljs-string">"log_message"</span> (-a是提交所有改动，-m是加入<span class="hljs-built_in">log</span>信息) 本地修改同步至服务器端 ：</span><br><span class="line">git branch branch_0<span class="hljs-number">.1</span> master 从主分支master创建branch_0<span class="hljs-number">.1</span>分支</span><br><span class="line">git branch -m branch_0<span class="hljs-number">.1</span> branch_1<span class="hljs-number">.0</span> 将branch_0<span class="hljs-number">.1</span>重命名为branch_1<span class="hljs-number">.0</span></span><br><span class="line">git checkout branch_1<span class="hljs-number">.0</span>/master 切换到branch_1<span class="hljs-number">.0</span>/master分支</span><br><span class="line">du -hs</span><br><span class="line"></span><br><span class="line">-----------------------------------------------------------</span><br><span class="line">mkdir WebApp</span><br><span class="line">cd WebApp</span><br><span class="line">git init</span><br><span class="line">touch README</span><br><span class="line">git add README</span><br><span class="line">git commit -m 'first commit'</span><br><span class="line">git remote add origin git@github.com:daixu/WebApp.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xpwlt.com1.z0.glb.clouddn.com/Git%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8.png" alt="啊噢图片不见了" title="Git命令大全"><br><a href="http://www.cnblogs.com/1-2-3/archive/2010/07/18/git-commands.html" target="_blank" rel="noopener">图片出处</a></p>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/git/">git</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
 
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-
-  $('.hoverqrcode').hide();
-
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2016/01/18/模块化（一）/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">模块化（一）:模块化的简单了解</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2016/01/07/hello2016/">
+                <span class="level-item">第一篇文章</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"zyingying"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script> 
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
-</script>
-
-
-
-<!-- Analytics Begin -->
-
-
-
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
+	var gitment = new Gitment({
+		id: '2016/01/15/git/',
+		owner: 'Vinny',
+		repo: 'Zyingying',
+		oauth: {
+			client_id: '36d8246113e8c681c4da',
+			client_secret: 'f52d837ac5dd58999ba01fd8d399fb85f78a8d79',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <img class="image is-128x128 has-mb-6" src="/images/author.jpg" alt="Vinny Chuang | 张盈盈">
+                    
+                    <p class="is-size-4 is-block">
+                        Vinny Chuang | 张盈盈
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Web Developer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Canton,China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        25
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        18
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/Zyingying">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/Zyingying">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="http://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="http://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="http://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">https://hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/Zyingying" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">yingying</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">https://github.com/Zyingying</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 10px;">css3</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/兼容/" style="font-size: 10px;">兼容</a> <a href="/tags/安全/" style="font-size: 12.5px;">安全</a> <a href="/tags/性能优化/" style="font-size: 15px;">性能优化</a> <a href="/tags/攻击/" style="font-size: 12.5px;">攻击</a> <a href="/tags/模块化/" style="font-size: 15px;">模块化</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/渲染/" style="font-size: 10px;">渲染</a> <a href="/tags/硬件加速/" style="font-size: 10px;">硬件加速</a> <a href="/tags/移动端/" style="font-size: 12.5px;">移动端</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2018/04/16/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/hello.jpg" alt="Hello 2018">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-04-16T07:23:59.000Z">2018-04-16</time></div>
+                    <a href="/2018/04/16/hello-world/" class="has-link-black-ter is-size-6">Hello 2018</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/11/26/replace/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="正则test, exec, match, replace">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-11-26T15:13:33.000Z">2016-11-26</time></div>
+                    <a href="/2016/11/26/replace/" class="has-link-black-ter is-size-6">正则test, exec, match, replace</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/10/26/抛出自定义错误/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="抛出自定义错误">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-10-26T15:07:42.000Z">2016-10-26</time></div>
+                    <a href="/2016/10/26/抛出自定义错误/" class="has-link-black-ter is-size-6">抛出自定义错误</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/09/18/移动网络下的页面调试/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="移动网络下的页面调试">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-09-18T02:54:22.000Z">2016-09-18</time></div>
+                    <a href="/2016/09/18/移动网络下的页面调试/" class="has-link-black-ter is-size-6">移动网络下的页面调试</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/08/17/排序算法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="排序算法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-08-17T15:25:26.000Z">2016-08-17</time></div>
+                    <a href="/2016/08/17/排序算法/" class="has-link-black-ter is-size-6">排序算法</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <ul class="menu-list">
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Grunt/">
+                        <span class="level-start">
+                            <span class="level-item">Grunt</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css/">
+                        <span class="level-start">
+                            <span class="level-item">css</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">4</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css3/">
+                        <span class="level-start">
+                            <span class="level-item">css3</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/git/">
+                        <span class="level-start">
+                            <span class="level-item">git</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/js/">
+                        <span class="level-start">
+                            <span class="level-item">js</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">12</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/node/">
+                        <span class="level-start">
+                            <span class="level-item">node</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/兼容/">
+                        <span class="level-start">
+                            <span class="level-item">兼容</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/安全/">
+                        <span class="level-start">
+                            <span class="level-item">安全</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/性能优化/">
+                        <span class="level-start">
+                            <span class="level-item">性能优化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/攻击/">
+                        <span class="level-start">
+                            <span class="level-item">攻击</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/模块化/">
+                        <span class="level-start">
+                            <span class="level-item">模块化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/正则/">
+                        <span class="level-start">
+                            <span class="level-item">正则</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/渲染/">
+                        <span class="level-start">
+                            <span class="level-item">渲染</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/硬件加速/">
+                        <span class="level-start">
+                            <span class="level-item">硬件加速</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/移动端/">
+                        <span class="level-start">
+                            <span class="level-item">移动端</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/算法/">
+                        <span class="level-start">
+                            <span class="level-item">算法</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/闭包/">
+                        <span class="level-start">
+                            <span class="level-item">闭包</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/随笔/">
+                        <span class="level-start">
+                            <span class="level-item">随笔</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2018/04/16/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/hello.jpg" alt="Hello 2018">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-04-16T07:23:59.000Z">2018-04-16</time></div>
+                    <a href="/2018/04/16/hello-world/" class="has-link-black-ter is-size-6">Hello 2018</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/11/26/replace/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="正则test, exec, match, replace">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-11-26T15:13:33.000Z">2016-11-26</time></div>
+                    <a href="/2016/11/26/replace/" class="has-link-black-ter is-size-6">正则test, exec, match, replace</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/10/26/抛出自定义错误/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="抛出自定义错误">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-10-26T15:07:42.000Z">2016-10-26</time></div>
+                    <a href="/2016/10/26/抛出自定义错误/" class="has-link-black-ter is-size-6">抛出自定义错误</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/09/18/移动网络下的页面调试/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="移动网络下的页面调试">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-09-18T02:54:22.000Z">2016-09-18</time></div>
+                    <a href="/2016/09/18/移动网络下的页面调试/" class="has-link-black-ter is-size-6">移动网络下的页面调试</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/08/17/排序算法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="排序算法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-08-17T15:25:26.000Z">2016-08-17</time></div>
+                    <a href="/2016/08/17/排序算法/" class="has-link-black-ter is-size-6">排序算法</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <ul class="menu-list">
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Grunt/">
+                        <span class="level-start">
+                            <span class="level-item">Grunt</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css/">
+                        <span class="level-start">
+                            <span class="level-item">css</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">4</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css3/">
+                        <span class="level-start">
+                            <span class="level-item">css3</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/git/">
+                        <span class="level-start">
+                            <span class="level-item">git</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/js/">
+                        <span class="level-start">
+                            <span class="level-item">js</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">12</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/node/">
+                        <span class="level-start">
+                            <span class="level-item">node</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/兼容/">
+                        <span class="level-start">
+                            <span class="level-item">兼容</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/安全/">
+                        <span class="level-start">
+                            <span class="level-item">安全</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/性能优化/">
+                        <span class="level-start">
+                            <span class="level-item">性能优化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/攻击/">
+                        <span class="level-start">
+                            <span class="level-item">攻击</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/模块化/">
+                        <span class="level-start">
+                            <span class="level-item">模块化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/正则/">
+                        <span class="level-start">
+                            <span class="level-item">正则</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/渲染/">
+                        <span class="level-start">
+                            <span class="level-item">渲染</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/硬件加速/">
+                        <span class="level-start">
+                            <span class="level-item">硬件加速</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/移动端/">
+                        <span class="level-start">
+                            <span class="level-item">移动端</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/算法/">
+                        <span class="level-start">
+                            <span class="level-item">算法</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/闭包/">
+                        <span class="level-start">
+                            <span class="level-item">闭包</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/随笔/">
+                        <span class="level-start">
+                            <span class="level-item">随笔</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="git命令归纳" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2018 Vinny Chuang&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus">Icarus</a>
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
 </script>
 
 
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {matchFontHeight: false},
+        SVG: {matchFontHeight: false},
+        CommonHTML: {matchFontHeight: false}
+    });
+});
+</script>
 
-<!-- Analytics End -->
+    
+    
 
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
 
 
-<!-- MathJax End -->
+    
+    
 
-<!-- Tiny_search Begin -->
+    
+    
+    
+    
 
-<!-- Tiny_search End -->
+    
+    
+    
 
-  </body>
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
 </html>

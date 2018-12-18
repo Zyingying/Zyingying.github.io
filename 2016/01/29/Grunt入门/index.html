@@ -1,22 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>Grunt入门 - 盈盈的主页</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
- <!DOCTYPE HTML>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  
-    <title>Grunt入门 | 2yingying</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="盈盈">
-    
 
-    
+
     <meta name="description" content="咳咳，其实这篇文章是我从老博客搬过来滴，来复习一下，顺便来充实一下我的后宫~~老博客地址">
+<meta name="keywords" content="Grunt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Grunt入门">
 <meta property="og:url" content="https://github.com/Zyingying/2016/01/29/Grunt入门/index.html">
-<meta property="og:site_name" content="2yingying">
+<meta property="og:site_name" content="盈盈的主页">
 <meta property="og:description" content="咳咳，其实这篇文章是我从老博客搬过来滴，来复习一下，顺便来充实一下我的后宫~~老博客地址">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/111.png">
 <meta property="og:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720160129225833.png">
 <meta property="og:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720160129225842.png">
@@ -25,104 +23,160 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Grunt入门">
 <meta name="twitter:description" content="咳咳，其实这篇文章是我从老博客搬过来滴，来复习一下，顺便来充实一下我的后宫~~老博客地址">
+<meta name="twitter:image" content="http://7xpwlt.com1.z0.glb.clouddn.com/111.png">
+
+
+
+
+
+<link rel="icon" href="/images/smile.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
 
     
-    <link rel="alternative" href="/atom.xml" title="2yingying" type="application/atom+xml">
     
     
-    <link rel="icon" href="/img/smile.ico">
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
     
     
-    <link rel="apple-touch-icon" href="/img/pacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
 </head>
-
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.svg" alt="2yingying" title="2yingying"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="2yingying">2yingying</a></h1>
-				<h2 class="blog-motto">你可长点心吧！     点心？什么点心？</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">主页 | Home</a></li>
-					
-						<li><a href="/archives">归档 | Archives</a></li>
-					
-						<li><a href="/about">简介 | About</a></li>
-					
-					<li>
- 					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:github.com/Zyingying">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Grunt入门" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
     
-      <a href="/2016/01/29/Grunt入门/" title="Grunt入门" itemprop="url">Grunt入门</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-01-29T15:00:10.000Z" itemprop="datePublished"> 发表于 2016-01-29</time>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
     
-  </p>
-</header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5B89_u88C5_Grunt"><span class="toc-number">1.</span> <span class="toc-text">安装 Grunt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7F16_u5199package-json"><span class="toc-number">2.</span> <span class="toc-text">编写package.json</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Grunt__u548C_u63D2_u4EF6"><span class="toc-number">3.</span> <span class="toc-text">Grunt 和插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u914D_Gruntfile-js"><span class="toc-number">4.</span> <span class="toc-text">配 Gruntfile.js</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EFB_u52A1_u914D_u7F6E_u4EE3_u7801"><span class="toc-number">4.1.</span> <span class="toc-text">任务配置代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F16_u8BD1sass"><span class="toc-number">4.2.</span> <span class="toc-text">编译sass</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5408_u5E76_u6587_u4EF6"><span class="toc-number">4.3.</span> <span class="toc-text">合并文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u68C0_u67E5_u8BED_u6CD5_grunt-contrib-jshint"><span class="toc-number">4.4.</span> <span class="toc-text">检查语法 grunt-contrib-jshint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u538B_u7F29_grunt-contrib-uglify"><span class="toc-number">4.5.</span> <span class="toc-text">压缩 grunt-contrib-uglify</span></a></li></ol></li></ol>
-		
-		</div>
-		
-		<p>咳咳，其实这篇文章是我从老博客搬过来滴，来复习一下，顺便来充实一下我的后宫~~<a href="http://www.cnblogs.com/zyyz/" target="_blank" rel="external">老博客地址</a><br> <a id="more"></a><br>　　首先，Grunt 依赖 Node.js 所以先要安装node.<a href="http://jingyan.baidu.com/article/b0b63dbfca599a4a483070a5.html" target="_blank" rel="external">这里附上node的安装方法</a></p>
-<h2 id="u5B89_u88C5_Grunt"><a href="#u5B89_u88C5_Grunt" class="headerlink" title="安装 Grunt"></a>安装 Grunt</h2><p>　　实际上，安装的并不是 Grunt，而是 Grunt-cli，也就是命令行的 Grunt，这样你就可以使用 grunt 命令来执行某个项目中的 Gruntfile.js 中定义的 task 。但是要注意，Grunt-cli 只是一个命令行工具，用来执行，而不是 Grunt 这个工具本身。</p>
-<p>方法如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g grunt-cli</span><br></pre></td></tr></table></figure></p>
-<p>可能npm在中国比较慢，可以加上一个淘宝的镜像：–registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="external">https://registry.npm.taobao.org</a>  ，即输入：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g grunt-cli --registry=https:<span class="comment">//registry.npm.taobao.org</span></span><br></pre></td></tr></table></figure></p>
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-01-29T15:00:10.000Z">2016-01-29</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    16 分钟 读完 (大约 2326 个字)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Grunt入门
+            
+        </h1>
+        <div class="content">
+            <p>咳咳，其实这篇文章是我从老博客搬过来滴，来复习一下，顺便来充实一下我的后宫~~<a href="http://www.cnblogs.com/zyyz/" target="_blank" rel="noopener">老博客地址</a><br> <a id="more"></a><br>　　首先，Grunt 依赖 Node.js 所以先要安装node.<a href="http://jingyan.baidu.com/article/b0b63dbfca599a4a483070a5.html" target="_blank" rel="noopener">这里附上node的安装方法</a></p>
+<h2 id="安装-Grunt"><a href="#安装-Grunt" class="headerlink" title="安装 Grunt"></a>安装 Grunt</h2><p>　　实际上，安装的并不是 Grunt，而是 Grunt-cli，也就是命令行的 Grunt，这样你就可以使用 grunt 命令来执行某个项目中的 Gruntfile.js 中定义的 task 。但是要注意，Grunt-cli 只是一个命令行工具，用来执行，而不是 Grunt 这个工具本身。</p>
+<p>方法如下：<br><figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g grunt-cli</span><br></pre></td></tr></table></figure></p>
+<p>可能npm在中国比较慢，可以加上一个淘宝的镜像：–registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a>  ，即输入：<br><figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g grunt-cli --registry=https:<span class="hljs-comment">//registry.npm.taobao.org</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="http://7xpwlt.com1.z0.glb.clouddn.com/111.png" alt="安装grunt"><br>控制台出现了这个的时候代表已经安装成功了。（需要注意，因为使用 －g 命令会安装到全局，可能会涉及到系统敏感目录，如果用 Windows 的话，可能需要你用管理员权限，如果用 OS X ／ Linux 的话，你可能需要加上 sudo 命令。）</p>
 <p>　　</p>
-<h2 id="u7F16_u5199package-json"><a href="#u7F16_u5199package-json" class="headerlink" title="编写package.json"></a>编写package.json</h2><p> 在项目文件夹下面，打开命令行，输入指令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure></p>
+<h2 id="编写package-json"><a href="#编写package-json" class="headerlink" title="编写package.json"></a>编写package.json</h2><p> 在项目文件夹下面，打开命令行，输入指令<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure></p>
 <p>　　之后就出来很多信息，然后开始填写项目名称，填写好了之后回车即可。或者一路回车下去。这时就会生成一个文件，叫package.json 里面的信息是自动生成的：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    "<span class="attribute">name</span>": <span class="value"><span class="string">"node"</span></span>,</span><br><span class="line">    "<span class="attribute">version</span>": <span class="value"><span class="string">"1.0.0"</span></span>,</span><br><span class="line">    "<span class="attribute">description</span>": <span class="value"><span class="string">""</span></span>,</span><br><span class="line">    "<span class="attribute">main</span>": <span class="value"><span class="string">"index.js"</span></span>,</span><br><span class="line">    "<span class="attribute">scripts</span>": <span class="value">&#123;</span><br><span class="line">        "<span class="attribute">test</span>": <span class="value"><span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">    </span>&#125;</span>,</span><br><span class="line">    "<span class="attribute">author</span>": <span class="value"><span class="string">""</span></span>,</span><br><span class="line">    "<span class="attribute">license</span>": <span class="value"><span class="string">"ISC"</span></span><br><span class="line">    </span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"node"</span>,</span><br><span class="line">    <span class="hljs-attr">"version"</span>: <span class="hljs-string">"1.0.0"</span>,</span><br><span class="line">    <span class="hljs-attr">"description"</span>: <span class="hljs-string">""</span>,</span><br><span class="line">    <span class="hljs-attr">"main"</span>: <span class="hljs-string">"index.js"</span>,</span><br><span class="line">    <span class="hljs-attr">"scripts"</span>: &#123;</span><br><span class="line">        <span class="hljs-attr">"test"</span>: <span class="hljs-string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="hljs-attr">"author"</span>: <span class="hljs-string">""</span>,</span><br><span class="line">    <span class="hljs-attr">"license"</span>: <span class="hljs-string">"ISC"</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>接下来你就可以在编辑器里面修改你的 package.json的代码了　</p>
-<h2 id="Grunt__u548C_u63D2_u4EF6"><a href="#Grunt__u548C_u63D2_u4EF6" class="headerlink" title="Grunt 和插件"></a>Grunt 和插件</h2><p>可是我们现在还是没使用到grunt和它的插件，我们日常的项目有什么东西是需要的呢？<br>比如：检查每个 JS 文件语法、合并两个 JS 文件、将合并后的 JS 文件压缩、将 SCSS 文件编译、新建一个本地服务器监听文件变动自动刷新 HTML 文件。</p>
+<h2 id="Grunt-和插件"><a href="#Grunt-和插件" class="headerlink" title="Grunt 和插件"></a>Grunt 和插件</h2><p>可是我们现在还是没使用到grunt和它的插件，我们日常的项目有什么东西是需要的呢？<br>比如：检查每个 JS 文件语法、合并两个 JS 文件、将合并后的 JS 文件压缩、将 SCSS 文件编译、新建一个本地服务器监听文件变动自动刷新 HTML 文件。</p>
 <p>就现在的这个示例项目而言，我打算让 Grunt 帮忙实现下面几个功能：</p>
 <p>差不多就是这些，根据这些任务需求，需要用到：<br>合并文件：<a href="https://github.com/gruntjs/grunt-contrib-concat">grunt-contrib-concat</a><br>语法检查：<a href="https://github.com/gruntjs/grunt-contrib-jshint">grunt-contrib-jshint</a><br>Scss 编译：<a href="https://github.com/gruntjs/grunt-contrib-sass">grunt-contrib-sass</a><br>压缩文件：<a href="https://github.com/gruntjs/grunt-contrib-uglify">grunt-contrib-uglify</a><br>监听文件变动：<a href="https://github.com/gruntjs/grunt-contrib-watch">grunt-contrib-watch</a><br>建立本地服务器：<a href="https://github.com/gruntjs/grunt-contrib-connect">grunt-contrib-connect</a><br>它们的命名和文档都很规范，因为这些是官方提供的比较常用的插件。这些插件同时都是 NPM 管理的包，比如grunt-contrib-concat - npm 你也可以在这上面看到用法等。</p>
-<p>下面我们就要在这个项目中安装这些插件，执行命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install grunt --save-dev</span><br></pre></td></tr></table></figure></p>
-<p>表示通过 npm 安装了 grunt 到当前项目，同时加上了 —save-dev 参数，表示会把刚安装的东西添加到 package.json 文件中。不信你打开 package.json 文件看下，是不是多了<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"devDependencies": &#123;</span><br><span class="line">    "grunt": "^0.4.5"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>下面我们就要在这个项目中安装这些插件，执行命令：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install grunt --save-dev</span><br></pre></td></tr></table></figure></p>
+<p>表示通过 npm 安装了 grunt 到当前项目，同时加上了 —save-dev 参数，表示会把刚安装的东西添加到 package.json 文件中。不信你打开 package.json 文件看下，是不是多了<br><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"devDependencies": &#123;</span><br><span class="line">    "grunt": "^0.4.5"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>没错，这个的意思就是当前项目依赖 grunt，后面是它的版本，咱们不用管。如果安装的时候没有添加 —save-dev 参数，这里就不会出现了，你需要自行添加上去。</p>
-<p>下面我们来安装 Grunt 的插件，当然，不需要一个个的安装，太麻烦了，我们可以：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev grunt-contrib-concat grunt-contrib-jshint grunt-contrib-sass grunt-contrib-uglify grunt-contrib-watch grunt-contrib-connect</span><br></pre></td></tr></table></figure></p>
-<p>这时你的package.json文件就变成了这样：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line">  "<span class="attribute">name</span>": <span class="value"><span class="string">"zyy_node"</span></span>,</span><br><span class="line">  "<span class="attribute">version</span>": <span class="value"><span class="string">"1.0.0"</span></span>,</span><br><span class="line">  "<span class="attribute">description</span>": <span class="value"><span class="string">"for zyy to learn grunt"</span></span>,</span><br><span class="line">  "<span class="attribute">main</span>": <span class="value"><span class="string">"index.js"</span></span>,</span><br><span class="line">  "<span class="attribute">dependencies</span>": <span class="value">&#123;</span><br><span class="line">    "<span class="attribute">grunt-contrib-concat</span>": <span class="value"><span class="string">"^0.5.1"</span></span>,</span><br><span class="line">    "<span class="attribute">grunt</span>": <span class="value"><span class="string">"^0.4.5"</span></span>,</span><br><span class="line">    "<span class="attribute">grunt-contrib-connect</span>": <span class="value"><span class="string">"^0.11.2"</span></span>,</span><br><span class="line">    "<span class="attribute">grunt-contrib-sass</span>": <span class="value"><span class="string">"^0.9.2"</span></span>,</span><br><span class="line">    "<span class="attribute">grunt-contrib-uglify</span>": <span class="value"><span class="string">"^0.10.0"</span></span>,</span><br><span class="line">    "<span class="attribute">grunt-contrib-watch</span>": <span class="value"><span class="string">"^0.6.1"</span></span><br><span class="line">  </span>&#125;</span>,</span><br><span class="line">  "<span class="attribute">devDependencies</span>": <span class="value">&#123;</span><br><span class="line">    "<span class="attribute">grunt</span>": <span class="value"><span class="string">"^0.4.5"</span></span><br><span class="line">  </span>&#125;</span>,</span><br><span class="line">  "<span class="attribute">scripts</span>": <span class="value">&#123;</span><br><span class="line">    "<span class="attribute">test</span>": <span class="value"><span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  </span>&#125;</span>,</span><br><span class="line">  "<span class="attribute">keywords</span>": <span class="value">[</span><br><span class="line">    <span class="string">"grunt"</span></span><br><span class="line">  ]</span>,</span><br><span class="line">  "<span class="attribute">author</span>": <span class="value"><span class="string">"zyy"</span></span>,</span><br><span class="line">  "<span class="attribute">license</span>": <span class="value"><span class="string">"MIT"</span></span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="u914D_Gruntfile-js"><a href="#u914D_Gruntfile-js" class="headerlink" title="配 Gruntfile.js"></a>配 Gruntfile.js</h2><p> Gruntfile.js可以写任意的 JS 代码，比如声明一个 对象 来存储一会要写任务的参数，或者是一个变量当作开关等等。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//所有的代码要包裹在里面</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>下面我们来安装 Grunt 的插件，当然，不需要一个个的安装，太麻烦了，我们可以：<br><figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev grunt-contrib-concat grunt-contrib-jshint grunt-contrib-sass grunt-contrib-uglify grunt-contrib-watch grunt-contrib-connect</span><br></pre></td></tr></table></figure></p>
+<p>这时你的package.json文件就变成了这样：<br><figure class="highlight json hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line">  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"zyy_node"</span>,</span><br><span class="line">  <span class="hljs-attr">"version"</span>: <span class="hljs-string">"1.0.0"</span>,</span><br><span class="line">  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"for zyy to learn grunt"</span>,</span><br><span class="line">  <span class="hljs-attr">"main"</span>: <span class="hljs-string">"index.js"</span>,</span><br><span class="line">  <span class="hljs-attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="hljs-attr">"grunt-contrib-concat"</span>: <span class="hljs-string">"^0.5.1"</span>,</span><br><span class="line">    <span class="hljs-attr">"grunt"</span>: <span class="hljs-string">"^0.4.5"</span>,</span><br><span class="line">    <span class="hljs-attr">"grunt-contrib-connect"</span>: <span class="hljs-string">"^0.11.2"</span>,</span><br><span class="line">    <span class="hljs-attr">"grunt-contrib-sass"</span>: <span class="hljs-string">"^0.9.2"</span>,</span><br><span class="line">    <span class="hljs-attr">"grunt-contrib-uglify"</span>: <span class="hljs-string">"^0.10.0"</span>,</span><br><span class="line">    <span class="hljs-attr">"grunt-contrib-watch"</span>: <span class="hljs-string">"^0.6.1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="hljs-attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="hljs-attr">"grunt"</span>: <span class="hljs-string">"^0.4.5"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="hljs-attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="hljs-attr">"test"</span>: <span class="hljs-string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="hljs-attr">"keywords"</span>: [</span><br><span class="line">    <span class="hljs-string">"grunt"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="hljs-attr">"author"</span>: <span class="hljs-string">"zyy"</span>,</span><br><span class="line">  <span class="hljs-attr">"license"</span>: <span class="hljs-string">"MIT"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="配-Gruntfile-js"><a href="#配-Gruntfile-js" class="headerlink" title="配 Gruntfile.js"></a>配 Gruntfile.js</h2><p> Gruntfile.js可以写任意的 JS 代码，比如声明一个 对象 来存储一会要写任务的参数，或者是一个变量当作开关等等。<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">grunt</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//所有的代码要包裹在里面</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>按照官网，里面的主要是为三个部分：</p>
 <ul>
 <li>初始任务配置</li>
@@ -132,452 +186,1353 @@
 <p>顾名思义，这三块代码，任务配置代码就是调用插件配置一下要执行的任务和实现的功能，插件加载代码就是把需要用到的插件加载进来，任务注册代码就是注册一个 task，里面包含刚在前面编写的任务配置代码。</p>
 <p>这样，就可以用 grunt 来执行注册的一个 task 从而根据任务配置代码调用需要的插件来执行相应的操作。</p>
 <p>下面来分别看一下这三块代码的写法。</p>
-<h3 id="u4EFB_u52A1_u914D_u7F6E_u4EE3_u7801"><a href="#u4EFB_u52A1_u914D_u7F6E_u4EE3_u7801" class="headerlink" title="任务配置代码"></a>任务配置代码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports=<span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>)</span>&#123;</span><br><span class="line">     grunt.initConfig(&#123;</span><br><span class="line">        pkg: grunt.file.readJSON(<span class="string">'package.json'</span>),   <span class="comment">//功能是读取 package.json 文件</span></span><br><span class="line">        uglify: &#123;</span><br><span class="line">        <span class="comment">//新建了一个基于 uglify 的任务 build，功能是把 src/&lt;%= pkg.name %&gt;.js 压缩输出 build/&lt;%= pkg.name %&gt;.min.js</span></span><br><span class="line">        options: &#123;</span><br><span class="line">            banner: <span class="string">'/*! &lt;%= pkg.name %&gt; &lt;%= grunt.template.today("yyyy-mm-dd") %&gt; */\n'</span></span><br><span class="line">        &#125;,                              <span class="comment">// &lt;%= pkg.name %&gt; 来输出项目名称）</span></span><br><span class="line">        build: &#123;</span><br><span class="line">        src: <span class="string">'src/&lt;%= pkg.name %&gt;.js'</span>,           <span class="comment">//  内容是把 XX.js 压缩输出到 xx.min.js 里面</span></span><br><span class="line">        dest: <span class="string">'build/&lt;%= pkg.name %&gt;.min.js'</span></span><br><span class="line">      &#125;                             <span class="comment">//如果你需要更多压缩任务，也可以参照 build 多写几个任务</span></span><br><span class="line">    &#125;</span><br><span class="line">        less:&#123;</span><br><span class="line">             <span class="comment">//这里的配置是根据less插件的配置文档来配置的</span></span><br><span class="line">             css:&#123;</span><br><span class="line">                 files:&#123;</span><br><span class="line">                    <span class="comment">//前面是要生成的css，后面是要编译的sass</span></span><br><span class="line">                     <span class="string">'src/index.css'</span>:<span class="string">'src/index.sass'</span></span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;,</span><br><span class="line">        watch: &#123;</span><br><span class="line">            less:&#123;</span><br><span class="line">               files:[<span class="string">'src/*.less'</span>],</span><br><span class="line">               tasks:[<span class="string">'less'</span>]</span><br><span class="line">           &#125;</span><br><span class="line">         &#125;<span class="comment">//这里的配置是根据watch插件的配置文档来配置的</span></span><br><span class="line">     &#125;);</span><br><span class="line">    </span><br><span class="line">     grunt.loadNpmTasks(<span class="string">'grunt-contrib-sass'</span>);</span><br><span class="line">     <span class="comment">//监控</span></span><br><span class="line">     grunt.loadNpmTasks(<span class="string">'grunt-contrib-watch'</span>);</span><br><span class="line"> </span><br><span class="line">     grunt.registerTask(<span class="string">'default'</span>,[<span class="string">'watch'</span>]);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="u7F16_u8BD1sass"><a href="#u7F16_u8BD1sass" class="headerlink" title="编译sass"></a>编译sass</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span><br><span class="line">* @Author: zyy</span><br><span class="line">* @Date:   2015-11-05 12:33:50</span><br><span class="line">* @Last Modified by:   Marte</span><br><span class="line">* @Last Modified time: 2015-11-05 12:38:57</span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> sassStyle = <span class="string">'expanded'</span>;</span><br><span class="line"></span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">    pkg: grunt.file.readJSON(<span class="string">'package.json'</span>),</span><br><span class="line">    sass: &#123;</span><br><span class="line">      output : &#123;</span><br><span class="line">        options: &#123;</span><br><span class="line">          style: sassStyle</span><br><span class="line">        &#125;,</span><br><span class="line">        files: &#123;</span><br><span class="line">          <span class="string">'try.css'</span>: <span class="string">'try.scss'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-sass'</span>);</span><br><span class="line"></span><br><span class="line">  grunt.registerTask(<span class="string">'outputcss'</span>,[<span class="string">'sass'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="string">'default'</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>然后在目录下打开控制台：，执行一下 grunt 命令，结果报错 undefined，没错，因为我们的 default task 里面没有定义任何任务，然后执行 grunt outputcss 命令，提示编译 Scss 文件成功。<br>（重要提醒，首先你的电脑得装有sass,<a href="http://www.imooc.com/article/1413" target="_blank" rel="external">安装教程</a><br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720160129225833.png" alt=""><br>回到目录，发现这样就多了两个文件了<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720160129225842.png" alt=""></p>
-<h3 id="u5408_u5E76_u6587_u4EF6"><a href="#u5408_u5E76_u6587_u4EF6" class="headerlink" title="合并文件"></a>合并文件</h3><p>合并文件使用的是  grunt-contrib-concat  ，将自己的js文件合并为一个。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> sassStyle = <span class="string">'expanded'</span>;</span><br><span class="line"></span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">    pkg: grunt.file.readJSON(<span class="string">'package.json'</span>),</span><br><span class="line">    sass: &#123;</span><br><span class="line">      output : &#123;</span><br><span class="line">        options: &#123;</span><br><span class="line">          style: sassStyle</span><br><span class="line">        &#125;,</span><br><span class="line">        files: &#123;</span><br><span class="line">          <span class="string">'try.css'</span>: <span class="string">'try.scss'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    concat: &#123;</span><br><span class="line">      options: &#123;</span><br><span class="line">        separator: <span class="string">''</span>,            <span class="comment">//两个文件直接的分隔符，可以为 ";" 也可以什么都不填</span></span><br><span class="line">      &#125;,</span><br><span class="line">      dist: &#123;</span><br><span class="line">        src: [<span class="string">'Storage.js'</span>, <span class="string">'bodyOnload.js'</span>],       <span class="comment">//将我的文件和别的小伙伴的文件合并到了一起</span></span><br><span class="line">        dest: <span class="string">'all.js'</span>,　　　　　　　　　　　　　　　　　　<span class="comment">//变成了一个文件</span></span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-sass'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-concat'</span>);　　　　　　　　</span><br><span class="line"></span><br><span class="line">  grunt.registerTask(<span class="string">'outputcss'</span>,[<span class="string">'sass'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="string">'concatjs'</span>,[<span class="string">'concat'</span>]);</span><br><span class="line"></span><br><span class="line">  grunt.registerTask(<span class="string">'default'</span>);</span><br></pre></td></tr></table></figure></p>
-<h3 id="u68C0_u67E5_u8BED_u6CD5_grunt-contrib-jshint"><a href="#u68C0_u67E5_u8BED_u6CD5_grunt-contrib-jshint" class="headerlink" title="检查语法 grunt-contrib-jshint"></a>检查语法 grunt-contrib-jshint</h3><h3 id="u538B_u7F29_grunt-contrib-uglify"><a href="#u538B_u7F29_grunt-contrib-uglify" class="headerlink" title="压缩 grunt-contrib-uglify"></a>压缩 grunt-contrib-uglify</h3><p>语法检查相对严格，对于一般的js漏掉 “;”分号，就会报错，或者 if( a == 0 )这类也会被报错，我们在写代码的时候应该要规范一点,写成 if（a === 0）。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> sassStyle = <span class="string">'expanded'</span>;</span><br><span class="line"></span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">    pkg: grunt.file.readJSON(<span class="string">'package.json'</span>),</span><br><span class="line">    sass: &#123;</span><br><span class="line">      output : &#123;</span><br><span class="line">        options: &#123;</span><br><span class="line">          style: sassStyle</span><br><span class="line">        &#125;,</span><br><span class="line">        files: &#123;</span><br><span class="line">          <span class="string">'try.css'</span>: <span class="string">'try.scss'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    concat: &#123;</span><br><span class="line">      options: &#123;</span><br><span class="line">        separator: <span class="string">''</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      dist: &#123;</span><br><span class="line">        src: [<span class="string">'Storage.js'</span>, <span class="string">'bodyOnload.js'</span>],</span><br><span class="line">        dest: <span class="string">'all.js'</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    uglify: &#123;</span><br><span class="line">      compressjs: &#123;</span><br><span class="line">        files: &#123;</span><br><span class="line">          <span class="string">'all.min.js'</span>: [<span class="string">'all.js'</span>]      <span class="comment">//将all.js压缩成all.min.js</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    jshint: &#123;</span><br><span class="line">      all: [<span class="string">'all.js'</span>]    <span class="comment">//此处语法严格，也有没那么严格的模式，可去管网查</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-sass'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-concat'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-jshint'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-uglify'</span>);</span><br><span class="line"></span><br><span class="line">  grunt.registerTask(<span class="string">'outputcss'</span>,[<span class="string">'sass'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="string">'concatjs'</span>,[<span class="string">'concat'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="string">'compressjs'</span>,[<span class="string">'concat'</span>,<span class="string">'jshint'</span>,<span class="string">'uglify'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="string">'default'</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="任务配置代码"><a href="#任务配置代码" class="headerlink" title="任务配置代码"></a>任务配置代码</h3><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">module</span>.exports=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">grunt</span>)</span>&#123;</span><br><span class="line">     grunt.initConfig(&#123;</span><br><span class="line">        pkg: grunt.file.readJSON(<span class="hljs-string">'package.json'</span>),   <span class="hljs-comment">//功能是读取 package.json 文件</span></span><br><span class="line">        uglify: &#123;</span><br><span class="line">        <span class="hljs-comment">//新建了一个基于 uglify 的任务 build，功能是把 src/&lt;%= pkg.name %&gt;.js 压缩输出 build/&lt;%= pkg.name %&gt;.min.js</span></span><br><span class="line">        options: &#123;</span><br><span class="line">            banner: <span class="hljs-string">'/*! &lt;%= pkg.name %&gt; &lt;%= grunt.template.today("yyyy-mm-dd") %&gt; */\n'</span></span><br><span class="line">        &#125;,                              <span class="hljs-comment">// &lt;%= pkg.name %&gt; 来输出项目名称）</span></span><br><span class="line">        build: &#123;</span><br><span class="line">        src: <span class="hljs-string">'src/&lt;%= pkg.name %&gt;.js'</span>,           <span class="hljs-comment">//  内容是把 XX.js 压缩输出到 xx.min.js 里面</span></span><br><span class="line">        dest: <span class="hljs-string">'build/&lt;%= pkg.name %&gt;.min.js'</span></span><br><span class="line">      &#125;                             <span class="hljs-comment">//如果你需要更多压缩任务，也可以参照 build 多写几个任务</span></span><br><span class="line">    &#125;</span><br><span class="line">        less:&#123;</span><br><span class="line">             <span class="hljs-comment">//这里的配置是根据less插件的配置文档来配置的</span></span><br><span class="line">             css:&#123;</span><br><span class="line">                 files:&#123;</span><br><span class="line">                    <span class="hljs-comment">//前面是要生成的css，后面是要编译的sass</span></span><br><span class="line">                     <span class="hljs-string">'src/index.css'</span>:<span class="hljs-string">'src/index.sass'</span></span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;,</span><br><span class="line">        watch: &#123;</span><br><span class="line">            less:&#123;</span><br><span class="line">               files:[<span class="hljs-string">'src/*.less'</span>],</span><br><span class="line">               tasks:[<span class="hljs-string">'less'</span>]</span><br><span class="line">           &#125;</span><br><span class="line">         &#125;<span class="hljs-comment">//这里的配置是根据watch插件的配置文档来配置的</span></span><br><span class="line">     &#125;);</span><br><span class="line">    </span><br><span class="line">     grunt.loadNpmTasks(<span class="hljs-string">'grunt-contrib-sass'</span>);</span><br><span class="line">     <span class="hljs-comment">//监控</span></span><br><span class="line">     grunt.loadNpmTasks(<span class="hljs-string">'grunt-contrib-watch'</span>);</span><br><span class="line"> </span><br><span class="line">     grunt.registerTask(<span class="hljs-string">'default'</span>,[<span class="hljs-string">'watch'</span>]);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="编译sass"><a href="#编译sass" class="headerlink" title="编译sass"></a>编译sass</h3><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/* </span></span><br><span class="line"><span class="hljs-comment">* @Author: zyy</span></span><br><span class="line"><span class="hljs-comment">* @Date:   2015-11-05 12:33:50</span></span><br><span class="line"><span class="hljs-comment">* @Last Modified by:   Marte</span></span><br><span class="line"><span class="hljs-comment">* @Last Modified time: 2015-11-05 12:38:57</span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">grunt</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">var</span> sassStyle = <span class="hljs-string">'expanded'</span>;</span><br><span class="line"></span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">    pkg: grunt.file.readJSON(<span class="hljs-string">'package.json'</span>),</span><br><span class="line">    sass: &#123;</span><br><span class="line">      output : &#123;</span><br><span class="line">        options: &#123;</span><br><span class="line">          style: sassStyle</span><br><span class="line">        &#125;,</span><br><span class="line">        files: &#123;</span><br><span class="line">          <span class="hljs-string">'try.css'</span>: <span class="hljs-string">'try.scss'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  grunt.loadNpmTasks(<span class="hljs-string">'grunt-contrib-sass'</span>);</span><br><span class="line"></span><br><span class="line">  grunt.registerTask(<span class="hljs-string">'outputcss'</span>,[<span class="hljs-string">'sass'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="hljs-string">'default'</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>然后在目录下打开控制台：，执行一下 grunt 命令，结果报错 undefined，没错，因为我们的 default task 里面没有定义任何任务，然后执行 grunt outputcss 命令，提示编译 Scss 文件成功。<br>（重要提醒，首先你的电脑得装有sass,<a href="http://www.imooc.com/article/1413" target="_blank" rel="noopener">安装教程</a><br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720160129225833.png" alt=""><br>回到目录，发现这样就多了两个文件了<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720160129225842.png" alt=""></p>
+<h3 id="合并文件"><a href="#合并文件" class="headerlink" title="合并文件"></a>合并文件</h3><p>合并文件使用的是  grunt-contrib-concat  ，将自己的js文件合并为一个。<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">grunt</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">var</span> sassStyle = <span class="hljs-string">'expanded'</span>;</span><br><span class="line"></span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">    pkg: grunt.file.readJSON(<span class="hljs-string">'package.json'</span>),</span><br><span class="line">    sass: &#123;</span><br><span class="line">      output : &#123;</span><br><span class="line">        options: &#123;</span><br><span class="line">          style: sassStyle</span><br><span class="line">        &#125;,</span><br><span class="line">        files: &#123;</span><br><span class="line">          <span class="hljs-string">'try.css'</span>: <span class="hljs-string">'try.scss'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    concat: &#123;</span><br><span class="line">      options: &#123;</span><br><span class="line">        separator: <span class="hljs-string">''</span>,            <span class="hljs-comment">//两个文件直接的分隔符，可以为 ";" 也可以什么都不填</span></span><br><span class="line">      &#125;,</span><br><span class="line">      dist: &#123;</span><br><span class="line">        src: [<span class="hljs-string">'Storage.js'</span>, <span class="hljs-string">'bodyOnload.js'</span>],       <span class="hljs-comment">//将我的文件和别的小伙伴的文件合并到了一起</span></span><br><span class="line">        dest: <span class="hljs-string">'all.js'</span>,　　　　　　　　　　　　　　　　　　<span class="hljs-comment">//变成了一个文件</span></span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  grunt.loadNpmTasks(<span class="hljs-string">'grunt-contrib-sass'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="hljs-string">'grunt-contrib-concat'</span>);　　　　　　　　</span><br><span class="line"></span><br><span class="line">  grunt.registerTask(<span class="hljs-string">'outputcss'</span>,[<span class="hljs-string">'sass'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="hljs-string">'concatjs'</span>,[<span class="hljs-string">'concat'</span>]);</span><br><span class="line"></span><br><span class="line">  grunt.registerTask(<span class="hljs-string">'default'</span>);</span><br></pre></td></tr></table></figure></p>
+<h3 id="检查语法-grunt-contrib-jshint"><a href="#检查语法-grunt-contrib-jshint" class="headerlink" title="检查语法 grunt-contrib-jshint"></a>检查语法 grunt-contrib-jshint</h3><h3 id="压缩-grunt-contrib-uglify"><a href="#压缩-grunt-contrib-uglify" class="headerlink" title="压缩 grunt-contrib-uglify"></a>压缩 grunt-contrib-uglify</h3><p>语法检查相对严格，对于一般的js漏掉 “;”分号，就会报错，或者 if( a == 0 )这类也会被报错，我们在写代码的时候应该要规范一点,写成 if（a === 0）。<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">grunt</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">var</span> sassStyle = <span class="hljs-string">'expanded'</span>;</span><br><span class="line"></span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">    pkg: grunt.file.readJSON(<span class="hljs-string">'package.json'</span>),</span><br><span class="line">    sass: &#123;</span><br><span class="line">      output : &#123;</span><br><span class="line">        options: &#123;</span><br><span class="line">          style: sassStyle</span><br><span class="line">        &#125;,</span><br><span class="line">        files: &#123;</span><br><span class="line">          <span class="hljs-string">'try.css'</span>: <span class="hljs-string">'try.scss'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    concat: &#123;</span><br><span class="line">      options: &#123;</span><br><span class="line">        separator: <span class="hljs-string">''</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      dist: &#123;</span><br><span class="line">        src: [<span class="hljs-string">'Storage.js'</span>, <span class="hljs-string">'bodyOnload.js'</span>],</span><br><span class="line">        dest: <span class="hljs-string">'all.js'</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    uglify: &#123;</span><br><span class="line">      compressjs: &#123;</span><br><span class="line">        files: &#123;</span><br><span class="line">          <span class="hljs-string">'all.min.js'</span>: [<span class="hljs-string">'all.js'</span>]      <span class="hljs-comment">//将all.js压缩成all.min.js</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    jshint: &#123;</span><br><span class="line">      all: [<span class="hljs-string">'all.js'</span>]    <span class="hljs-comment">//此处语法严格，也有没那么严格的模式，可去管网查</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  grunt.loadNpmTasks(<span class="hljs-string">'grunt-contrib-sass'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="hljs-string">'grunt-contrib-concat'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="hljs-string">'grunt-contrib-jshint'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="hljs-string">'grunt-contrib-uglify'</span>);</span><br><span class="line"></span><br><span class="line">  grunt.registerTask(<span class="hljs-string">'outputcss'</span>,[<span class="hljs-string">'sass'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="hljs-string">'concatjs'</span>,[<span class="hljs-string">'concat'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="hljs-string">'compressjs'</span>,[<span class="hljs-string">'concat'</span>,<span class="hljs-string">'jshint'</span>,<span class="hljs-string">'uglify'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="hljs-string">'default'</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>当然，你可以用grunt-contrib-watch实时监控变化 和grunt-contrib-connect 来实时刷新窗口 （前提是你按了Crtl+s）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> sassStyle = <span class="string">'expanded'</span>;</span><br><span class="line"></span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">    pkg: grunt.file.readJSON(<span class="string">'package.json'</span>),</span><br><span class="line">    sass: &#123;</span><br><span class="line">      output : &#123;</span><br><span class="line">        options: &#123;</span><br><span class="line">          style: sassStyle</span><br><span class="line">        &#125;,</span><br><span class="line">        files: &#123;</span><br><span class="line">          <span class="string">'try.css'</span>: <span class="string">'try.scss'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    concat: &#123;</span><br><span class="line">      options: &#123;</span><br><span class="line">        separator: <span class="string">''</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      dist: &#123;</span><br><span class="line">        src: [<span class="string">'Storage.js'</span>, <span class="string">'bodyOnload.js'</span>],</span><br><span class="line">        dest: <span class="string">'all.js'</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    uglify: &#123;</span><br><span class="line">      compressjs: &#123;</span><br><span class="line">        files: &#123;</span><br><span class="line">          <span class="string">'all.min.js'</span>: [<span class="string">'all.js'</span>]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    jshint: &#123;</span><br><span class="line">      all: [<span class="string">'all.js'</span>]</span><br><span class="line">    &#125;,</span><br><span class="line">    watch: &#123;</span><br><span class="line">      scripts: &#123;</span><br><span class="line">        files: [<span class="string">'Storage.js'</span>,<span class="string">'bodyOnload.js'</span>],</span><br><span class="line">        tasks: [<span class="string">'concat'</span>,<span class="string">'jshint'</span>,<span class="string">'uglify'</span>]</span><br><span class="line">        &#125;,</span><br><span class="line">      sass: &#123;</span><br><span class="line">        files: [<span class="string">'try.scss'</span>],</span><br><span class="line">        tasks: [<span class="string">'sass'</span>]</span><br><span class="line">      &#125;,</span><br><span class="line">      livereload: &#123;</span><br><span class="line">          options: &#123;</span><br><span class="line">              livereload: <span class="string">'&lt;%= connect.options.livereload %&gt;'</span></span><br><span class="line">          &#125;,</span><br><span class="line">          files: [</span><br><span class="line">              <span class="string">'hello.html'</span>,</span><br><span class="line">              <span class="string">'try.css'</span>,</span><br><span class="line">              <span class="string">'all.min.js'</span></span><br><span class="line">          ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    connect: &#123;</span><br><span class="line">      options: &#123;</span><br><span class="line">          port: <span class="number">9000</span>,</span><br><span class="line">          open: <span class="literal">true</span>,</span><br><span class="line">          livereload: <span class="number">35729</span>,</span><br><span class="line">          <span class="comment">// Change this to '0.0.0.0' to access the server from outside</span></span><br><span class="line">          hostname: <span class="string">'localhost'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      server: &#123;</span><br><span class="line">        options: &#123;</span><br><span class="line">          port: <span class="number">9001</span>,</span><br><span class="line">          base: <span class="string">'./'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-sass'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-concat'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-jshint'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-uglify'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-watch'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-connect'</span>);</span><br><span class="line"></span><br><span class="line">  grunt.registerTask(<span class="string">'outputcss'</span>,[<span class="string">'sass'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="string">'concatjs'</span>,[<span class="string">'concat'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="string">'compressjs'</span>,[<span class="string">'concat'</span>,<span class="string">'jshint'</span>,<span class="string">'uglify'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="string">'watchit'</span>,[<span class="string">'sass'</span>,<span class="string">'concat'</span>,<span class="string">'jshint'</span>,<span class="string">'uglify'</span>,<span class="string">'connect'</span>,<span class="string">'watch'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="string">'default'</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">grunt</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">var</span> sassStyle = <span class="hljs-string">'expanded'</span>;</span><br><span class="line"></span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">    pkg: grunt.file.readJSON(<span class="hljs-string">'package.json'</span>),</span><br><span class="line">    sass: &#123;</span><br><span class="line">      output : &#123;</span><br><span class="line">        options: &#123;</span><br><span class="line">          style: sassStyle</span><br><span class="line">        &#125;,</span><br><span class="line">        files: &#123;</span><br><span class="line">          <span class="hljs-string">'try.css'</span>: <span class="hljs-string">'try.scss'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    concat: &#123;</span><br><span class="line">      options: &#123;</span><br><span class="line">        separator: <span class="hljs-string">''</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      dist: &#123;</span><br><span class="line">        src: [<span class="hljs-string">'Storage.js'</span>, <span class="hljs-string">'bodyOnload.js'</span>],</span><br><span class="line">        dest: <span class="hljs-string">'all.js'</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    uglify: &#123;</span><br><span class="line">      compressjs: &#123;</span><br><span class="line">        files: &#123;</span><br><span class="line">          <span class="hljs-string">'all.min.js'</span>: [<span class="hljs-string">'all.js'</span>]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    jshint: &#123;</span><br><span class="line">      all: [<span class="hljs-string">'all.js'</span>]</span><br><span class="line">    &#125;,</span><br><span class="line">    watch: &#123;</span><br><span class="line">      scripts: &#123;</span><br><span class="line">        files: [<span class="hljs-string">'Storage.js'</span>,<span class="hljs-string">'bodyOnload.js'</span>],</span><br><span class="line">        tasks: [<span class="hljs-string">'concat'</span>,<span class="hljs-string">'jshint'</span>,<span class="hljs-string">'uglify'</span>]</span><br><span class="line">        &#125;,</span><br><span class="line">      sass: &#123;</span><br><span class="line">        files: [<span class="hljs-string">'try.scss'</span>],</span><br><span class="line">        tasks: [<span class="hljs-string">'sass'</span>]</span><br><span class="line">      &#125;,</span><br><span class="line">      livereload: &#123;</span><br><span class="line">          options: &#123;</span><br><span class="line">              livereload: <span class="hljs-string">'&lt;%= connect.options.livereload %&gt;'</span></span><br><span class="line">          &#125;,</span><br><span class="line">          files: [</span><br><span class="line">              <span class="hljs-string">'hello.html'</span>,</span><br><span class="line">              <span class="hljs-string">'try.css'</span>,</span><br><span class="line">              <span class="hljs-string">'all.min.js'</span></span><br><span class="line">          ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    connect: &#123;</span><br><span class="line">      options: &#123;</span><br><span class="line">          port: <span class="hljs-number">9000</span>,</span><br><span class="line">          open: <span class="hljs-literal">true</span>,</span><br><span class="line">          livereload: <span class="hljs-number">35729</span>,</span><br><span class="line">          <span class="hljs-comment">// Change this to '0.0.0.0' to access the server from outside</span></span><br><span class="line">          hostname: <span class="hljs-string">'localhost'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      server: &#123;</span><br><span class="line">        options: &#123;</span><br><span class="line">          port: <span class="hljs-number">9001</span>,</span><br><span class="line">          base: <span class="hljs-string">'./'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  grunt.loadNpmTasks(<span class="hljs-string">'grunt-contrib-sass'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="hljs-string">'grunt-contrib-concat'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="hljs-string">'grunt-contrib-jshint'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="hljs-string">'grunt-contrib-uglify'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="hljs-string">'grunt-contrib-watch'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="hljs-string">'grunt-contrib-connect'</span>);</span><br><span class="line"></span><br><span class="line">  grunt.registerTask(<span class="hljs-string">'outputcss'</span>,[<span class="hljs-string">'sass'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="hljs-string">'concatjs'</span>,[<span class="hljs-string">'concat'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="hljs-string">'compressjs'</span>,[<span class="hljs-string">'concat'</span>,<span class="hljs-string">'jshint'</span>,<span class="hljs-string">'uglify'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="hljs-string">'watchit'</span>,[<span class="hljs-string">'sass'</span>,<span class="hljs-string">'concat'</span>,<span class="hljs-string">'jshint'</span>,<span class="hljs-string">'uglify'</span>,<span class="hljs-string">'connect'</span>,<span class="hljs-string">'watch'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="hljs-string">'default'</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p> 最后的控制台<br><img src="http://7xpwlt.com1.z0.glb.clouddn.com/333.png" alt=""></p>
 <p>最常用的就这几个插件，在各种大神博客的帮助下，终于入门了，以后会继续去网站上挖掘一些自己需要的东西。稀稀拉拉写了三天多，希望能够给到grunt小白一个帮助吧</p>
-  
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
 
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Grunt/">Grunt</a>
-  </div>
-
-</div>
-
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="https://github.com/Zyingying/2016/01/29/Grunt入门/" data-title="Grunt入门 | 2yingying" data-tsina="2133445925" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
-</footer>
-
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2016/01/29/浏览器渲染原理的研究/" title="浏览器的渲染原理的研究">
-  <strong>上一篇：</strong><br/>
-  <span>
-  浏览器的渲染原理的研究</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2016/01/26/模块化（三）/"  title="模块化（三）：学习require.js">
- <strong>下一篇：</strong><br/> 
- <span>模块化（三）：学习require.js
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-<section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/01/29/Grunt入门/" data-title="Grunt入门" data-url="https://github.com/Zyingying/2016/01/29/Grunt入门/"></div>
-</section>
-
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5B89_u88C5_Grunt"><span class="toc-number">1.</span> <span class="toc-text">安装 Grunt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7F16_u5199package-json"><span class="toc-number">2.</span> <span class="toc-text">编写package.json</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Grunt__u548C_u63D2_u4EF6"><span class="toc-number">3.</span> <span class="toc-text">Grunt 和插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u914D_Gruntfile-js"><span class="toc-number">4.</span> <span class="toc-text">配 Gruntfile.js</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EFB_u52A1_u914D_u7F6E_u4EE3_u7801"><span class="toc-number">4.1.</span> <span class="toc-text">任务配置代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F16_u8BD1sass"><span class="toc-number">4.2.</span> <span class="toc-text">编译sass</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5408_u5E76_u6587_u4EF6"><span class="toc-number">4.3.</span> <span class="toc-text">合并文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u68C0_u67E5_u8BED_u6CD5_grunt-contrib-jshint"><span class="toc-number">4.4.</span> <span class="toc-text">检查语法 grunt-contrib-jshint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u538B_u7F29_grunt-contrib-uglify"><span class="toc-number">4.5.</span> <span class="toc-text">压缩 grunt-contrib-uglify</span></a></li></ol></li></ol>
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  
-<div class="github-card">
-<p class="asidetitle">Github 名片</p>
-<div class="github-card" data-github="Zyingying" data-width="220" data-height="119" data-theme="medium">
-<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
-</div>
-  </div>
-
-
-
-  
-
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/js/" title="js">js<sup>12</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/css/" title="css">css<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/模块化/" title="模块化">模块化<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/性能优化/" title="性能优化">性能优化<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/安全/" title="安全">安全<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/攻击/" title="攻击">攻击<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/移动端/" title="移动端">移动端<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/渲染/" title="渲染">渲染<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/硬件加速/" title="硬件加速">硬件加速<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/闭包/" title="闭包">闭包<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/正则/" title="正则">正则<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/node/" title="node">node<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Grunt/" title="Grunt">Grunt<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/css3/" title="css3">css3<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/兼容/" title="兼容">兼容<sup>1</sup></a></li>
-			
-		
-		</ul>
-</div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
-    <ul>
+        </div>
         
-    </ul>
-</div>
-
-  
-
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-  <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
-    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2133445925&verifier=b3593ceb&dpc=1"></iframe>
-</div>
-
-
-</aside>
-</div>
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Grunt/">Grunt</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
     </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello, I&#39;m zyy.  This is my blog on GitHub. <br/>
-			I wish you like it</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		<a href="http://weibo.com/2133445925" target="_blank" class="icon-weibo" title="微博"></a>
-		
-		
-		<a href="https://github.com/Zyingying" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		
-		
-		
-		
-		<a href="http://www.zhihu.com/people/2hang-ying-ying-" target="_blank" class="icon-zhihu" title="知乎"></a>
-		
-		
-		
-		<a href="mailto:zyingying.zyy@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
-
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
-		
-		<a href="/about" target="_blank" title="盈盈">盈盈</a>
-		
-		&nbsp&nbsp&nbsp&nbsp本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次, 本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次
-		</p>
 </div>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
         
-    }
-  });
-});
-</script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
-
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-
-  $('.hoverqrcode').hide();
-
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2016/01/29/浏览器渲染原理的研究/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">浏览器的渲染原理的研究</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2016/01/26/模块化（三）/">
+                <span class="level-item">模块化（三）：学习require.js</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"zyingying"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script> 
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
-</script>
-
-
-
-<!-- Analytics Begin -->
-
-
-
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
+	var gitment = new Gitment({
+		id: '2016/01/29/Grunt入门/',
+		owner: 'Vinny',
+		repo: 'Zyingying',
+		oauth: {
+			client_id: '36d8246113e8c681c4da',
+			client_secret: 'f52d837ac5dd58999ba01fd8d399fb85f78a8d79',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <img class="image is-128x128 has-mb-6" src="/images/author.jpg" alt="Vinny Chuang | 张盈盈">
+                    
+                    <p class="is-size-4 is-block">
+                        Vinny Chuang | 张盈盈
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Web Developer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Canton,China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        25
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        18
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/Zyingying">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/Zyingying">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="http://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="http://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="http://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">https://hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/Zyingying" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">yingying</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">https://github.com/Zyingying</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 10px;">css3</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/兼容/" style="font-size: 10px;">兼容</a> <a href="/tags/安全/" style="font-size: 12.5px;">安全</a> <a href="/tags/性能优化/" style="font-size: 15px;">性能优化</a> <a href="/tags/攻击/" style="font-size: 12.5px;">攻击</a> <a href="/tags/模块化/" style="font-size: 15px;">模块化</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/渲染/" style="font-size: 10px;">渲染</a> <a href="/tags/硬件加速/" style="font-size: 10px;">硬件加速</a> <a href="/tags/移动端/" style="font-size: 12.5px;">移动端</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2018/04/16/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/hello.jpg" alt="Hello 2018">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-04-16T07:23:59.000Z">2018-04-16</time></div>
+                    <a href="/2018/04/16/hello-world/" class="has-link-black-ter is-size-6">Hello 2018</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/11/26/replace/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="正则test, exec, match, replace">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-11-26T15:13:33.000Z">2016-11-26</time></div>
+                    <a href="/2016/11/26/replace/" class="has-link-black-ter is-size-6">正则test, exec, match, replace</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/10/26/抛出自定义错误/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="抛出自定义错误">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-10-26T15:07:42.000Z">2016-10-26</time></div>
+                    <a href="/2016/10/26/抛出自定义错误/" class="has-link-black-ter is-size-6">抛出自定义错误</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/09/18/移动网络下的页面调试/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="移动网络下的页面调试">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-09-18T02:54:22.000Z">2016-09-18</time></div>
+                    <a href="/2016/09/18/移动网络下的页面调试/" class="has-link-black-ter is-size-6">移动网络下的页面调试</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/08/17/排序算法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="排序算法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-08-17T15:25:26.000Z">2016-08-17</time></div>
+                    <a href="/2016/08/17/排序算法/" class="has-link-black-ter is-size-6">排序算法</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <ul class="menu-list">
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Grunt/">
+                        <span class="level-start">
+                            <span class="level-item">Grunt</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css/">
+                        <span class="level-start">
+                            <span class="level-item">css</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">4</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css3/">
+                        <span class="level-start">
+                            <span class="level-item">css3</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/git/">
+                        <span class="level-start">
+                            <span class="level-item">git</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/js/">
+                        <span class="level-start">
+                            <span class="level-item">js</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">12</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/node/">
+                        <span class="level-start">
+                            <span class="level-item">node</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/兼容/">
+                        <span class="level-start">
+                            <span class="level-item">兼容</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/安全/">
+                        <span class="level-start">
+                            <span class="level-item">安全</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/性能优化/">
+                        <span class="level-start">
+                            <span class="level-item">性能优化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/攻击/">
+                        <span class="level-start">
+                            <span class="level-item">攻击</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/模块化/">
+                        <span class="level-start">
+                            <span class="level-item">模块化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/正则/">
+                        <span class="level-start">
+                            <span class="level-item">正则</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/渲染/">
+                        <span class="level-start">
+                            <span class="level-item">渲染</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/硬件加速/">
+                        <span class="level-start">
+                            <span class="level-item">硬件加速</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/移动端/">
+                        <span class="level-start">
+                            <span class="level-item">移动端</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/算法/">
+                        <span class="level-start">
+                            <span class="level-item">算法</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/闭包/">
+                        <span class="level-start">
+                            <span class="level-item">闭包</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/随笔/">
+                        <span class="level-start">
+                            <span class="level-item">随笔</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2018/04/16/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/hello.jpg" alt="Hello 2018">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-04-16T07:23:59.000Z">2018-04-16</time></div>
+                    <a href="/2018/04/16/hello-world/" class="has-link-black-ter is-size-6">Hello 2018</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/11/26/replace/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="正则test, exec, match, replace">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-11-26T15:13:33.000Z">2016-11-26</time></div>
+                    <a href="/2016/11/26/replace/" class="has-link-black-ter is-size-6">正则test, exec, match, replace</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/10/26/抛出自定义错误/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="抛出自定义错误">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-10-26T15:07:42.000Z">2016-10-26</time></div>
+                    <a href="/2016/10/26/抛出自定义错误/" class="has-link-black-ter is-size-6">抛出自定义错误</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/09/18/移动网络下的页面调试/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="移动网络下的页面调试">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-09-18T02:54:22.000Z">2016-09-18</time></div>
+                    <a href="/2016/09/18/移动网络下的页面调试/" class="has-link-black-ter is-size-6">移动网络下的页面调试</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/08/17/排序算法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="排序算法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-08-17T15:25:26.000Z">2016-08-17</time></div>
+                    <a href="/2016/08/17/排序算法/" class="has-link-black-ter is-size-6">排序算法</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <ul class="menu-list">
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Grunt/">
+                        <span class="level-start">
+                            <span class="level-item">Grunt</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css/">
+                        <span class="level-start">
+                            <span class="level-item">css</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">4</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css3/">
+                        <span class="level-start">
+                            <span class="level-item">css3</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/git/">
+                        <span class="level-start">
+                            <span class="level-item">git</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/js/">
+                        <span class="level-start">
+                            <span class="level-item">js</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">12</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/node/">
+                        <span class="level-start">
+                            <span class="level-item">node</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/兼容/">
+                        <span class="level-start">
+                            <span class="level-item">兼容</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/安全/">
+                        <span class="level-start">
+                            <span class="level-item">安全</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/性能优化/">
+                        <span class="level-start">
+                            <span class="level-item">性能优化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/攻击/">
+                        <span class="level-start">
+                            <span class="level-item">攻击</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/模块化/">
+                        <span class="level-start">
+                            <span class="level-item">模块化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/正则/">
+                        <span class="level-start">
+                            <span class="level-item">正则</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/渲染/">
+                        <span class="level-start">
+                            <span class="level-item">渲染</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/硬件加速/">
+                        <span class="level-start">
+                            <span class="level-item">硬件加速</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/移动端/">
+                        <span class="level-start">
+                            <span class="level-item">移动端</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/算法/">
+                        <span class="level-start">
+                            <span class="level-item">算法</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/闭包/">
+                        <span class="level-start">
+                            <span class="level-item">闭包</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/随笔/">
+                        <span class="level-start">
+                            <span class="level-item">随笔</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Grunt入门" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2018 Vinny Chuang&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus">Icarus</a>
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
 </script>
 
 
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {matchFontHeight: false},
+        SVG: {matchFontHeight: false},
+        CommonHTML: {matchFontHeight: false}
+    });
+});
+</script>
 
-<!-- Analytics End -->
+    
+    
 
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
 
 
-<!-- MathJax End -->
+    
+    
 
-<!-- Tiny_search Begin -->
+    
+    
+    
+    
 
-<!-- Tiny_search End -->
+    
+    
+    
 
-  </body>
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
 </html>

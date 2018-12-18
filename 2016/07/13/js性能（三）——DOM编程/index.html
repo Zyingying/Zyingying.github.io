@@ -1,109 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>js性能——DOM编程 - 盈盈的主页</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
- <!DOCTYPE HTML>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  
-    <title>js性能——DOM编程 | 2yingying</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="盈盈">
-    
 
-    
+
     <meta name="description" content="hi~第三篇啦这一篇简短的文章简单说明了在DOM编程过程可以优化的一些点">
+<meta name="keywords" content="性能优化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js性能——DOM编程">
 <meta property="og:url" content="https://github.com/Zyingying/2016/07/13/js性能（三）——DOM编程/index.html">
-<meta property="og:site_name" content="2yingying">
+<meta property="og:site_name" content="盈盈的主页">
 <meta property="og:description" content="hi~第三篇啦这一篇简短的文章简单说明了在DOM编程过程可以优化的一些点">
-<meta property="og:updated_time" content="2016-07-16T03:11:08.479Z">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2016-07-16T03:11:08.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js性能——DOM编程">
 <meta name="twitter:description" content="hi~第三篇啦这一篇简短的文章简单说明了在DOM编程过程可以优化的一些点">
 
-    
-    <link rel="alternative" href="/atom.xml" title="2yingying" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/smile.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/pacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
-</head>
 
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.svg" alt="2yingying" title="2yingying"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="2yingying">2yingying</a></h1>
-				<h2 class="blog-motto">你可长点心吧！     点心？什么点心？</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">主页 | Home</a></li>
-					
-						<li><a href="/archives">归档 | Archives</a></li>
-					
-						<li><a href="/about">简介 | About</a></li>
-					
-					<li>
- 					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:github.com/Zyingying">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
+
+
+
+<link rel="icon" href="/images/smile.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
     
-      <a href="/2016/07/13/js性能（三）——DOM编程/" title="js性能——DOM编程" itemprop="url">js性能——DOM编程</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-07-12T16:15:22.000Z" itemprop="datePublished"> 发表于 2016-07-13</time>
     
-  </p>
-</header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM_u904D_u5386"><span class="toc-number">1.</span> <span class="toc-text">DOM遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u9009_u62E9_u5668API"><span class="toc-number">1.1.</span> <span class="toc-text">选择器API</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u91CD_u7ED8_u91CD_u6392"><span class="toc-number">2.</span> <span class="toc-text">重绘重排</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u91CD_u6392_u53D1_u751F_u60C5_u51B5"><span class="toc-number">2.0.1.</span> <span class="toc-text">重排发生情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6E32_u67D3_u6811_u53D8_u5316_u7684_u6392_u961F_u4E0E_u5237_u65B0"><span class="toc-number">2.0.2.</span> <span class="toc-text">渲染树变化的排队与刷新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6700_u5C0F_u5316_u91CD_u7ED8_u548C_u91CD_u6392"><span class="toc-number">2.0.3.</span> <span class="toc-text">最小化重绘和重排</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6279_u91CF_u4FEE_u6539DOM"><span class="toc-number">2.0.4.</span> <span class="toc-text">批量修改DOM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u8BA9_u5143_u7D20_u8131_u79BB_u52A8_u753B_u6D41"><span class="toc-number">2.0.5.</span> <span class="toc-text">让元素脱离动画流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IE_u4E0E_uFF1Ahover"><span class="toc-number">2.0.6.</span> <span class="toc-text">IE与：hover</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E8B_u4EF6_u59D4_u6258"><span class="toc-number">2.1.</span> <span class="toc-text">事件委托</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u53C2_u8003_u8D44_u6599"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li></ol>
-		
-		</div>
-		
-		<p>hi~第三篇啦<br>这一篇简短的文章简单说明了在DOM编程过程可以优化的一些点<br><a id="more"></a><br>下面有一些概念需要大家一起认识一下；</p>
-<h2 id="DOM_u904D_u5386"><a href="#DOM_u904D_u5386" class="headerlink" title="DOM遍历"></a>DOM遍历</h2><p>减少对DOM的遍历。</p>
-<h3 id="u9009_u62E9_u5668API"><a href="#u9009_u62E9_u5668API" class="headerlink" title="选择器API"></a>选择器API</h3><p>querySelectorAll()的原生DOM方法比使用js与DOM遍历要快</p>
-<h2 id="u91CD_u7ED8_u91CD_u6392"><a href="#u91CD_u7ED8_u91CD_u6392" class="headerlink" title="重绘重排"></a>重绘重排</h2><p>浏览器下载完页面的所有组件——html标记、js、css、图片——之后会解析并生成两个内部数据结构：</p>
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="js性能——DOM编程" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-07-12T16:15:22.000Z">2016-07-13</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    9 分钟 读完 (大约 1280 个字)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                js性能——DOM编程
+            
+        </h1>
+        <div class="content">
+            <p>hi~第三篇啦<br>这一篇简短的文章简单说明了在DOM编程过程可以优化的一些点<br><a id="more"></a><br>下面有一些概念需要大家一起认识一下；</p>
+<h2 id="DOM遍历"><a href="#DOM遍历" class="headerlink" title="DOM遍历"></a>DOM遍历</h2><p>减少对DOM的遍历。</p>
+<h3 id="选择器API"><a href="#选择器API" class="headerlink" title="选择器API"></a>选择器API</h3><p>querySelectorAll()的原生DOM方法比使用js与DOM遍历要快</p>
+<h2 id="重绘重排"><a href="#重绘重排" class="headerlink" title="重绘重排"></a>重绘重排</h2><p>浏览器下载完页面的所有组件——html标记、js、css、图片——之后会解析并生成两个内部数据结构：</p>
 <p><strong>DOM树</strong><br>       表示页面结构</p>
 <p><strong>渲染树</strong><br>        表示DOM节点如何显示</p>
 <p>当DOM的变化影响了元素的几何属性，浏览器就需要重新计算元素的几何属性，同样其他元素的几何属性也会因此受到影响。浏览器会使渲染树种受到影响的部分失效，并重新构建渲染树。<strong>这个过程称为“重排”</strong>。</p>
@@ -111,7 +164,7 @@
 <p>但是！！<br>并不是所有的DOM变化都会影响到几何属性（宽和高之类），比如改变颜色。这个时候只会发生重绘，不会重排。</p>
 <p>All in all,重绘重排是代价很昂贵的操作，所以尽可能减少发生。</p>
 <p>所以，怎样会有重排的发生呢？</p>
-<h4 id="u91CD_u6392_u53D1_u751F_u60C5_u51B5"><a href="#u91CD_u6392_u53D1_u751F_u60C5_u51B5" class="headerlink" title="重排发生情况"></a>重排发生情况</h4><ul>
+<h4 id="重排发生情况"><a href="#重排发生情况" class="headerlink" title="重排发生情况"></a>重排发生情况</h4><ul>
 <li>添加或删除可见的DOM元素</li>
 <li>元素位置改变</li>
 <li>元素尺寸改变</li>
@@ -119,7 +172,7 @@
 <li>页面渲染器初始化</li>
 <li>浏览器窗口尺寸改变</li>
 </ul>
-<h4 id="u6E32_u67D3_u6811_u53D8_u5316_u7684_u6392_u961F_u4E0E_u5237_u65B0"><a href="#u6E32_u67D3_u6811_u53D8_u5316_u7684_u6392_u961F_u4E0E_u5237_u65B0" class="headerlink" title="渲染树变化的排队与刷新"></a>渲染树变化的排队与刷新</h4><p>大多数浏览器通过队列化修改并批量执行来优化重排过程。然而，或许我们会不知不觉的强制刷新队列并要求计划任务立刻执行。</p>
+<h4 id="渲染树变化的排队与刷新"><a href="#渲染树变化的排队与刷新" class="headerlink" title="渲染树变化的排队与刷新"></a>渲染树变化的排队与刷新</h4><p>大多数浏览器通过队列化修改并批量执行来优化重排过程。然而，或许我们会不知不觉的强制刷新队列并要求计划任务立刻执行。</p>
 <p>获取布局信息的操作会导致队列刷新，eg:</p>
 <ul>
 <li>offsetTop,offsetLeft,offsetwidth,offsetHeight</li>
@@ -128,9 +181,9 @@
 <li>getComputedStyle()</li>
 </ul>
 <p>以上属性和方法需要返回最新的布局信息，所以浏览器不得不执行渲染队列中的“待处理变化”并重返重排以返回正确的值。</p>
-<h4 id="u6700_u5C0F_u5316_u91CD_u7ED8_u548C_u91CD_u6392"><a href="#u6700_u5C0F_u5316_u91CD_u7ED8_u548C_u91CD_u6392" class="headerlink" title="最小化重绘和重排"></a>最小化重绘和重排</h4><p>下面举个例子说明如何减少重绘重排<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> e = <span class="built_in">document</span>.getElementById(<span class="string">'mydiv'</span>);</span><br><span class="line">e.style.borderLeft = <span class="string">'1px'</span>;</span><br><span class="line">e.style.padding = <span class="string">'5px'</span>;</span><br></pre></td></tr></table></figure></p>
-<p>上面三个样式属性被改变，每次都会影响元素几何结构，最糟糕的情况下，会导致浏览器触发三次重排。现在大部分现代浏览器为此做了优化，只触发一次重排，但是在旧版浏览器中，或者有一个分离的异步处理过程时，效率还是很低，如果在上面代码执行时，有其他代码请求布局，将会导致三次重排。<br>可以改为如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e.style.cssText += <span class="string">";border-left:1px;"</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="u6279_u91CF_u4FEE_u6539DOM"><a href="#u6279_u91CF_u4FEE_u6539DOM" class="headerlink" title="批量修改DOM"></a>批量修改DOM</h4><p>通过一些改善来减少重绘与重排的次数：</p>
+<h4 id="最小化重绘和重排"><a href="#最小化重绘和重排" class="headerlink" title="最小化重绘和重排"></a>最小化重绘和重排</h4><p>下面举个例子说明如何减少重绘重排<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> e = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'mydiv'</span>);</span><br><span class="line">e.style.borderLeft = <span class="hljs-string">'1px'</span>;</span><br><span class="line">e.style.padding = <span class="hljs-string">'5px'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>上面三个样式属性被改变，每次都会影响元素几何结构，最糟糕的情况下，会导致浏览器触发三次重排。现在大部分现代浏览器为此做了优化，只触发一次重排，但是在旧版浏览器中，或者有一个分离的异步处理过程时，效率还是很低，如果在上面代码执行时，有其他代码请求布局，将会导致三次重排。<br>可以改为如下<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e.style.cssText += <span class="hljs-string">";border-left:1px;"</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="批量修改DOM"><a href="#批量修改DOM" class="headerlink" title="批量修改DOM"></a>批量修改DOM</h4><p>通过一些改善来减少重绘与重排的次数：</p>
 <ul>
 <li>使元素脱离文档流</li>
 <li>对其应用多重改变</li>
@@ -142,7 +195,7 @@
 <li>使用文档片段在当前DOM之外构建一个子树，再把它拷贝会文档</li>
 <li>将原始元素拷贝到一个脱离文档的节点中，修改副本，完成后再替换原始元素</li>
 </ul>
-<h4 id="u8BA9_u5143_u7D20_u8131_u79BB_u52A8_u753B_u6D41"><a href="#u8BA9_u5143_u7D20_u8131_u79BB_u52A8_u753B_u6D41" class="headerlink" title="让元素脱离动画流"></a>让元素脱离动画流</h4><p>用展开/折叠的方式来显示和隐藏部分页面是一种常见的交互模式。它通常包括产开区域的几何 动画，并将页面其他部分推向下方。</p>
+<h4 id="让元素脱离动画流"><a href="#让元素脱离动画流" class="headerlink" title="让元素脱离动画流"></a>让元素脱离动画流</h4><p>用展开/折叠的方式来显示和隐藏部分页面是一种常见的交互模式。它通常包括产开区域的几何 动画，并将页面其他部分推向下方。</p>
 <p>如果程序需要重新计算的节点越多，重排产生的卡顿感也会越明显。</p>
 <p>那么应该如何解决呢？下面的步骤可以解决问题</p>
 <ol>
@@ -150,449 +203,1350 @@
 <li>让元素动起来，当他扩大时，会覆盖部分页面。但这只是页面的一个小区域的重绘过程，不会产生重排并重绘页面的大部分内容</li>
 <li>动画结束的时候，恢复定位，从而只会计算一次。</li>
 </ol>
-<h4 id="IE_u4E0E_uFF1Ahover"><a href="#IE_u4E0E_uFF1Ahover" class="headerlink" title="IE与：hover"></a>IE与：hover</h4><p>从IE7开始，IE允许在任何元素（严格模式下）使用:hover这个CSS伪选择器。然而，如果你有大量元素使用了：hover，那么会降低响应速度，IE8更明显</p>
-<h3 id="u4E8B_u4EF6_u59D4_u6258"><a href="#u4E8B_u4EF6_u59D4_u6258" class="headerlink" title="事件委托"></a>事件委托</h3><p>事件委托，通俗来说，就是解决页面中大量元素都需要绑定事件处理器从而影响的性能的办法。<br>它基于：事件逐层冒泡并能被父级元素捕获。</p>
+<h4 id="IE与：hover"><a href="#IE与：hover" class="headerlink" title="IE与：hover"></a>IE与：hover</h4><p>从IE7开始，IE允许在任何元素（严格模式下）使用:hover这个CSS伪选择器。然而，如果你有大量元素使用了：hover，那么会降低响应速度，IE8更明显</p>
+<h3 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h3><p>事件委托，通俗来说，就是解决页面中大量元素都需要绑定事件处理器从而影响的性能的办法。<br>它基于：事件逐层冒泡并能被父级元素捕获。</p>
 <p>只需要给外层元素绑定一个处理器，就可以处理在其子元素上出发的事件</p>
-<h2 id="u53C2_u8003_u8D44_u6599"><a href="#u53C2_u8003_u8D44_u6599" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
 <li>高性能javascript</li>
 </ol>
-  
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
 
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/性能优化/">性能优化</a>
-  </div>
-
-</div>
-
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="https://github.com/Zyingying/2016/07/13/js性能（三）——DOM编程/" data-title="js性能——DOM编程 | 2yingying" data-tsina="2133445925" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
-</footer>
-
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2016/08/17/排序算法/" title="排序算法">
-  <strong>上一篇：</strong><br/>
-  <span>
-  排序算法</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2016/07/01/js性能（二）——数据存储/"  title="js性能——数据存储">
- <strong>下一篇：</strong><br/> 
- <span>js性能——数据存储
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-<section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/07/13/js性能（三）——DOM编程/" data-title="js性能——DOM编程" data-url="https://github.com/Zyingying/2016/07/13/js性能（三）——DOM编程/"></div>
-</section>
-
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM_u904D_u5386"><span class="toc-number">1.</span> <span class="toc-text">DOM遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u9009_u62E9_u5668API"><span class="toc-number">1.1.</span> <span class="toc-text">选择器API</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u91CD_u7ED8_u91CD_u6392"><span class="toc-number">2.</span> <span class="toc-text">重绘重排</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u91CD_u6392_u53D1_u751F_u60C5_u51B5"><span class="toc-number">2.0.1.</span> <span class="toc-text">重排发生情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6E32_u67D3_u6811_u53D8_u5316_u7684_u6392_u961F_u4E0E_u5237_u65B0"><span class="toc-number">2.0.2.</span> <span class="toc-text">渲染树变化的排队与刷新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6700_u5C0F_u5316_u91CD_u7ED8_u548C_u91CD_u6392"><span class="toc-number">2.0.3.</span> <span class="toc-text">最小化重绘和重排</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6279_u91CF_u4FEE_u6539DOM"><span class="toc-number">2.0.4.</span> <span class="toc-text">批量修改DOM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u8BA9_u5143_u7D20_u8131_u79BB_u52A8_u753B_u6D41"><span class="toc-number">2.0.5.</span> <span class="toc-text">让元素脱离动画流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IE_u4E0E_uFF1Ahover"><span class="toc-number">2.0.6.</span> <span class="toc-text">IE与：hover</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E8B_u4EF6_u59D4_u6258"><span class="toc-number">2.1.</span> <span class="toc-text">事件委托</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u53C2_u8003_u8D44_u6599"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li></ol>
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  
-<div class="github-card">
-<p class="asidetitle">Github 名片</p>
-<div class="github-card" data-github="Zyingying" data-width="220" data-height="119" data-theme="medium">
-<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
-</div>
-  </div>
-
-
-
-  
-
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/js/" title="js">js<sup>12</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/css/" title="css">css<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/模块化/" title="模块化">模块化<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/性能优化/" title="性能优化">性能优化<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/安全/" title="安全">安全<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/攻击/" title="攻击">攻击<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/移动端/" title="移动端">移动端<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/渲染/" title="渲染">渲染<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/硬件加速/" title="硬件加速">硬件加速<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/闭包/" title="闭包">闭包<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/正则/" title="正则">正则<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/node/" title="node">node<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Grunt/" title="Grunt">Grunt<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/css3/" title="css3">css3<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/兼容/" title="兼容">兼容<sup>1</sup></a></li>
-			
-		
-		</ul>
-</div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
-    <ul>
+        </div>
         
-    </ul>
-</div>
-
-  
-
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-  <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
-    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2133445925&verifier=b3593ceb&dpc=1"></iframe>
-</div>
-
-
-</aside>
-</div>
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/性能优化/">性能优化</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
     </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello, I&#39;m zyy.  This is my blog on GitHub. <br/>
-			I wish you like it</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		<a href="http://weibo.com/2133445925" target="_blank" class="icon-weibo" title="微博"></a>
-		
-		
-		<a href="https://github.com/Zyingying" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		
-		
-		
-		
-		<a href="http://www.zhihu.com/people/2hang-ying-ying-" target="_blank" class="icon-zhihu" title="知乎"></a>
-		
-		
-		
-		<a href="mailto:zyingying.zyy@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
-
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
-		
-		<a href="/about" target="_blank" title="盈盈">盈盈</a>
-		
-		&nbsp&nbsp&nbsp&nbsp本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次, 本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次
-		</p>
 </div>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
         
-    }
-  });
-});
-</script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
-
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-
-  $('.hoverqrcode').hide();
-
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2016/08/17/排序算法/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">排序算法</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2016/07/01/js性能（二）——数据存储/">
+                <span class="level-item">js性能——数据存储</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"zyingying"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script> 
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
-</script>
-
-
-
-<!-- Analytics Begin -->
-
-
-
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
+	var gitment = new Gitment({
+		id: '2016/07/13/js性能（三）——DOM编程/',
+		owner: 'Vinny',
+		repo: 'Zyingying',
+		oauth: {
+			client_id: '36d8246113e8c681c4da',
+			client_secret: 'f52d837ac5dd58999ba01fd8d399fb85f78a8d79',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <img class="image is-128x128 has-mb-6" src="/images/author.jpg" alt="Vinny Chuang | 张盈盈">
+                    
+                    <p class="is-size-4 is-block">
+                        Vinny Chuang | 张盈盈
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Web Developer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Canton,China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        25
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        18
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/Zyingying">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/Zyingying">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="http://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="http://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="http://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">https://hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/Zyingying" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">yingying</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">https://github.com/Zyingying</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 10px;">css3</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/兼容/" style="font-size: 10px;">兼容</a> <a href="/tags/安全/" style="font-size: 12.5px;">安全</a> <a href="/tags/性能优化/" style="font-size: 15px;">性能优化</a> <a href="/tags/攻击/" style="font-size: 12.5px;">攻击</a> <a href="/tags/模块化/" style="font-size: 15px;">模块化</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/渲染/" style="font-size: 10px;">渲染</a> <a href="/tags/硬件加速/" style="font-size: 10px;">硬件加速</a> <a href="/tags/移动端/" style="font-size: 12.5px;">移动端</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2018/04/16/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/hello.jpg" alt="Hello 2018">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-04-16T07:23:59.000Z">2018-04-16</time></div>
+                    <a href="/2018/04/16/hello-world/" class="has-link-black-ter is-size-6">Hello 2018</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/11/26/replace/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="正则test, exec, match, replace">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-11-26T15:13:33.000Z">2016-11-26</time></div>
+                    <a href="/2016/11/26/replace/" class="has-link-black-ter is-size-6">正则test, exec, match, replace</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/10/26/抛出自定义错误/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="抛出自定义错误">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-10-26T15:07:42.000Z">2016-10-26</time></div>
+                    <a href="/2016/10/26/抛出自定义错误/" class="has-link-black-ter is-size-6">抛出自定义错误</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/09/18/移动网络下的页面调试/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="移动网络下的页面调试">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-09-18T02:54:22.000Z">2016-09-18</time></div>
+                    <a href="/2016/09/18/移动网络下的页面调试/" class="has-link-black-ter is-size-6">移动网络下的页面调试</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/08/17/排序算法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="排序算法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-08-17T15:25:26.000Z">2016-08-17</time></div>
+                    <a href="/2016/08/17/排序算法/" class="has-link-black-ter is-size-6">排序算法</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <ul class="menu-list">
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Grunt/">
+                        <span class="level-start">
+                            <span class="level-item">Grunt</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css/">
+                        <span class="level-start">
+                            <span class="level-item">css</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">4</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css3/">
+                        <span class="level-start">
+                            <span class="level-item">css3</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/git/">
+                        <span class="level-start">
+                            <span class="level-item">git</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/js/">
+                        <span class="level-start">
+                            <span class="level-item">js</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">12</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/node/">
+                        <span class="level-start">
+                            <span class="level-item">node</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/兼容/">
+                        <span class="level-start">
+                            <span class="level-item">兼容</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/安全/">
+                        <span class="level-start">
+                            <span class="level-item">安全</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/性能优化/">
+                        <span class="level-start">
+                            <span class="level-item">性能优化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/攻击/">
+                        <span class="level-start">
+                            <span class="level-item">攻击</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/模块化/">
+                        <span class="level-start">
+                            <span class="level-item">模块化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/正则/">
+                        <span class="level-start">
+                            <span class="level-item">正则</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/渲染/">
+                        <span class="level-start">
+                            <span class="level-item">渲染</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/硬件加速/">
+                        <span class="level-start">
+                            <span class="level-item">硬件加速</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/移动端/">
+                        <span class="level-start">
+                            <span class="level-item">移动端</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/算法/">
+                        <span class="level-start">
+                            <span class="level-item">算法</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/闭包/">
+                        <span class="level-start">
+                            <span class="level-item">闭包</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/随笔/">
+                        <span class="level-start">
+                            <span class="level-item">随笔</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2018/04/16/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/hello.jpg" alt="Hello 2018">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-04-16T07:23:59.000Z">2018-04-16</time></div>
+                    <a href="/2018/04/16/hello-world/" class="has-link-black-ter is-size-6">Hello 2018</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/11/26/replace/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="正则test, exec, match, replace">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-11-26T15:13:33.000Z">2016-11-26</time></div>
+                    <a href="/2016/11/26/replace/" class="has-link-black-ter is-size-6">正则test, exec, match, replace</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/10/26/抛出自定义错误/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="抛出自定义错误">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-10-26T15:07:42.000Z">2016-10-26</time></div>
+                    <a href="/2016/10/26/抛出自定义错误/" class="has-link-black-ter is-size-6">抛出自定义错误</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/09/18/移动网络下的页面调试/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="移动网络下的页面调试">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-09-18T02:54:22.000Z">2016-09-18</time></div>
+                    <a href="/2016/09/18/移动网络下的页面调试/" class="has-link-black-ter is-size-6">移动网络下的页面调试</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/08/17/排序算法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="排序算法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-08-17T15:25:26.000Z">2016-08-17</time></div>
+                    <a href="/2016/08/17/排序算法/" class="has-link-black-ter is-size-6">排序算法</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <ul class="menu-list">
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Grunt/">
+                        <span class="level-start">
+                            <span class="level-item">Grunt</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css/">
+                        <span class="level-start">
+                            <span class="level-item">css</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">4</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css3/">
+                        <span class="level-start">
+                            <span class="level-item">css3</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/git/">
+                        <span class="level-start">
+                            <span class="level-item">git</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/js/">
+                        <span class="level-start">
+                            <span class="level-item">js</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">12</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/node/">
+                        <span class="level-start">
+                            <span class="level-item">node</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/兼容/">
+                        <span class="level-start">
+                            <span class="level-item">兼容</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/安全/">
+                        <span class="level-start">
+                            <span class="level-item">安全</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/性能优化/">
+                        <span class="level-start">
+                            <span class="level-item">性能优化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/攻击/">
+                        <span class="level-start">
+                            <span class="level-item">攻击</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/模块化/">
+                        <span class="level-start">
+                            <span class="level-item">模块化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/正则/">
+                        <span class="level-start">
+                            <span class="level-item">正则</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/渲染/">
+                        <span class="level-start">
+                            <span class="level-item">渲染</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/硬件加速/">
+                        <span class="level-start">
+                            <span class="level-item">硬件加速</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/移动端/">
+                        <span class="level-start">
+                            <span class="level-item">移动端</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/算法/">
+                        <span class="level-start">
+                            <span class="level-item">算法</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/闭包/">
+                        <span class="level-start">
+                            <span class="level-item">闭包</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/随笔/">
+                        <span class="level-start">
+                            <span class="level-item">随笔</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="js性能——DOM编程" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2018 Vinny Chuang&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus">Icarus</a>
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
 </script>
 
 
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {matchFontHeight: false},
+        SVG: {matchFontHeight: false},
+        CommonHTML: {matchFontHeight: false}
+    });
+});
+</script>
 
-<!-- Analytics End -->
+    
+    
 
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
 
 
-<!-- MathJax End -->
+    
+    
 
-<!-- Tiny_search Begin -->
+    
+    
+    
+    
 
-<!-- Tiny_search End -->
+    
+    
+    
 
-  </body>
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
 </html>

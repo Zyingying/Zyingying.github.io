@@ -1,119 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>关于闭包的一些题目(一) - 盈盈的主页</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
- <!DOCTYPE HTML>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  
-    <title>关于闭包的一些题目(一) | 2yingying</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="盈盈">
-    
 
-    
+
     <meta name="description" content="今天看见一道自认为比较有难度比较绕的闭包题目，倒腾了好一会才弄出答案来，这题目是别人博客里面写的，本着“自己懂还不算真的懂，给别人讲懂了才算真的懂的原则”,故我在这篇博客里面来说说这道题目">
+<meta name="keywords" content="js,闭包">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于闭包的一些题目(一)">
 <meta property="og:url" content="https://github.com/Zyingying/2016/03/27/关于闭包的一些题目(一)/index.html">
-<meta property="og:site_name" content="2yingying">
+<meta property="og:site_name" content="盈盈的主页">
 <meta property="og:description" content="今天看见一道自认为比较有难度比较绕的闭包题目，倒腾了好一会才弄出答案来，这题目是别人博客里面写的，本着“自己懂还不算真的懂，给别人讲懂了才算真的懂的原则”,故我在这篇博客里面来说说这道题目">
-<meta property="og:updated_time" content="2016-03-27T14:44:12.827Z">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2016-03-27T14:44:12.828Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于闭包的一些题目(一)">
 <meta name="twitter:description" content="今天看见一道自认为比较有难度比较绕的闭包题目，倒腾了好一会才弄出答案来，这题目是别人博客里面写的，本着“自己懂还不算真的懂，给别人讲懂了才算真的懂的原则”,故我在这篇博客里面来说说这道题目">
 
-    
-    <link rel="alternative" href="/atom.xml" title="2yingying" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/smile.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/pacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
-</head>
 
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.svg" alt="2yingying" title="2yingying"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="2yingying">2yingying</a></h1>
-				<h2 class="blog-motto">你可长点心吧！     点心？什么点心？</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">主页 | Home</a></li>
-					
-						<li><a href="/archives">归档 | Archives</a></li>
-					
-						<li><a href="/about">简介 | About</a></li>
-					
-					<li>
- 					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:github.com/Zyingying">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
+
+
+
+<link rel="icon" href="/images/smile.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
     
-      <a href="/2016/03/27/关于闭包的一些题目(一)/" title="关于闭包的一些题目(一)" itemprop="url">关于闭包的一些题目(一)</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="盈盈" target="_blank" itemprop="author">盈盈</a>
-		
-  <p class="article-time">
-    <time datetime="2016-03-27T09:46:56.000Z" itemprop="datePublished"> 发表于 2016-03-27</time>
     
-  </p>
-</header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u9898_u76EE_u5982_u4E0B"><span class="toc-number">1.</span> <span class="toc-text">题目如下</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-_u7B2C_u4E00_u884C"><span class="toc-number"></span> <span class="toc-text">1.第一行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-_u7B2C_u4E8C_u884C"><span class="toc-number"></span> <span class="toc-text">2.第二行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-_u7B2C_u4E09_u884C"><span class="toc-number"></span> <span class="toc-text">3.第三行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u539F_u4F5C_u8005_u535A_u5BA2_u8FDE_u63A5"><span class="toc-number">1.</span> <span class="toc-text">原作者博客连接</span></a></li></ol>
-		
-		</div>
-		
-		<p>今天看见一道自认为比较有难度比较绕的闭包题目，倒腾了好一会才弄出答案来，这题目是别人博客里面写的，本着“自己懂还不算真的懂，给别人讲懂了才算真的懂的原则”,故我在这篇博客里面来说说这道题目<br> <a id="more"></a><br> 这是本人第一次描述这些题目，如果有用词不当，请提出^_^<br> 原作者的链接我会赋到最下面，如有冒犯请通知我，我会删掉的。</p>
-<h3 id="u9898_u76EE_u5982_u4E0B"><a href="#u9898_u76EE_u5982_u4E0B" class="headerlink" title="题目如下"></a>题目如下</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">n,o</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(o)</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    fun:<span class="function"><span class="keyword">function</span>(<span class="params">m</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> fun(m,n);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = fun(<span class="number">0</span>);  a.fun(<span class="number">1</span>);  a.fun(<span class="number">2</span>);  a.fun(<span class="number">3</span>);</span><br><span class="line"><span class="keyword">var</span> b = fun(<span class="number">0</span>).fun(<span class="number">1</span>).fun(<span class="number">2</span>).fun(<span class="number">3</span>);</span><br><span class="line"><span class="keyword">var</span> c = fun(<span class="number">0</span>).fun(<span class="number">1</span>);  c.fun(<span class="number">2</span>);  c.fun(<span class="number">3</span>);</span><br><span class="line"><span class="comment">//问:三行a,b,c的输出分别是什么？</span></span><br></pre></td></tr></table></figure>
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="关于闭包的一些题目(一)" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-03-27T09:46:56.000Z">2016-03-27</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 分钟 读完 (大约 1179 个字)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                关于闭包的一些题目(一)
+            
+        </h1>
+        <div class="content">
+            <p>今天看见一道自认为比较有难度比较绕的闭包题目，倒腾了好一会才弄出答案来，这题目是别人博客里面写的，本着“自己懂还不算真的懂，给别人讲懂了才算真的懂的原则”,故我在这篇博客里面来说说这道题目<br> <a id="more"></a><br> 这是本人第一次描述这些题目，如果有用词不当，请提出^_^<br> 原作者的链接我会赋到最下面，如有冒犯请通知我，我会删掉的。</p>
+<h3 id="题目如下"><a href="#题目如下" class="headerlink" title="题目如下"></a>题目如下</h3><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fun</span>(<span class="hljs-params">n,o</span>) </span>&#123;</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(o)</span><br><span class="line">  <span class="hljs-keyword">return</span> &#123;</span><br><span class="line">    fun:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">m</span>)</span>&#123;</span><br><span class="line">      <span class="hljs-keyword">return</span> fun(m,n);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> a = fun(<span class="hljs-number">0</span>);  a.fun(<span class="hljs-number">1</span>);  a.fun(<span class="hljs-number">2</span>);  a.fun(<span class="hljs-number">3</span>);</span><br><span class="line"><span class="hljs-keyword">var</span> b = fun(<span class="hljs-number">0</span>).fun(<span class="hljs-number">1</span>).fun(<span class="hljs-number">2</span>).fun(<span class="hljs-number">3</span>);</span><br><span class="line"><span class="hljs-keyword">var</span> c = fun(<span class="hljs-number">0</span>).fun(<span class="hljs-number">1</span>);  c.fun(<span class="hljs-number">2</span>);  c.fun(<span class="hljs-number">3</span>);</span><br><span class="line"><span class="hljs-comment">//问:三行a,b,c的输出分别是什么？</span></span><br></pre></td></tr></table></figure>
 <p>是不是有点懵逼？如果是，请先冷静一下哈，太懵逼是没办法解决问题的（虽然我看到第一眼就懵了，但是你可以慢慢来，还是可以梳理好的）。如果不是那你一定在闭包上面有深深的理解。</p>
-<p>第一个 <code>fun</code> 函数，是标准具名函数声明，返回了一个对象字面量表达式，也就是一个 <code>object</code> 。<br>第二个 <code>fun</code> 是一个属性，是匿名函数表达式。<br>第三个 <code>fun</code> 是调用的，也就是第一个<code>fun</code>，有点递归的意思。这里或许你会问为什么不等于第二个 <code>fun</code> ？其实我们可以将以下代码在浏览器<code>console</code>测试一下<br>假如是第三个fun是同第二个一样：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o=&#123;</span><br><span class="line">  fn:<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(fn);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">o.fn();<span class="comment">//ERROR报错</span></span><br></pre></td></tr></table></figure></p>
-<p>我们发现它最终会报错，显示<code>fn is not defined(...)</code><br>下面再看另一个<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(fn);</span><br><span class="line">&#125;;</span><br><span class="line">fn();<span class="comment">//function ()&#123;console.log(fn);&#125;;正确</span></span><br></pre></td></tr></table></figure></p>
+<p>第一个 <code>fun</code> 函数，是标准具名函数声明，返回了一个对象字面量表达式，也就是一个 <code>object</code> 。<br>第二个 <code>fun</code> 是一个属性，是匿名函数表达式。<br>第三个 <code>fun</code> 是调用的，也就是第一个<code>fun</code>，有点递归的意思。这里或许你会问为什么不等于第二个 <code>fun</code> ？其实我们可以将以下代码在浏览器<code>console</code>测试一下<br>假如是第三个fun是同第二个一样：<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> o=&#123;</span><br><span class="line">  fn:<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(fn);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">o.fn();<span class="hljs-comment">//ERROR报错</span></span><br></pre></td></tr></table></figure></p>
+<p>我们发现它最终会报错，显示<code>fn is not defined(...)</code><br>下面再看另一个<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> fn = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(fn);</span><br><span class="line">&#125;;</span><br><span class="line">fn();<span class="hljs-comment">//function ()&#123;console.log(fn);&#125;;正确</span></span><br></pre></td></tr></table></figure></p>
 <p>这次就没有报错了，<code>var</code> 在函数外部创建了一个fn，函数内部找不到fn则可以向上寻找，但是第一种是在函数内部创建的，没办法找到。</p>
 <p>所以我们可以得知，第三个函数是第一个的这个<code>fun</code><br>所以我们回顾一下原来的函数</p>
-<h2 id="1-_u7B2C_u4E00_u884C"><a href="#1-_u7B2C_u4E00_u884C" class="headerlink" title="1.第一行"></a>1.第一行</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = fun(<span class="number">0</span>);  a.fun(<span class="number">1</span>);  a.fun(<span class="number">2</span>);  a.fun(<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
-<p>首先<code>fun(0)</code>,即<code>n = 0</code>传入了<code>fun(n,o)</code>,此时<code>o</code>没有值，则为<code>undefined</code> :<br>故第一个输出为 undefined<br>接着的return返回了一个对象字面量表达式,也就是类似下面<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;</span><br><span class="line">    fun:<span class="function"><span class="keyword">function</span>(<span class="params">m</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> fun(m,n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="1-第一行"><a href="#1-第一行" class="headerlink" title="1.第一行"></a>1.第一行</h2><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> a = fun(<span class="hljs-number">0</span>);  a.fun(<span class="hljs-number">1</span>);  a.fun(<span class="hljs-number">2</span>);  a.fun(<span class="hljs-number">3</span>);</span><br></pre></td></tr></table></figure>
+<p>首先<code>fun(0)</code>,即<code>n = 0</code>传入了<code>fun(n,o)</code>,此时<code>o</code>没有值，则为<code>undefined</code> :<br>故第一个输出为 undefined<br>接着的return返回了一个对象字面量表达式,也就是类似下面<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> a = &#123;</span><br><span class="line">    fun:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">m</span>)</span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> fun(m,n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>接着的 <code>a.fun(1)</code> 参数 <code>m = 1</code> , <code>n</code>的值我们之前在<code>fun(0)</code>里面知道了——是 <code>0</code>。则下面的<code>fun(m,n)</code>则是 <code>fun(1,0)</code> ，再倒回去看函数第一个fun（最外面的那个）<code>m-&gt;n</code> ， <code>n-&gt;o</code>，所以打印出来的<code>o</code>也就是最后<code>n</code>的值，为 <strong>0</strong></p>
 <p>那么 <code>a.fun(2)</code>呢？其实也是差不多的，<code>m = 2</code>的时候，n还是原来的 <code>n = 0</code>,你问为什么？因为在<code>var a = fun(0)</code>的时候已经确定了呢,所以最终输出 0(第三个<code>fun</code>的参数<code>n</code>将值赋给了第一个<code>fun</code>的<code>o</code>)</p>
 <p>所以这么看来的话，第一行的第三个是不是也是很好解决呢？<br>和前面两个一样也是等于<code>0</code></p>
 <p>所以第一行的答案是：<br><strong> undefined   0   0   0</strong></p>
-<h2 id="2-_u7B2C_u4E8C_u884C"><a href="#2-_u7B2C_u4E8C_u884C" class="headerlink" title="2.第二行"></a>2.第二行</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = fun(<span class="number">0</span>).fun(<span class="number">1</span>).fun(<span class="number">2</span>).fun(<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="2-第二行"><a href="#2-第二行" class="headerlink" title="2.第二行"></a>2.第二行</h2><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> b = fun(<span class="hljs-number">0</span>).fun(<span class="hljs-number">1</span>).fun(<span class="hljs-number">2</span>).fun(<span class="hljs-number">3</span>);</span><br></pre></td></tr></table></figure>
 <ol>
 <li>首先第一个值是<code>undefined</code>是同刚刚第一行的一样的。</li>
 <li>那么接下来看又引用了 <code>fun</code>这个方法，也就是<code>m = 1</code>，n是原来的0，也就是最后<code>o = 0</code>,那么第二个输出的数字就为 <strong>0</strong></li>
@@ -121,451 +174,1352 @@
 <li>最后一个是<code>fun(3)</code>，这个又再次变成了fun里面的那个方法<code>fun</code>里面的函数，由于上次 <code>n=2 m=3</code> =&gt; <code>fun(3,2)</code>,最后一个输出 <strong>2</strong></li>
 </ol>
 <p>所以第二行的答案是：<br><strong> undefined   0   1   2</strong></p>
-<h2 id="3-_u7B2C_u4E09_u884C"><a href="#3-_u7B2C_u4E09_u884C" class="headerlink" title="3.第三行"></a>3.第三行</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = fun(<span class="number">0</span>).fun(<span class="number">1</span>);  c.fun(<span class="number">2</span>);  c.fun(<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="3-第三行"><a href="#3-第三行" class="headerlink" title="3.第三行"></a>3.第三行</h2><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> c = fun(<span class="hljs-number">0</span>).fun(<span class="hljs-number">1</span>);  c.fun(<span class="hljs-number">2</span>);  c.fun(<span class="hljs-number">3</span>);</span><br></pre></td></tr></table></figure>
 <ol>
 <li>由于前面两个在第二行里面是类似的，这边就直接跳过了，输出<strong>undefined 和0  </strong></li>
 <li>这时候，<code>c.fun(2)</code> =&gt; <code>fun(m,n)</code> =&gt; <code>m = 2</code>, <code>n</code>在上一个已经等于<code>1</code>, 也就是在<code>fun(n,o)</code>里面<code>n =2,o = 1</code>;<br>所以此次输出 <strong>1</strong></li>
 <li>第三个 <code>c.fun(3)</code> =&gt; <code>fun(m,n)</code> =&gt; <code>m=3,n=1</code>。所以最后在函数 <code>fun(n,o)</code>里<code>n=3,o = 1</code>,所以还是输出<strong>1</strong></li>
 </ol>
 <p>所以第三行的答案是：<br><strong> undefined   0   1   1</strong></p>
-<h3 id="u539F_u4F5C_u8005_u535A_u5BA2_u8FDE_u63A5"><a href="#u539F_u4F5C_u8005_u535A_u5BA2_u8FDE_u63A5" class="headerlink" title="原作者博客连接"></a>原作者博客连接</h3><p><a href="http://www.jianshu.com/p/7ff589e78964" target="_blank" rel="external"> IT程序狮 </a></p>
-  
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
+<h3 id="原作者博客连接"><a href="#原作者博客连接" class="headerlink" title="原作者博客连接"></a>原作者博客连接</h3><p><a href="http://www.jianshu.com/p/7ff589e78964" target="_blank" rel="noopener"> IT程序狮 </a></p>
 
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/js/">js</a><a href="/tags/闭包/">闭包</a>
-  </div>
-
-</div>
-
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="https://github.com/Zyingying/2016/03/27/关于闭包的一些题目(一)/" data-title="关于闭包的一些题目(一) | 2yingying" data-tsina="2133445925" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
-</footer>
-
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2016/03/29/那些年我们懵逼的安全知识之XSS/" title="那些年我们懵逼的安全知识——XSS">
-  <strong>上一篇：</strong><br/>
-  <span>
-  那些年我们懵逼的安全知识——XSS</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2016/02/22/this绑定规则/"  title="this绑定规则">
- <strong>下一篇：</strong><br/> 
- <span>this绑定规则
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-<section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/03/27/关于闭包的一些题目(一)/" data-title="关于闭包的一些题目(一)" data-url="https://github.com/Zyingying/2016/03/27/关于闭包的一些题目(一)/"></div>
-</section>
-
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u9898_u76EE_u5982_u4E0B"><span class="toc-number">1.</span> <span class="toc-text">题目如下</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-_u7B2C_u4E00_u884C"><span class="toc-number"></span> <span class="toc-text">1.第一行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-_u7B2C_u4E8C_u884C"><span class="toc-number"></span> <span class="toc-text">2.第二行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-_u7B2C_u4E09_u884C"><span class="toc-number"></span> <span class="toc-text">3.第三行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u539F_u4F5C_u8005_u535A_u5BA2_u8FDE_u63A5"><span class="toc-number">1.</span> <span class="toc-text">原作者博客连接</span></a></li></ol>
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  
-<div class="github-card">
-<p class="asidetitle">Github 名片</p>
-<div class="github-card" data-github="Zyingying" data-width="220" data-height="119" data-theme="medium">
-<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
-</div>
-  </div>
-
-
-
-  
-
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/js/" title="js">js<sup>12</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/css/" title="css">css<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/模块化/" title="模块化">模块化<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/性能优化/" title="性能优化">性能优化<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/安全/" title="安全">安全<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/攻击/" title="攻击">攻击<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/移动端/" title="移动端">移动端<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/渲染/" title="渲染">渲染<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/硬件加速/" title="硬件加速">硬件加速<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/闭包/" title="闭包">闭包<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/正则/" title="正则">正则<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/node/" title="node">node<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Grunt/" title="Grunt">Grunt<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/css3/" title="css3">css3<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/兼容/" title="兼容">兼容<sup>1</sup></a></li>
-			
-		
-		</ul>
-</div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
-    <ul>
+        </div>
         
-    </ul>
-</div>
-
-  
-
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-  <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
-    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2133445925&verifier=b3593ceb&dpc=1"></iframe>
-</div>
-
-
-</aside>
-</div>
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/js/">js</a>, <a class="has-link-grey -link" href="/tags/闭包/">闭包</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
     </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello, I&#39;m zyy.  This is my blog on GitHub. <br/>
-			I wish you like it</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		<a href="http://weibo.com/2133445925" target="_blank" class="icon-weibo" title="微博"></a>
-		
-		
-		<a href="https://github.com/Zyingying" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		
-		
-		
-		
-		<a href="http://www.zhihu.com/people/2hang-ying-ying-" target="_blank" class="icon-zhihu" title="知乎"></a>
-		
-		
-		
-		<a href="mailto:zyingying.zyy@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
-
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
-		
-		<a href="/about" target="_blank" title="盈盈">盈盈</a>
-		
-		&nbsp&nbsp&nbsp&nbsp本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次, 本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次
-		</p>
 </div>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
         
-    }
-  });
-});
-</script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
-
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-
-  $('.hoverqrcode').hide();
-
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2016/03/29/那些年我们懵逼的安全知识之XSS/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">那些年我们懵逼的安全知识——XSS</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2016/02/22/this绑定规则/">
+                <span class="level-item">this绑定规则</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"zyingying"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script> 
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
-</script>
-
-
-
-<!-- Analytics Begin -->
-
-
-
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
+	var gitment = new Gitment({
+		id: '2016/03/27/关于闭包的一些题目(一)/',
+		owner: 'Vinny',
+		repo: 'Zyingying',
+		oauth: {
+			client_id: '36d8246113e8c681c4da',
+			client_secret: 'f52d837ac5dd58999ba01fd8d399fb85f78a8d79',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <img class="image is-128x128 has-mb-6" src="/images/author.jpg" alt="Vinny Chuang | 张盈盈">
+                    
+                    <p class="is-size-4 is-block">
+                        Vinny Chuang | 张盈盈
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Web Developer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Canton,China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        25
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        18
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/Zyingying">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/Zyingying">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="http://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="http://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="http://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">https://hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/Zyingying" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">yingying</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">https://github.com/Zyingying</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Grunt/" style="font-size: 10px;">Grunt</a> <a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 10px;">css3</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/兼容/" style="font-size: 10px;">兼容</a> <a href="/tags/安全/" style="font-size: 12.5px;">安全</a> <a href="/tags/性能优化/" style="font-size: 15px;">性能优化</a> <a href="/tags/攻击/" style="font-size: 12.5px;">攻击</a> <a href="/tags/模块化/" style="font-size: 15px;">模块化</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/渲染/" style="font-size: 10px;">渲染</a> <a href="/tags/硬件加速/" style="font-size: 10px;">硬件加速</a> <a href="/tags/移动端/" style="font-size: 12.5px;">移动端</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2018/04/16/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/hello.jpg" alt="Hello 2018">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-04-16T07:23:59.000Z">2018-04-16</time></div>
+                    <a href="/2018/04/16/hello-world/" class="has-link-black-ter is-size-6">Hello 2018</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/11/26/replace/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="正则test, exec, match, replace">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-11-26T15:13:33.000Z">2016-11-26</time></div>
+                    <a href="/2016/11/26/replace/" class="has-link-black-ter is-size-6">正则test, exec, match, replace</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/10/26/抛出自定义错误/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="抛出自定义错误">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-10-26T15:07:42.000Z">2016-10-26</time></div>
+                    <a href="/2016/10/26/抛出自定义错误/" class="has-link-black-ter is-size-6">抛出自定义错误</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/09/18/移动网络下的页面调试/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="移动网络下的页面调试">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-09-18T02:54:22.000Z">2016-09-18</time></div>
+                    <a href="/2016/09/18/移动网络下的页面调试/" class="has-link-black-ter is-size-6">移动网络下的页面调试</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/08/17/排序算法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="排序算法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-08-17T15:25:26.000Z">2016-08-17</time></div>
+                    <a href="/2016/08/17/排序算法/" class="has-link-black-ter is-size-6">排序算法</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <ul class="menu-list">
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Grunt/">
+                        <span class="level-start">
+                            <span class="level-item">Grunt</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css/">
+                        <span class="level-start">
+                            <span class="level-item">css</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">4</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css3/">
+                        <span class="level-start">
+                            <span class="level-item">css3</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/git/">
+                        <span class="level-start">
+                            <span class="level-item">git</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/js/">
+                        <span class="level-start">
+                            <span class="level-item">js</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">12</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/node/">
+                        <span class="level-start">
+                            <span class="level-item">node</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/兼容/">
+                        <span class="level-start">
+                            <span class="level-item">兼容</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/安全/">
+                        <span class="level-start">
+                            <span class="level-item">安全</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/性能优化/">
+                        <span class="level-start">
+                            <span class="level-item">性能优化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/攻击/">
+                        <span class="level-start">
+                            <span class="level-item">攻击</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/模块化/">
+                        <span class="level-start">
+                            <span class="level-item">模块化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/正则/">
+                        <span class="level-start">
+                            <span class="level-item">正则</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/渲染/">
+                        <span class="level-start">
+                            <span class="level-item">渲染</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/硬件加速/">
+                        <span class="level-start">
+                            <span class="level-item">硬件加速</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/移动端/">
+                        <span class="level-start">
+                            <span class="level-item">移动端</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/算法/">
+                        <span class="level-start">
+                            <span class="level-item">算法</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/闭包/">
+                        <span class="level-start">
+                            <span class="level-item">闭包</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/随笔/">
+                        <span class="level-start">
+                            <span class="level-item">随笔</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2018/04/16/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/hello.jpg" alt="Hello 2018">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-04-16T07:23:59.000Z">2018-04-16</time></div>
+                    <a href="/2018/04/16/hello-world/" class="has-link-black-ter is-size-6">Hello 2018</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/11/26/replace/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="正则test, exec, match, replace">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-11-26T15:13:33.000Z">2016-11-26</time></div>
+                    <a href="/2016/11/26/replace/" class="has-link-black-ter is-size-6">正则test, exec, match, replace</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/10/26/抛出自定义错误/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="抛出自定义错误">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-10-26T15:07:42.000Z">2016-10-26</time></div>
+                    <a href="/2016/10/26/抛出自定义错误/" class="has-link-black-ter is-size-6">抛出自定义错误</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/09/18/移动网络下的页面调试/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="移动网络下的页面调试">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-09-18T02:54:22.000Z">2016-09-18</time></div>
+                    <a href="/2016/09/18/移动网络下的页面调试/" class="has-link-black-ter is-size-6">移动网络下的页面调试</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2016/08/17/排序算法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="排序算法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-08-17T15:25:26.000Z">2016-08-17</time></div>
+                    <a href="/2016/08/17/排序算法/" class="has-link-black-ter is-size-6">排序算法</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <ul class="menu-list">
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/Grunt/">
+                        <span class="level-start">
+                            <span class="level-item">Grunt</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css/">
+                        <span class="level-start">
+                            <span class="level-item">css</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">4</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/css3/">
+                        <span class="level-start">
+                            <span class="level-item">css3</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/git/">
+                        <span class="level-start">
+                            <span class="level-item">git</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/js/">
+                        <span class="level-start">
+                            <span class="level-item">js</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">12</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/node/">
+                        <span class="level-start">
+                            <span class="level-item">node</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/兼容/">
+                        <span class="level-start">
+                            <span class="level-item">兼容</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/安全/">
+                        <span class="level-start">
+                            <span class="level-item">安全</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/性能优化/">
+                        <span class="level-start">
+                            <span class="level-item">性能优化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/攻击/">
+                        <span class="level-start">
+                            <span class="level-item">攻击</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/模块化/">
+                        <span class="level-start">
+                            <span class="level-item">模块化</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">3</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/正则/">
+                        <span class="level-start">
+                            <span class="level-item">正则</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/渲染/">
+                        <span class="level-start">
+                            <span class="level-item">渲染</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/硬件加速/">
+                        <span class="level-start">
+                            <span class="level-item">硬件加速</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/移动端/">
+                        <span class="level-start">
+                            <span class="level-item">移动端</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/算法/">
+                        <span class="level-start">
+                            <span class="level-item">算法</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/闭包/">
+                        <span class="level-start">
+                            <span class="level-item">闭包</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/随笔/">
+                        <span class="level-start">
+                            <span class="level-item">随笔</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="关于闭包的一些题目(一)" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2018 Vinny Chuang&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus">Icarus</a>
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
 </script>
 
 
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {matchFontHeight: false},
+        SVG: {matchFontHeight: false},
+        CommonHTML: {matchFontHeight: false}
+    });
+});
+</script>
 
-<!-- Analytics End -->
+    
+    
 
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
 
 
-<!-- MathJax End -->
+    
+    
 
-<!-- Tiny_search Begin -->
+    
+    
+    
+    
 
-<!-- Tiny_search End -->
+    
+    
+    
 
-  </body>
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
 </html>
